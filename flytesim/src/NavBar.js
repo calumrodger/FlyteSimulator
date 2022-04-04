@@ -5,7 +5,7 @@ import React from 'react';
 const NavBar = (props) => {
   return (
     <Nav>
-        <img src="./img/PoetryBattle.jpg" alt="Poetry Battle" />
+        <img src="/img/PoetryBattle.jpg" alt="Poetry Battle" />
       <p>one</p>
       <p>two</p>
       <p>three</p>
@@ -20,7 +20,7 @@ const Nav = styled.div`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  background-color: #f5f5f5;
+  background-color: #E0AE16;
   padding: 10px;
   border-bottom: 1px solid #ccc;
   
