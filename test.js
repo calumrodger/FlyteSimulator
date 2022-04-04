@@ -4,3 +4,5 @@ datamuse.request('words?rel_rhy=flute')
 .then((json) => {
   console.log(json);
 });
+
+TEST Push
