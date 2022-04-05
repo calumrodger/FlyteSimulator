@@ -8,6 +8,8 @@ const GameContainer = () => {
     const starterWordsList = ["duck", "tip", "bomb", "grub", "daft", "eat"];
     const [starterWord, setStarterWord] = useState("")
     const [rhymeWord, setRhymeWord] = useState([])
+    const [rhymeWordWord, setRhymeWordWord] = useState("")
+    const [rhymeWordScore, setRhymeWordScore] = useState(0)
     const [rhymeWordsList, setRhymeWordsList] = useState([])
     const [showRhymes, setShowRhymes] = useState(false)
 
@@ -24,7 +26,11 @@ const GameContainer = () => {
 
     const rhymeWordClicked = (e) => {
         setRhymeWord(e.target.value)
+        // setRhymeWordScore(e.target.scoreValue)
+        // console.log(rhymeWordWord)
+        // console.log(rhymeWordScore)
         console.log(rhymeWord)
+        console.log(rhymeWordsList)
         // setShowRhymes(false)
     }
 

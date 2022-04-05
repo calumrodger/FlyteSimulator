@@ -1,7 +1,8 @@
 import React from 'react'
 import RhymeWord from './RhymeWord'
+import styled from "styled-components";
 
-const RhymeList = ({rhymeWordsList}) => {
+const RhymeList = ({rhymeWordsList, rhymeWordClicked}) => {
 
 const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
 const reducedWordsList = filteredWordsList.slice(0, 10);
@@ -11,9 +12,9 @@ const reducedWordsList = filteredWordsList.slice(0, 10);
 	const rhymeList = reducedWordsList.map((rhymeWord, index) => {
 		return(
 			<div key={index} className="component-item">
-				<div className='component'>
-					<RhymeWord rhymeWord={rhymeWord} />
-				</div>
+
+					<RhymeWord rhymeWord={rhymeWord} rhymeWordClicked={rhymeWordClicked}/>
+
 			</div>
 		)
 	})
@@ -27,3 +28,4 @@ const reducedWordsList = filteredWordsList.slice(0, 10);
 	)
 }
  export default RhymeList;
+
