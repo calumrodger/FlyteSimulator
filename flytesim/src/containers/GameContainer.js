@@ -1,4 +1,7 @@
 import React, {Fragment, useState, useEffect} from 'react';
+import StarterWords from '../components/StarterWords'
+import RhymeList from '../components/RhymeList'
+import RhymeWord from '../components/RhymeWord';
 
 const GameContainer = () => {
 
@@ -22,20 +25,13 @@ const GameContainer = () => {
     const rhymeWordClicked = (e) => {
         setRhymeWord(e.target.value)
         console.log(rhymeWord)
-        setShowRhymes(false)
+        // setShowRhymes(false)
     }
-
-    const rhymeWordsMapped = rhymeWordsList.map((rhymeWordsList))
 
     return(
         <>
-        {starterWordsList.map(word => (
-        <button type="submit" onClick={starterWordClicked} value={word}>{word}</button> 
-        ))}
-        {showRhymes ? rhymeWordsList.map(word => (
-        // <button type="submit" onClick={rhymeWordClicked}>{rhymeWordsList.word}</button> 
-        <p>{rhymeWordsList.word}</p> 
-        )) : null}
+        <StarterWords starterWordsList={starterWordsList} starterWordClicked={starterWordClicked}/>
+        <RhymeList rhymeWordsList={rhymeWordsList} rhymeWordClicked={rhymeWordClicked} showRhymes={showRhymes}/>
         </>
     )
 
