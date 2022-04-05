@@ -5,9 +5,10 @@ import styled from "styled-components";
 const RhymeWord = ({rhymeWord, rhymeWordClicked}) => {
 
   
+  
     return (
       <ButtonStyle>
-      <button type="submit" onClick={rhymeWordClicked} value={rhymeWord} scoreValue={rhymeWord.score}>
+      <button type="submit" onClick={rhymeWordClicked} value={rhymeWord.score}>
       {rhymeWord.word}
       </button>
       </ButtonStyle>

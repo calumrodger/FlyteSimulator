@@ -7,7 +7,7 @@ const GameContainer = () => {
 
     const starterWordsList = ["duck", "tip", "bomb", "grub", "daft", "eat"];
     const [starterWord, setStarterWord] = useState("")
-    const [rhymeWord, setRhymeWord] = useState([])
+    const [rhymeWord, setRhymeWord] = useState(null)
     const [rhymeWordWord, setRhymeWordWord] = useState("")
     const [rhymeWordScore, setRhymeWordScore] = useState(0)
     const [rhymeWordsList, setRhymeWordsList] = useState([])
@@ -18,6 +18,10 @@ const GameContainer = () => {
         .then(response => response.json())
         .then(data => setRhymeWordsList(data))
     }, [starterWord]);
+
+    useEffect(() => {
+// adding score to setscore
+    }, [rhymeWord])
     
     const starterWordClicked = (e) => {
         setStarterWord(e.target.value)
@@ -25,7 +29,8 @@ const GameContainer = () => {
     }
 
     const rhymeWordClicked = (e) => {
-        setRhymeWord(e.target.value)
+        setRhymeWordWord(e.target.value)
+        console.log(e.value)
         // setRhymeWordScore(e.target.scoreValue)
         // console.log(rhymeWordWord)
         // console.log(rhymeWordScore)
