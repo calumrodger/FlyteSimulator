@@ -1,13 +1,18 @@
+
+import Footer from './Footer';
+
 import "./App.css";
 import NavBar from "./NavBar";
 import RubberCapstone from "./img/rubbercapstone.png";
 import PencilCapstone from "./img/pencilcapstone.png";
 import styled from "styled-components";
 
+
 function App() {
   return (
     <div className="App">
       <NavBar />
+
       <h2>Hello and welcome to...</h2>
       <h1>FLYTE SIMULATOR</h1>
       <Sprites>
@@ -22,6 +27,8 @@ function App() {
           alt="Rubber Character"
         />
       </Sprites>
+<Footer />
+
     </div>
   );
 }
