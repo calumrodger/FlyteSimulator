@@ -1,11 +1,12 @@
 
+import GameContainer from './containers/GameContainer';
 import Footer from './Footer';
-
 import "./App.css";
 import NavBar from "./NavBar";
 import RubberCapstone from "./img/rubbercapstone.png";
 import PencilCapstone from "./img/pencilcapstone.png";
 import styled from "styled-components";
+
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
 
       <h2>Hello and welcome to...</h2>
       <h1>FLYTE SIMULATOR</h1>
+    <GameContainer />
       <Sprites>
         <img
           className="pencilcharacter bounce-1"
