@@ -12,12 +12,12 @@ function App() {
       <h1>FLYTE SIMULATOR</h1>
       <Sprites>
         <img
-          className="pencilcharacter"
+          className="pencilcharacter bounce-1"
           src={PencilCapstone}
           alt="Pencil Character"
         />
         <img
-          className="rubbercharacter"
+          className="rubbercharacter bounce-1"
           src={RubberCapstone}
           alt="Rubber Character"
         />
@@ -31,12 +31,11 @@ export default App;
 const Sprites = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  align-content: space-between;
   padding: 0px;
   img{
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
     padding: 0px 10px 0px 10px;
   }
   `
