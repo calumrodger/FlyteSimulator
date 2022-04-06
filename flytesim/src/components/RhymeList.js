@@ -7,8 +7,6 @@ const RhymeList = ({rhymeWordsList, rhymeWordClicked}) => {
 const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
 const reducedWordsList = filteredWordsList.slice(0, 10);
 
-
-
 	const rhymeList = reducedWordsList.map((rhymeWord, index) => {
 		return(
 			<div key={index} className="component-item">

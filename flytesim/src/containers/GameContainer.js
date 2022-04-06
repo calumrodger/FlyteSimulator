@@ -18,30 +18,23 @@ const GameContainer = () => {
     
     const starterWordClicked = (e) => {
         setStarterWord(e.target.value)
-        // setShowRhymes(true)
+        setShowResult(false)
     }
 
     const rhymeWordClicked = (e) => {
         const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
         const reducedWordsList = filteredWordsList.slice(0, 10);
         let index = e.target.value;
-        let selectedWord = reducedWordsList[index];
+        let selectedWord = rhymeWordsList[index];
         let stateWord = {...rhymeWord}
         stateWord['score'] = selectedWord['score']
         stateWord['word'] = selectedWord['word']
         console.log(stateWord)
-        setRhymeWordsList(reducedWordsList)
         setRhymeWord(stateWord);
+        setRhymeWordsList(reducedWordsList)
         setShowResult(true);
-
-        // // const rhymeWordArray = Object.values(e.target.value)
-        // setRhymeWord(e.target.value.word)
-        // // setRhymeScore(e.target.value.score)
-        // // console.log(e.value)
-        // // console.log(rhymeWordArray)
-        // console.log(rhymeWord)
-        // // console.log(rhymeWordsList)
     }
+
 
     return(
         <>
