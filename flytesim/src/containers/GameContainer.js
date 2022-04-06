@@ -22,11 +22,15 @@ const GameContainer = () => {
     }
 
     const rhymeWordClicked = (e) => {
+        const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
+        const reducedWordsList = filteredWordsList.slice(0, 10);
         let index = e.target.value;
-        let selectedWord = rhymeWordsList[index];
+        let selectedWord = reducedWordsList[index];
         let stateWord = {...rhymeWord}
         stateWord['score'] = selectedWord['score']
         stateWord['word'] = selectedWord['word']
+        console.log(stateWord)
+        setRhymeWordsList(reducedWordsList)
         setRhymeWord(stateWord);
         setShowResult(true);
 
