@@ -12,7 +12,7 @@ const reducedWordsList = filteredWordsList.slice(0, 10);
 	const rhymeList = reducedWordsList.map((rhymeWord, index) => {
 		return(
 			<div key={index} className="component-item">
-					<RhymeWord rhymeWord={rhymeWord} rhymeWordClicked={rhymeWordClicked}/>
+					<RhymeWord rhymeWord={rhymeWord} index={index} rhymeWordClicked={rhymeWordClicked}/>
 			</div>
 		)
 	})
