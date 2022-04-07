@@ -10,7 +10,8 @@ const NavBar = (props) => {
       <p>one</p>
       <p>two</p>
       <p>three</p>
-    </Nav>
+
+      </Nav>
   )
 }
 

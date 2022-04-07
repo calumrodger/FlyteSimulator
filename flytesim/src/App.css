@@ -2,20 +2,27 @@
   text-align: center;
 }
 
+/* background-attachment fixed currently not working on either sprite */
 .pencilcharacter{
-  align-self: flex-end;
+  
   animation-duration: 2s;
   animation-iteration-count: infinite;
   margin: 0 auto 0 auto;
   transform-origin: bottom;
+  position: fixed;
+  left: 0;
+  bottom: 10px;
 }
 
 .rubbercharacter{
-  align-self: flex-end;
+  
   animation-duration: 2s;
   animation-iteration-count: infinite;
   margin: 0 auto 0 auto;
   transform-origin: bottom;
+  position: fixed;
+  right: 0;
+  bottom: 10px;
 }
 
 .bounce-1 {
@@ -29,3 +36,4 @@
     50%  { transform: scale(1,1)    translateY(0); }
     100% { transform: scale(1,1)    translateY(0); }
 }
+

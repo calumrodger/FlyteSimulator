@@ -19,17 +19,29 @@ const StarterWord = ({starterWord, starterWordClicked, index}) => {
   
   export default StarterWord;
 
+  // const ButtonStyle = styled.div`
+  // button {
+  //   background-color: #4CAF50;
+  //   border: none;
+  //   color: white;
+  //   padding: 10px 20px;
+  //   text-align: center;
+  //   text-decoration: none;
+  //   display: inline-block;
+  //   font-size: 16px;
+  //   margin: 4px 2px;
+  //   cursor: pointer;
+  //   border-radius: 8px;
+  // }`
+
   const ButtonStyle = styled.div`
-  button {
-    background-color: #4CAF50;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 8px;
-  }`
+background-color: pink;
+border: none;
+color: white;
+padding: 10px 20px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+border-radius: 8px;`

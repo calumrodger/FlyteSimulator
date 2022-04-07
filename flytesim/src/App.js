@@ -6,6 +6,8 @@ import NavBar from "./NavBar";
 import RubberCapstone from "./img/rubbercapstone.png";
 import PencilCapstone from "./img/pencilcapstone.png";
 import styled from "styled-components";
+import ParticlesBg from 'particles-bg'
+import flytesim from "./img/flytesim.png";
 
 
 
@@ -14,8 +16,10 @@ function App() {
     <div className="App">
       <NavBar />
 
-      <h2>Hello and welcome to...</h2>
-      <h1>FLYTE SIMULATOR</h1>
+      <ParticlesBg type="circle" bg={true}/>
+
+      <h2> </h2>
+      <img className="logo" src={flytesim} alt="flytesim" />
     <GameContainer />
       <Sprites>
         <img
@@ -40,11 +44,16 @@ export default App;
 const Sprites = styled.div`
   display: flex;
   flex-direction: row;
-  align-content: space-between;
   padding: 0px;
+  margin: 0px;
+
+
   img{
     width: 400px;
     height: 400px;
     padding: 0px 10px 0px 10px;
+    z-index: -1;
+
   }
   `
+
