@@ -1,48 +1,68 @@
 import React, {Fragment, useState, useEffect} from 'react';
-import StarterWords from '../components/StarterWords'
+import StarterWordsList from '../components/StarterWordsList'
 import RhymeList from '../components/RhymeList'
-import RhymeWord from '../components/RhymeWord';
 
 const GameContainer = () => {
 
-    const starterWordsList = ["duck", "tip", "bomb", "grub", "daft", "eat"];
-    const [starterWord, setStarterWord] = useState("")
-    const [rhymeWord, setRhymeWord] = useState(null)
-    const [rhymeWordWord, setRhymeWordWord] = useState("")
-    const [rhymeWordScore, setRhymeWordScore] = useState(0)
+    const [starterWordsList, setStarterWordsList] = useState([])
+    const [starterWord, setStarterWord] = useState({})
+    const [rhymeWord, setRhymeWord] = useState({})
     const [rhymeWordsList, setRhymeWordsList] = useState([])
+    const [showResult, setShowResult] = useState(false)
     const [showRhymes, setShowRhymes] = useState(false)
 
     useEffect(() => {
-        fetch("https://api.datamuse.com/words?rel_rhy=" + starterWord)
+        fetchStarterWordsList()
+      }, [])
+
+    useEffect(() => {
+        fetch("https://api.datamuse.com/words?rel_rhy=" + starterWord.word)
         .then(response => response.json())
         .then(data => setRhymeWordsList(data))
     }, [starterWord]);
 
-    useEffect(() => {
-// adding score to setscore
-    }, [rhymeWord])
+    const fetchStarterWordsList = () => {
+        fetch("http://localhost:8080/api/starter_words/")
+        .then(response => response.json())
+        .then(data => setStarterWordsList(data))
+        .then(console.log(starterWordsList))
+      }
     
     const starterWordClicked = (e) => {
-        setStarterWord(e.target.value)
+        let index = e.target.value;
+        let selectedWord = starterWordsList[index];
+        let newWord = {...starterWord}
+        newWord['word'] = selectedWord['word']
+        newWord['wordClass'] = selectedWord['wordClass']
+        console.log(newWord)
+        setStarterWord(newWord)
+        console.log(starterWord)
+        setShowResult(false)
         setShowRhymes(true)
+
     }
 
     const rhymeWordClicked = (e) => {
-        setRhymeWordWord(e.target.value)
-        console.log(e.value)
-        // setRhymeWordScore(e.target.scoreValue)
-        // console.log(rhymeWordWord)
-        // console.log(rhymeWordScore)
-        console.log(rhymeWord)
-        console.log(rhymeWordsList)
-        // setShowRhymes(false)
+        // const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
+        const reducedWordsList = rhymeWordsList.slice(0, 10);
+        let index = e.target.value;
+        let selectedWord = rhymeWordsList[index];
+        let stateWord = {...rhymeWord}
+        stateWord['score'] = selectedWord['score']
+        stateWord['word'] = selectedWord['word']
+        console.log(stateWord)
+        console.log(starterWord)
+        setRhymeWord(stateWord);
+        setRhymeWordsList(reducedWordsList)
+        setShowResult(true);
     }
+
 
     return(
         <>
-        <StarterWords starterWordsList={starterWordsList} starterWordClicked={starterWordClicked}/>
-        <RhymeList rhymeWordsList={rhymeWordsList} rhymeWordClicked={rhymeWordClicked} showRhymes={showRhymes}/>
+        <StarterWordsList starterWordsList={starterWordsList} starterWordClicked={starterWordClicked}/>
+        {showRhymes ? <RhymeList rhymeWordsList={rhymeWordsList} rhymeWordClicked={rhymeWordClicked} showResult={showResult}/> : null}
+        {showResult ? <p>Your words are {starterWord.word} and {rhymeWord.word}! Your score is {rhymeWord.score}!</p> : null}
         </>
     )
 

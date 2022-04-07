@@ -1,18 +1,32 @@
 import React from "react";
 import styled from "styled-components";
 
-const RhymeWord = ({ rhymeWord, rhymeWordClicked }) => {
-  return (
-    <ButtonStyle>
-      <button type="submit" onClick={rhymeWordClicked} value={rhymeWord.score}>
-        {rhymeWord.word}
+
+
+const RhymeWord = ({rhymeWord, rhymeWordClicked, index, showResult}) => {
+
+
+
+// const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
+// const rhymeWordMap = rhymeWord.value.map((word) => {
+//   return <p>{rhymeWord.word}</p>
+// })
+// console.log(rhymeWordMap)
+
+    return (
+      <>
+      <ButtonStyle>
+      <button type="submit" onClick={rhymeWordClicked} value={index}>
+      {rhymeWord.word}
       </button>
       </ButtonStyle>
+      
+      </>
+    )
+  }
+  
+  export default RhymeWord;
 
-  );
-};
-
-export default RhymeWord;
 
 const ButtonStyle = styled.div`
 
