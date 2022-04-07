@@ -4,16 +4,15 @@ import RhymeList from '../components/RhymeList'
 
 const GameContainer = () => {
 
-
-    // const starterWordsList = ["duck", "tip", "bomb", "grub", "daft", "eat"];
     const [starterWordsList, setStarterWordsList] = useState([])
-    const [starterWord, setStarterWord] = useState("")
+    const [starterWord, setStarterWord] = useState({})
     const [rhymeWord, setRhymeWord] = useState({})
     const [rhymeWordsList, setRhymeWordsList] = useState([])
     const [showResult, setShowResult] = useState(false)
+    const [showRhymes, setShowRhymes] = useState(false)
 
     useEffect(() => {
-        fetchStarterWords()
+        fetchStarterWordsList()
       }, [])
 
     useEffect(() => {
@@ -22,7 +21,7 @@ const GameContainer = () => {
         .then(data => setRhymeWordsList(data))
     }, [starterWord]);
 
-    const fetchStarterWords = () => {
+    const fetchStarterWordsList = () => {
         fetch("http://localhost:8080/api/starter_words/")
         .then(response => response.json())
         .then(data => setStarterWordsList(data))
@@ -32,13 +31,15 @@ const GameContainer = () => {
     const starterWordClicked = (e) => {
         let index = e.target.value;
         let selectedWord = starterWordsList[index];
-        let stateWord = {...starterWord}
-        stateWord['word'] = selectedWord['word']
-        stateWord['wordClass'] = selectedWord['wordClass']
-        console.log(stateWord)
-        setStarterWord(stateWord)
+        let newWord = {...starterWord}
+        newWord['word'] = selectedWord['word']
+        newWord['wordClass'] = selectedWord['wordClass']
+        console.log(newWord)
+        setStarterWord(newWord)
         console.log(starterWord)
         setShowResult(false)
+        setShowRhymes(true)
+
     }
 
     const rhymeWordClicked = (e) => {
@@ -50,6 +51,7 @@ const GameContainer = () => {
         stateWord['score'] = selectedWord['score']
         stateWord['word'] = selectedWord['word']
         console.log(stateWord)
+        console.log(starterWord)
         setRhymeWord(stateWord);
         setRhymeWordsList(reducedWordsList)
         setShowResult(true);
@@ -59,7 +61,7 @@ const GameContainer = () => {
     return(
         <>
         <StarterWordsList starterWordsList={starterWordsList} starterWordClicked={starterWordClicked}/>
-        <RhymeList rhymeWordsList={rhymeWordsList} rhymeWordClicked={rhymeWordClicked} showResult={showResult}/>
+        {showRhymes ? <RhymeList rhymeWordsList={rhymeWordsList} rhymeWordClicked={rhymeWordClicked} showResult={showResult}/> : null}
         {showResult ? <p>Your words are {starterWord.word} and {rhymeWord.word}! Your score is {rhymeWord.score}!</p> : null}
         </>
     )
