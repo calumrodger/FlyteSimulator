@@ -44,13 +44,16 @@ export default App;
 const Sprites = styled.div`
   display: flex;
   flex-direction: row;
-  align-content: space-between;
   padding: 0px;
+  margin: 0px;
+
+
   img{
     width: 400px;
     height: 400px;
     padding: 0px 10px 0px 10px;
-    background-attachment: fixed;
+    z-index: -1;
+
   }
   `
 

@@ -21,6 +21,7 @@ const ButtonStyle = styled.div`
 button{
   font-family: 'Bebas Neue';
   background-color: #019DE0;
+  border-color: gold;
   padding: 15px 32px;
   text-align: center;
   font-size: 25px;
