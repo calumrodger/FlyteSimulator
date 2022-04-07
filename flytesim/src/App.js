@@ -7,6 +7,7 @@ import RubberCapstone from "./img/rubbercapstone.png";
 import PencilCapstone from "./img/pencilcapstone.png";
 import styled from "styled-components";
 import ParticlesBg from 'particles-bg'
+import flytesim from "./img/flytesim.png";
 
 
 
@@ -14,11 +15,11 @@ function App() {
   return (
     <div className="App">
       <NavBar />
-      <Backgroundsize>
+
       <ParticlesBg type="circle" bg={true}/>
-      </Backgroundsize>
-      <h2>Hello and welcome to...</h2>
-      <h1>FLYTE SIMULATOR</h1>
+
+      <h2> </h2>
+      <img className="logo" src={flytesim} alt="flytesim" />
     <GameContainer />
       <Sprites>
         <img
@@ -53,7 +54,3 @@ const Sprites = styled.div`
   }
   `
 
-  const Backgroundsize = styled.div`
-  background-repeat: no-repeat;
-  background-size: cover;
-  `

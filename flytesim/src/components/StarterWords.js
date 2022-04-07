@@ -21,7 +21,7 @@ const StarterWords = ({ starterWordsList, starterWordClicked }) => {
 export default StarterWords
 
 const StarterWordsStyle = styled.div`
-background-color: yellow;
+background-color: pink;
 border: none;
 color: white;
 padding: 10px 20px;
