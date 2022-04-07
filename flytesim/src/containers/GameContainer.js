@@ -6,13 +6,15 @@ import Request from '../helpers/request';
 
 const GameContainer = () => {
 
+    const [players, setPlayers] = useState([])
     const [starterWordsList, setStarterWordsList] = useState([])
+    const [rhymeWordsList, setRhymeWordsList] = useState([])
     const [starterWord, setStarterWord] = useState({})
     const [rhymeWord, setRhymeWord] = useState({})
-    const [rhymeWordsList, setRhymeWordsList] = useState([])
+    
     const [showResult, setShowResult] = useState(false)
     const [showRhymes, setShowRhymes] = useState(false)
-    const [players, setPlayers] = useState([])
+    
 
     useEffect(() => {
         fetchStarterWordsList()
@@ -44,9 +46,7 @@ const GameContainer = () => {
         let newWord = {...starterWord}
         newWord['word'] = selectedWord['word']
         newWord['wordClass'] = selectedWord['wordClass']
-        console.log(newWord)
         setStarterWord(newWord)
-        console.log(starterWord)
         setShowResult(false)
         setShowRhymes(true)
 
@@ -67,12 +67,6 @@ const GameContainer = () => {
         setShowResult(true);
     }
 
-//     const findPlayerById = (id) => {
-//         return players.find((player) => {
-//         return player.id === parseInt(id);
-//    })
-//   }
-
   const handlePost = (player) => {
     const request = new Request();
     const url = "http://localhost:8080/api/players"
@@ -80,12 +74,6 @@ const GameContainer = () => {
     // window.location.reload()
     console.log(players)
 }
-
-//   const handleUpdate = (player) => {
-//     const request = new Request();
-//     request.patch("/api/players/" + player.id)
-//     .then(() => {window.location = "/players/" + player.id})
-//   }
 
   
 
