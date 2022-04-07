@@ -1,14 +1,14 @@
 package com.codeclan.example.FlyteSim.repositories;
 
-import com.codeclan.example.FlyteSim.models.PreviousRaps;
+import com.codeclan.example.FlyteSim.models.PreviousRap;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface PreviousRapsRepository extends JpaRepository<PreviousRaps, Long> {
+public interface PreviousRapRepository extends JpaRepository<PreviousRap, Long> {
 
-    List<PreviousRaps> findByPlayerName(String name);
+    List<PreviousRap> findByPlayerName(String name);
 
 }

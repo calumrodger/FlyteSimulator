@@ -26,7 +26,7 @@ public class Player {
 
     @OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
     @JsonBackReference
-    private List<PreviousRaps> previousRaps;
+    private List<PreviousRap> previousRaps;
 
 
     public Player(String name, String stageName, int points) {
@@ -62,12 +62,16 @@ public class Player {
         this.points = points;
     }
 
-    public List<PreviousRaps> getPreviousRaps() {
-        return previousRaps;
+    public ArrayList<PreviousRap> getPreviousRaps() {
+        return (ArrayList<PreviousRap>) previousRaps;
     }
 
-    public void setPreviousRaps(List<PreviousRaps> previousRaps) {
+    public void setPreviousRaps(ArrayList<PreviousRap> previousRaps) {
         this.previousRaps = previousRaps;
+    }
+
+    public void addRap(PreviousRap previousRap){
+        this.previousRaps.add(previousRap);
     }
 }
 

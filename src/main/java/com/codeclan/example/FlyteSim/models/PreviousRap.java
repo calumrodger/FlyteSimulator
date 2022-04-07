@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name="previousRaps")
-public class PreviousRaps {
+public class PreviousRap {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,14 +24,14 @@ public class PreviousRaps {
     @JoinColumn(name="rap_id", nullable = false)
     private Player player;
 
-    public PreviousRaps(String firstLine, String secondLine, int score, Player player) {
+    public PreviousRap(String firstLine, String secondLine, int score, Player player) {
         this.firstLine = firstLine;
         this.secondLine = secondLine;
         this.score = score;
         this.player = player;
     }
 
-    public PreviousRaps() {
+    public PreviousRap() {
     }
 
     public Long getId() {

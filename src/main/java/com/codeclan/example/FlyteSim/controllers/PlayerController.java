@@ -21,18 +21,18 @@ public class PlayerController {
     }
 
     @GetMapping(value = "/players/{id}")
-    public ResponseEntity getPirate(@PathVariable Long id){
+    public ResponseEntity getPlayer(@PathVariable Long id){
         return new ResponseEntity(playerRepository.findById(id), HttpStatus.OK);
     }
 
     @PostMapping(value = "/players")
-    public ResponseEntity<Player> postPirate(@RequestBody Player player){
+    public ResponseEntity<Player> postPlayer(@RequestBody Player player){
         playerRepository.save(player);
         return new ResponseEntity<>(player, HttpStatus.CREATED);
     }
 
     @PatchMapping(value="/players/{id}")
-    public ResponseEntity<Player> updatePirate(@RequestBody Player player){
+    public ResponseEntity<Player> updatePlayer(@RequestBody Player player){
         playerRepository.save(player);
         return new ResponseEntity<>(player, HttpStatus.OK);
     }

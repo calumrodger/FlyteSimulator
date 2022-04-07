@@ -1,6 +1,8 @@
 package com.codeclan.example.FlyteSim.components;
 import com.codeclan.example.FlyteSim.models.Player;
+import com.codeclan.example.FlyteSim.models.PreviousRap;
 import com.codeclan.example.FlyteSim.models.StarterWord;
+import com.codeclan.example.FlyteSim.repositories.PreviousRapRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -16,6 +18,9 @@ public class DataLoader implements ApplicationRunner {
 
     @Autowired
     StarterWordRepository starterWordRepository;
+
+    @Autowired
+    PreviousRapRepository previousRapRepository;
 
     public DataLoader() {
 
@@ -37,7 +42,6 @@ public class DataLoader implements ApplicationRunner {
         StarterWord word2 = new StarterWord("grape", "noun");
         starterWordRepository.save(word2);
 
-
         StarterWord word3 = new StarterWord("nation", "noun");
         starterWordRepository.save(word3);
 
@@ -52,6 +56,9 @@ public class DataLoader implements ApplicationRunner {
 
         StarterWord word7 = new StarterWord("happy", "adjective");
         starterWordRepository.save(word7);
+
+        PreviousRap rap1 = new PreviousRap("first line", "second line", 1000, ryan);
+        previousRapRepository.save(rap1);
 
 
 
