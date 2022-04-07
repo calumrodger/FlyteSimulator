@@ -4,15 +4,13 @@ import styled from "styled-components";
 
 const RhymeList = ({rhymeWordsList, rhymeWordClicked}) => {
 
-const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
-const reducedWordsList = filteredWordsList.slice(0, 10);
-
-
+// const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
+const reducedWordsList = rhymeWordsList.slice(0, 10);
 
 	const rhymeList = reducedWordsList.map((rhymeWord, index) => {
 		return(
 			<div key={index} className="component-item">
-					<RhymeWord rhymeWord={rhymeWord} rhymeWordClicked={rhymeWordClicked}/>
+					<RhymeWord rhymeWord={rhymeWord} index={index} rhymeWordClicked={rhymeWordClicked}/>
 			</div>
 		)
 	})
