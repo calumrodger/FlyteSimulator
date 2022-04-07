@@ -1,6 +1,8 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import StarterWordsList from '../components/StarterWordsList'
 import RhymeList from '../components/RhymeList'
+import PlayerForm from '../components/PlayerForm';
+import Request from '../helpers/request';
 
 const GameContainer = () => {
 
@@ -10,9 +12,11 @@ const GameContainer = () => {
     const [rhymeWordsList, setRhymeWordsList] = useState([])
     const [showResult, setShowResult] = useState(false)
     const [showRhymes, setShowRhymes] = useState(false)
+    const [players, setPlayers] = useState([])
 
     useEffect(() => {
         fetchStarterWordsList()
+        fetchPlayers()
       }, [])
 
     useEffect(() => {
@@ -20,6 +24,12 @@ const GameContainer = () => {
         .then(response => response.json())
         .then(data => setRhymeWordsList(data))
     }, [starterWord]);
+
+    const fetchPlayers = () => {
+        fetch("http://localhost:8080/api/players/")
+        .then(response => response.json())
+        .then(data => setPlayers(data))
+      }
 
     const fetchStarterWordsList = () => {
         fetch("http://localhost:8080/api/starter_words/")
@@ -57,12 +67,35 @@ const GameContainer = () => {
         setShowResult(true);
     }
 
+//     const findPlayerById = (id) => {
+//         return players.find((player) => {
+//         return player.id === parseInt(id);
+//    })
+//   }
+
+  const handlePost = (player) => {
+    const request = new Request();
+    const url = "http://localhost:8080/api/players"
+    request.post(url, player)
+    // window.location.reload()
+    console.log(players)
+}
+
+//   const handleUpdate = (player) => {
+//     const request = new Request();
+//     request.patch("/api/players/" + player.id)
+//     .then(() => {window.location = "/players/" + player.id})
+//   }
+
+  
+
 
     return(
         <>
         <StarterWordsList starterWordsList={starterWordsList} starterWordClicked={starterWordClicked}/>
         {showRhymes ? <RhymeList rhymeWordsList={rhymeWordsList} rhymeWordClicked={rhymeWordClicked} showResult={showResult}/> : null}
         {showResult ? <p>Your words are {starterWord.word} and {rhymeWord.word}! Your score is {rhymeWord.score}!</p> : null}
+        <PlayerForm onCreate={handlePost}/>
         </>
     )
 
