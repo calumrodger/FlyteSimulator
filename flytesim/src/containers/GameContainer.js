@@ -4,6 +4,8 @@ import RhymeList from "../components/RhymeList";
 import perfect from "../img/Perfect.png";
 import great from "../img/Great.png";
 import okay from "../img/OK.png";
+import Speech from 'react-speech';
+import styled from "styled-components"
 
 const GameContainer = () => {
   const [starterWordsList, setStarterWordsList] = useState([]);
@@ -82,9 +84,15 @@ const GameContainer = () => {
         />
       ) : null}
       {showResult ? (
-        <p>
+        <p className="workplz">
+            
           Your words are {starterWord.word} and {rhymeWord.word}!
           {interpretScore()}
+          <Speech 
+
+  textAsButton={true}    
+  displayText="Rap!" 
+  text="lol"/>
         </p>
       ) : null}
     </>
@@ -92,3 +100,17 @@ const GameContainer = () => {
 };
 
 export default GameContainer;
+
+const textstyle = styled.div`
+
+      button {
+        padding:'4',
+        fontFamily: 'Helvetica',
+        fontSize: '1.0em',
+        cursor: 'pointer',
+        pointerEvents: 'none',
+        outline: 'none',
+        backgroundColor: 'inherit',
+        border: 'none'
+      },
+`
