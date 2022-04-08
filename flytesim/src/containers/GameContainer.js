@@ -4,6 +4,10 @@ import RhymeList from "../components/RhymeList";
 import perfect from "../img/Perfect.png";
 import great from "../img/Great.png";
 import okay from "../img/OK.png";
+import Speech from 'react-speech';
+import styled from "styled-components"
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
 
 const GameContainer = () => {
   const [starterWordsList, setStarterWordsList] = useState([]);
@@ -68,6 +72,10 @@ const GameContainer = () => {
     }
   };
 
+  const textToSpeech = () => {
+      return "Mess with me then i think you better " + starterWord.word + " get out of here before I fetch my " + rhymeWord.word + ".";
+  }
+
   return (
     <>
       <StarterWordsList
@@ -82,9 +90,17 @@ const GameContainer = () => {
         />
       ) : null}
       {showResult ? (
-        <p>
-          Your words are {starterWord.word} and {rhymeWord.word}!
-          {interpretScore()}
+        <p className="workplz">
+            
+          Your words are {starterWord.word} and {rhymeWord.word}! <Speech 
+
+textAsButton={true}    
+displayText="Rap!" 
+text={textToSpeech()}/>
+          <div className="stage2">
+          <div class="box bounce-7">{interpretScore()} </div>
+
+          </div>
         </p>
       ) : null}
     </>
@@ -92,3 +108,4 @@ const GameContainer = () => {
 };
 
 export default GameContainer;
+
