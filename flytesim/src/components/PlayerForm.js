@@ -22,7 +22,6 @@ const PlayerForm = ({player, onCreate, setCurrentPlayer}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         onCreate(statePlayer);
-        setCurrentPlayer(statePlayer)
     }
 
     const handleChange = (event) => {

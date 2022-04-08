@@ -1,22 +1,32 @@
-import React, {useState} from "react";
+import React, {useState, useEffect, Fragment} from "react";
 import PlayerForm from "./PlayerForm";
 
-const NewGame = ({handlePlayerPost, players, currentPlayer, setCurrentPlayer}) => {
+const NewGame = ({handlePlayerPost, onCreate, players, currentPlayer, setCurrentPlayer}) => {
 
-    const [selectedPlayer, setSelectedPlayer] = ([])
+    const [statePlayer, setStatePlayer] = useState({})
 
-    const handleAnswerChange1 = (event) => {
-        setSelectedPlayer(event.target.value)
+    const playerStageNames = players.map((player) => player.stageName)
+
+    const handleChange = (event) => {
+        setStatePlayer(event.target.value)
     }
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        setStatePlayer(event.target.value)
+        console.log(statePlayer)
+      }
 
     return(
         <>
-        <PlayerForm onCreate={handlePlayerPost}/>
         <h3>Select Player</h3>
-        {/* <select value={selectedPlayer} onChange={handleAnswerChange1}>
+        <form>
+        <select value={statePlayer} onChange={handleChange}>
         <option disabled>Choose...</option>
-        {players.map((name) => (<option>{players.name}</option>))}
-        </select> */}
+        {playerStageNames.map((stageName) => (<option>{stageName}</option>))}
+        </select>
+        <button onClick={handleSubmit}> Go</button>
+        </form>
         </>
     )
 }

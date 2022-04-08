@@ -2,6 +2,7 @@ import React, {Fragment, useState, useEffect} from 'react';
 import StarterWordsList from '../components/StarterWordsList'
 import RhymeList from '../components/RhymeList'
 import NewGame from '../components/NewGame';
+import PlayerForm from '../components/PlayerForm';
 import LineOneInput from '../components/LineOneInput';
 import LineTwoInput from '../components/LineTwoInput';
 import Request from '../helpers/request';
@@ -35,7 +36,6 @@ const GameContainer = () => {
         fetchPlayers()
         console.log(dictionary["hello"])
         setLineOne("test")
-        console.log(players)
       }, [])
 
     useEffect(() => {
@@ -48,6 +48,7 @@ const GameContainer = () => {
         fetch("http://localhost:8080/api/players/")
         .then(response => response.json())
         .then(data => setPlayers(data))
+        .then(console.log(players))
       }
 
     const fetchStarterWordsList = () => {
@@ -112,7 +113,8 @@ const handleLineTwoSubmit = (e) => {
         {showStarterWords ? <StarterWordsList starterWordsList={starterWordsList} starterWordClicked={starterWordClicked}/> : null}
         {showRhymes ? <RhymeList rhymeWordsList={rhymeWordsList} rhymeWordClicked={rhymeWordClicked} showResult={showResult}/> : null}
         {showResult ? <p>Your words are {starterWord.word} and {rhymeWord.word}! Your score is {rhymeWord.score}!</p> : null}
-        {showNewGame ? <NewGame/> : null}
+        {showNewGame ? <NewGame players={players}/> : null}
+        <PlayerForm onCreate={handlePlayerPost} setCurrentPlayer={setCurrentPlayer}/>
         <LineOneInput lineOne={lineOne} setLineOne={setLineOne} handleLineOneSubmit={handleLineOneSubmit}/>{starterWord.word}
         <LineTwoInput lineTwo={lineTwo} setLineTwo={setLineTwo} handleLineTwoSubmit={handleLineTwoSubmit}/>{rhymeWord.word}
         </>
