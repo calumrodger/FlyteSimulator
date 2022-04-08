@@ -2,23 +2,40 @@ import React, {Fragment, useState, useEffect} from 'react';
 import StarterWordsList from '../components/StarterWordsList'
 import RhymeList from '../components/RhymeList'
 import PlayerForm from '../components/PlayerForm';
+import LineOneInput from '../components/LineOneInput';
+import LineTwoInput from '../components/LineTwoInput';
 import Request from '../helpers/request';
+import { dictionary } from 'cmu-pronouncing-dictionary'
 
 const GameContainer = () => {
+
+    // const test = ["hello", "world"]
+    // const [testing, setTesting] = useState([])
+
 
     const [players, setPlayers] = useState([])
     const [starterWordsList, setStarterWordsList] = useState([])
     const [rhymeWordsList, setRhymeWordsList] = useState([])
+
+    const [currentPlayer, setCurrentPlayer] = useState([])
     const [starterWord, setStarterWord] = useState({})
     const [rhymeWord, setRhymeWord] = useState({})
+
+    const [lineOne, setLineOne] = useState("")
+    const [lineTwo, setLineTwo] = useState("")
     
-    const [showResult, setShowResult] = useState(false)
+    const [showNewGame, setShowNewGame] = useState(true)
+    const [showStarterWords, setShowStarterWords] = useState(true)
+    const [showLineInput, setShowLineInput] = useState(false)
     const [showRhymes, setShowRhymes] = useState(false)
-    
+    const [showResult, setShowResult] = useState(false)
 
     useEffect(() => {
         fetchStarterWordsList()
         fetchPlayers()
+        console.log(dictionary["hello"])
+        setLineOne("test")
+        console.log(lineOne)
       }, [])
 
     useEffect(() => {
@@ -39,7 +56,7 @@ const GameContainer = () => {
         .then(data => setStarterWordsList(data))
         .then(console.log(starterWordsList))
       }
-    
+
     const starterWordClicked = (e) => {
         let index = e.target.value;
         let selectedWord = starterWordsList[index];
@@ -49,7 +66,6 @@ const GameContainer = () => {
         setStarterWord(newWord)
         setShowResult(false)
         setShowRhymes(true)
-
     }
 
     const rhymeWordClicked = (e) => {
@@ -67,23 +83,38 @@ const GameContainer = () => {
         setShowResult(true);
     }
 
-  const handlePost = (player) => {
+  const handlePlayerPost = (player) => {
     const request = new Request();
     const url = "http://localhost:8080/api/players"
     request.post(url, player)
-    // window.location.reload()
+    window.location.reload()
     console.log(players)
 }
 
-  
+const handleLineOneSubmit = (e) => {
+  e.preventDefault()
+  setLineOne(e.target.value)
+  let completeLine = (lineOne + " " + starterWord.word)
+  setLineOne(completeLine)
+  console.log(lineOne)
+}
 
+const handleLineTwoSubmit = (e) => {
+  e.preventDefault()
+  setLineTwo(e.target.value)
+  let completeLine = (lineTwo + " " + rhymeWord.word)
+  setLineTwo(completeLine)
+  console.log(lineTwo)
+}
 
     return(
         <>
-        <StarterWordsList starterWordsList={starterWordsList} starterWordClicked={starterWordClicked}/>
+        {showStarterWords ? <StarterWordsList starterWordsList={starterWordsList} starterWordClicked={starterWordClicked}/> : null}
         {showRhymes ? <RhymeList rhymeWordsList={rhymeWordsList} rhymeWordClicked={rhymeWordClicked} showResult={showResult}/> : null}
         {showResult ? <p>Your words are {starterWord.word} and {rhymeWord.word}! Your score is {rhymeWord.score}!</p> : null}
-        <PlayerForm onCreate={handlePost}/>
+        <PlayerForm onCreate={handlePlayerPost}/>
+        <LineOneInput lineOne={lineOne} setLineOne={setLineOne} handleLineOneSubmit={handleLineOneSubmit}/>{starterWord.word}
+        <LineTwoInput lineTwo={lineTwo} setLineTwo={setLineTwo} handleLineTwoSubmit={handleLineTwoSubmit}/>{rhymeWord.word}
         </>
     )
 

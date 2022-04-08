@@ -18,19 +18,15 @@ const PlayerForm = ({player, onCreate, handlePost}) => {
     }, [player])
 
 
-    let heading = "";
-    if(!player){
-        heading = "Create Player"
-    } else {
-        heading = "Edit " + player.name;
-    }
+    // let heading = "";
+    // if(!player){
+    //     heading = "Create Player"
+    // } else {
+    //     heading = "Edit " + player.name;
+    // }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // console.log(event.statePlayer.name)
-        // if(statePlayer.id){
-        //     onUpdate(statePlayer)
-        // } else {
         onCreate(statePlayer);
     }
 
@@ -46,7 +42,7 @@ const PlayerForm = ({player, onCreate, handlePost}) => {
     return(
         
         <>
-        <h3>{heading}</h3>
+        <h3>Create Player</h3>
         <form onSubmit={handleSubmit}>
         <input type="text" placeholder="Name" name="name" onChange={handleChange} value={statePlayer.name}/>
         <input type="text" placeholder="Stage name" name="stageName" onChange={handleChange} value={statePlayer.stageName}/>
