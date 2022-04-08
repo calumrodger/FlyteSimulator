@@ -1,7 +1,7 @@
 import React, {useState, useEffect, Fragment} from 'react';
 // import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-const PlayerForm = ({player, onCreate, handlePost}) => {
+const PlayerForm = ({player, onCreate, setCurrentPlayer}) => {
 
     const [statePlayer, setStatePlayer] = useState({
     name: "",
@@ -18,16 +18,11 @@ const PlayerForm = ({player, onCreate, handlePost}) => {
     }, [player])
 
 
-    // let heading = "";
-    // if(!player){
-    //     heading = "Create Player"
-    // } else {
-    //     heading = "Edit " + player.name;
-    // }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         onCreate(statePlayer);
+        setCurrentPlayer(statePlayer)
     }
 
     const handleChange = (event) => {
