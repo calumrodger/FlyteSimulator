@@ -1,7 +1,7 @@
 import React, {useState, useEffect, Fragment} from 'react';
 // import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-const PlayerForm = ({player, onCreate, setCurrentPlayer}) => {
+const PlayerForm = ({player, onCreate}) => {
 
     const [statePlayer, setStatePlayer] = useState({
     name: "",

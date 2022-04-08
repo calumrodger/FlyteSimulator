@@ -18,7 +18,7 @@ const GameContainer = () => {
     const [starterWordsList, setStarterWordsList] = useState([])
     const [rhymeWordsList, setRhymeWordsList] = useState([])
 
-    const [currentPlayer, setCurrentPlayer] = useState([])
+    const [currentPlayer, setCurrentPlayer] = useState({})
     const [starterWord, setStarterWord] = useState({})
     const [rhymeWord, setRhymeWord] = useState({})
 
@@ -108,13 +108,22 @@ const handleLineTwoSubmit = (e) => {
   console.log(lineTwo)
 }
 
+const handleSelectPlayerSubmit = (event) => {
+  event.preventDefault()
+  const index = parseInt(event.target.value);
+  const selectedPlayer = players[index]
+  setCurrentPlayer(selectedPlayer)
+  console.log(currentPlayer)
+}
+
+
     return(
         <>
         {showStarterWords ? <StarterWordsList starterWordsList={starterWordsList} starterWordClicked={starterWordClicked}/> : null}
         {showRhymes ? <RhymeList rhymeWordsList={rhymeWordsList} rhymeWordClicked={rhymeWordClicked} showResult={showResult}/> : null}
         {showResult ? <p>Your words are {starterWord.word} and {rhymeWord.word}! Your score is {rhymeWord.score}!</p> : null}
-        {showNewGame ? <NewGame players={players}/> : null}
-        <PlayerForm onCreate={handlePlayerPost} setCurrentPlayer={setCurrentPlayer}/>
+        {showNewGame ? <NewGame players={players} currentPlayer={currentPlayer} setCurrentPlayer={setCurrentPlayer} handleSelectPlayerSubmit={handleSelectPlayerSubmit}/> : null}
+        <PlayerForm onCreate={handlePlayerPost} />
         <LineOneInput lineOne={lineOne} setLineOne={setLineOne} handleLineOneSubmit={handleLineOneSubmit}/>{starterWord.word}
         <LineTwoInput lineTwo={lineTwo} setLineTwo={setLineTwo} handleLineTwoSubmit={handleLineTwoSubmit}/>{rhymeWord.word}
         </>
