@@ -1,6 +1,7 @@
 
 import GameContainer from './containers/GameContainer';
 import Footer from './Footer';
+import "./index.css";
 import "./App.css";
 import NavBar from "./NavBar";
 import RubberCapstone from "./img/rubbercapstone.png";
@@ -11,6 +12,7 @@ import flytesim from "./img/flytesim.png";
 
 
 
+
 function App() {
   return (
     <div className="App">
@@ -18,7 +20,7 @@ function App() {
 
       <ParticlesBg type="circle" bg={true}/>
 
-      <h2> </h2>
+      <h2 className="retro"></h2>
       <img className="logo" src={flytesim} alt="flytesim" />
     <GameContainer />
       <Sprites>

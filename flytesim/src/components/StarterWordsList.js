@@ -13,31 +13,20 @@ const StarterWordsList = ({ starterWordsList, starterWordClicked }) => {
 		)
 	})
 
-    // const starterWordsButtons = starterWordsList.map((word) => {
-    //     return <button type="submit" onClick={starterWordClicked} value={word}>{word}</button>
-    // })
-
 
 
     return (
         <>
-            <StarterWordsStyle>
-                <div>{starterWordsButtons}</div>
-            </StarterWordsStyle>
+
+                <ListStyling>{starterWordsButtons}</ListStyling>
+
         </>
     )
 }
 
 export default StarterWordsList
 
-const StarterWordsStyle = styled.div`
-background-color: yellow;
-border: none;
-color: white;
-padding: 10px 20px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
-margin: 4px 2px;
-border-radius: 8px;`
+const ListStyling = styled.div`
+
+`
+
