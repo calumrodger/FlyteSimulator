@@ -70,6 +70,10 @@ const GameContainer = () => {
     }
   };
 
+  const textToSpeech = () => {
+      return "Mess with me then i think you better " + starterWord.word + " get out of here before I fetch my " + rhymeWord.word + ".";
+  }
+
   return (
     <>
       <StarterWordsList
@@ -87,12 +91,14 @@ const GameContainer = () => {
         <p className="workplz">
             
           Your words are {starterWord.word} and {rhymeWord.word}!
-          {interpretScore()}
+          <div className="stage2">
+          <div class="box bounce-7">{interpretScore()}</div>
+          </div>
           <Speech 
 
   textAsButton={true}    
   displayText="Rap!" 
-  text="lol"/>
+  text={textToSpeech()}/>
         </p>
       ) : null}
     </>
@@ -101,16 +107,3 @@ const GameContainer = () => {
 
 export default GameContainer;
 
-const textstyle = styled.div`
-
-      button {
-        padding:'4',
-        fontFamily: 'Helvetica',
-        fontSize: '1.0em',
-        cursor: 'pointer',
-        pointerEvents: 'none',
-        outline: 'none',
-        backgroundColor: 'inherit',
-        border: 'none'
-      },
-`
