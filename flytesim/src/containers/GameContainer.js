@@ -21,13 +21,6 @@ import '@splidejs/react-splide/css';
 
 
 const GameContainer = () => {
-  const [starterWordsList, setStarterWordsList] = useState([]);
-  const [starterWord, setStarterWord] = useState({});
-  const [rhymeWord, setRhymeWord] = useState({});
-  const [rhymeWordsList, setRhymeWordsList] = useState([]);
-  const [showResult, setShowResult] = useState(false);
-  const [showRhymes, setShowRhymes] = useState(false);
-
     // const test = ["hello", "world"]
     // const [testing, setTesting] = useState([])
 
@@ -57,22 +50,10 @@ const GameContainer = () => {
       }, [])
 
   useEffect(() => {
-    fetchStarterWordsList();
-  }, []);
-
-  useEffect(() => {
     fetch("https://api.datamuse.com/words?rel_rhy=" + starterWord.word)
       .then((response) => response.json())
       .then((data) => setRhymeWordsList(data));
   }, [starterWord]);
-
-
-  const fetchStarterWordsList = () => {
-    fetch("http://localhost:8080/api/starter_words/")
-      .then((response) => response.json())
-      .then((data) => setStarterWordsList(data))
-      .then(console.log(starterWordsList));
-  };
 
 
     const fetchPlayers = () => {
@@ -99,19 +80,6 @@ const GameContainer = () => {
         setShowResult(false)
         setShowRhymes(true)
     }
-
-  const starterWordClicked = (e) => {
-    let index = e.target.value;
-    let selectedWord = starterWordsList[index];
-    let newWord = { ...starterWord };
-    newWord["word"] = selectedWord["word"];
-    newWord["wordClass"] = selectedWord["wordClass"];
-    console.log(newWord);
-    setStarterWord(newWord);
-    console.log(starterWord);
-    setShowResult(false);
-    setShowRhymes(true);
-  };
 
   const rhymeWordClicked = (e) => {
     // const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
@@ -142,24 +110,6 @@ const GameContainer = () => {
   const textToSpeech = () => {
       return "Mess with me then i think you better " + starterWord.word + " get out of here before I fetch my " + rhymeWord.word + ".";
   }
-
-  return (
-    <>
-      <StarterWordsList
-        starterWordsList={starterWordsList}
-        starterWordClicked={starterWordClicked}
-      />
-      {showRhymes ? (
-        <RhymeList
-          rhymeWordsList={rhymeWordsList}
-          rhymeWordClicked={rhymeWordClicked}
-          showResult={showResult}
-        />
-      ) : null}
-      {showResult ? (
-        <p className="workplz">
-            
-          Your words are {starterWord.word} and {rhymeWord.word}! <Speech 
 
   const handlePlayerPost = (player) => {
     const request = new Request();
@@ -203,20 +153,18 @@ const handleSelectPlayerSubmit = (event) => {
         <PlayerForm onCreate={handlePlayerPost} />
         <LineOneInput lineOne={lineOne} setLineOne={setLineOne} handleLineOneSubmit={handleLineOneSubmit}/>{starterWord.word}
         <LineTwoInput lineTwo={lineTwo} setLineTwo={setLineTwo} handleLineTwoSubmit={handleLineTwoSubmit}/>{rhymeWord.word}
-        </>
-    )
-
+        <Speech
 textAsButton={true}    
 displayText="Rap!" 
 text={textToSpeech()}/>
           <div className="stage2">
           <div class="box bounce-7">{interpretScore()} </div>
+  
 
-          </div>
-        </p>
-      ) : null}
-    </>
-  );
+          
+            </div>
+        </>
+    )
 };
 
 
