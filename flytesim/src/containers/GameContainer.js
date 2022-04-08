@@ -90,15 +90,15 @@ const GameContainer = () => {
       {showResult ? (
         <p className="workplz">
             
-          Your words are {starterWord.word} and {rhymeWord.word}!
-          <div className="stage2">
-          <div class="box bounce-7">{interpretScore()}</div>
-          </div>
-          <Speech 
+          Your words are {starterWord.word} and {rhymeWord.word}! <Speech 
 
-  textAsButton={true}    
-  displayText="Rap!" 
-  text={textToSpeech()}/>
+textAsButton={true}    
+displayText="Rap!" 
+text={textToSpeech()}/>
+          <div className="stage2">
+          <div class="box bounce-7">{interpretScore()} </div>
+
+          </div>
         </p>
       ) : null}
     </>
