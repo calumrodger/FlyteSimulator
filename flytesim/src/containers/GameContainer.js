@@ -6,6 +6,8 @@ import great from "../img/Great.png";
 import okay from "../img/OK.png";
 import Speech from 'react-speech';
 import styled from "styled-components"
+import { Splide, SplideSlide } from '@splidejs/react-splide';
+import '@splidejs/react-splide/css';
 
 const GameContainer = () => {
   const [starterWordsList, setStarterWordsList] = useState([]);
