@@ -1,7 +1,7 @@
 import React, {useState, useEffect, Fragment} from "react";
 import PlayerForm from "./PlayerForm";
 
-const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNewGame, setShowStarterWords, setSoloPlayerSelected, setTwoPlayerSelected, setPlayerOne, setPlayerTwo}) => {
+const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNewGame, setShowStarterWords, setSoloPlayerSelected, setTwoPlayerSelected, setPlayerOne, setPlayerTwo, setShowPlayerOneStarterWords}) => {
 
     const [playerIndexValue, setPlayerIndexValue] = useState(null)
 
@@ -50,6 +50,7 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
         setPlayerTwo(selectedPlayer)
         setShowPlayerTwoSelectScreen(false)
         setShowNewGame(false)
+        setShowPlayerOneStarterWords(true)
     }
 
     

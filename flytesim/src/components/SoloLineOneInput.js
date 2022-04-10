@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Fragment} from "react";
 
-const LineOneInput = ({soloLineOne, setSoloLineOne, handleLineOneSubmit}) => {
+const SoloLineOneInput = ({soloLineOne, setSoloLineOne, handleLineOneSubmit}) => {
 
     const handleChange = (event) => {
         setSoloLineOne(event.target.value)
@@ -16,4 +16,4 @@ const LineOneInput = ({soloLineOne, setSoloLineOne, handleLineOneSubmit}) => {
     )
 }
 
-export default LineOneInput;
+export default SoloLineOneInput;
