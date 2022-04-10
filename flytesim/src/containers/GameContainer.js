@@ -31,6 +31,8 @@ const GameContainer = () => {
     const [twoPlayerSelected, setTwoPlayerSelected] = useState(false)
 
     const [soloRhymeWordsList, setSoloRhymeWordsList] = useState([])
+    const [playerOneRhymeWordsList, setPlayerOneRhymeWordsList] = useState([])
+    const [playerTwoRhymeWordsList, setPlayerTwoRhymeWordsList] = useState([])
 
 
 
@@ -50,10 +52,12 @@ const GameContainer = () => {
   
     const [showNewGame, setShowNewGame] = useState(true)
     const [showNewPlayerForm, setShowNewPlayerForm] = useState(false)
-    const [showStarterWords, setShowStarterWords] = useState(false)
-    const [showLineOneInput, setShowOneLineInput] = useState(false)
-    const [showLineTwoInput, setShowTwoLineInput] = useState(false)
-    const [showRhymes, setShowRhymes] = useState(false)
+
+    const [showSoloStarterWords, setShowSoloStarterWords] = useState(false)
+    const [showSoloLineOneInput, setShowSoloLineOneInput] = useState(false)
+    const [showSoloLineTwoInput, setShowSoloLineTwoInput] = useState(false)
+    const [showSoloRhymes, setShowSoloRhymes] = useState(false)
+
     const [showResult, setShowResult] = useState(false)
 
     useEffect(() => {
@@ -89,8 +93,8 @@ const GameContainer = () => {
         newWord['word'] = selectedWord['word']
         newWord['wordClass'] = selectedWord['wordClass']
         setSoloStarterWord(newWord)
-        setShowStarterWords(false)
-        setShowOneLineInput(true)
+        setShowSoloStarterWords(false)
+        setShowSoloLineOneInput(true)
     }
 
   const rhymeWordClicked = (e) => {
@@ -103,8 +107,8 @@ const GameContainer = () => {
     stateWord["word"] = selectedWord["word"];
     setSoloRhymeWord(stateWord);
     setSoloRhymeWordsList(reducedWordsList);
-    setShowRhymes(false)
-    setShowTwoLineInput(true)
+    setShowSoloRhymes(false)
+    setShowSoloLineTwoInput(true)
   };
 
 
@@ -135,8 +139,8 @@ const handleLineOneSubmit = (e) => {
   setSoloLineOne(e.target.value)
   let completeLine = (soloLineOne + " " + soloStarterWord.word)
   setSoloLineOne(completeLine)
-  setShowOneLineInput(false)
-  setShowRhymes(true)
+  setShowSoloLineOneInput(false)
+  setShowSoloRhymes(true)
 }
 
 const handleLineTwoSubmit = (e) => {
@@ -144,7 +148,7 @@ const handleLineTwoSubmit = (e) => {
   setSoloLineTwo(e.target.value)
   let completeLine = (soloLineTwo + " " + soloRhymeWord.word)
   setSoloLineTwo(completeLine)
-  setShowTwoLineInput(false)
+  setShowSoloLineTwoInput(false)
   setShowResult(true)
   console.log(soloLineTwo)
 }
@@ -166,21 +170,21 @@ const handleNewRoundSubmit = (event) => {
     return(
         <>
         {showNewGame ? 
-        <NewGame players={players} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} setShowNewGame={setShowNewGame} setShowStarterWords={setShowStarterWords} handleCreateNewPlayerSubmit={handleCreateNewPlayerSubmit} setSoloPlayerSelected={setSoloPlayerSelected} setTwoPlayerSelected={setTwoPlayerSelected}/> 
+        <NewGame players={players} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} setShowNewGame={setShowNewGame} setShowStarterWords={setShowSoloStarterWords} handleCreateNewPlayerSubmit={handleCreateNewPlayerSubmit} setSoloPlayerSelected={setSoloPlayerSelected} setTwoPlayerSelected={setTwoPlayerSelected} setPlayerOne={setPlayerOne} setPlayerTwo={setPlayerTwo}/> 
         : null}
         
         {showNewPlayerForm ? 
         <PlayerForm onCreate={handlePlayerPost} /> 
         : null}
         
-        {showStarterWords ? 
+        {showSoloStarterWords ? 
         <>
         <h3>{soloPlayer.stageName}, select your starter word!</h3>
         <StarterWordsList starterWordsList={starterWordsList} starterWordClicked={starterWordClicked} soloPlayer={soloPlayer.stageName}/> 
         </>
         : null}
         
-        {showLineOneInput ? 
+        {showSoloLineOneInput ? 
         <>
         <h3>{soloPlayer.stageName}, your first rhyme word is {soloStarterWord.word}!</h3>
         <h3>Now complete line one!</h3>
@@ -189,15 +193,15 @@ const handleNewRoundSubmit = (event) => {
         </>
         : null}
         
-        {showRhymes ? 
+        {showSoloRhymes ? 
         <>
         <h3>{soloPlayer.stageName}, your first line is {soloLineOne}</h3>
         <h3>Now select your rhyme word!</h3>
-        <RhymeList rhymeWordsList={soloRhymeWordsList} rhymeWordClicked={rhymeWordClicked} showResult={showResult}/> 
+        <RhymeList soloRhymeWordsList={soloRhymeWordsList} rhymeWordClicked={rhymeWordClicked} showResult={showResult}/> 
         </>
         : null}
         
-        {showLineTwoInput? 
+        {showSoloLineTwoInput? 
         <>
         <h3>{soloPlayer.stageName}, your first line is {soloLineOne}</h3>
         <h3>Your second rhyme word is {soloRhymeWord.word}.</h3>

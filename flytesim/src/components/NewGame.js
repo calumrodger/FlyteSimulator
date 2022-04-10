@@ -1,7 +1,7 @@
 import React, {useState, useEffect, Fragment} from "react";
 import PlayerForm from "./PlayerForm";
 
-const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNewGame, setShowStarterWords, setSoloPlayerSelected, setTwoPlayerSelected}) => {
+const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNewGame, setShowStarterWords, setSoloPlayerSelected, setTwoPlayerSelected, setPlayerOne, setPlayerTwo}) => {
 
     const [playerIndexValue, setPlayerIndexValue] = useState(null)
 
@@ -17,7 +17,7 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
     const playSoloRoundSubmit = (event) => {
         event.preventDefault()
         setSoloPlayerSelected(true)
-        setShowPlayerOneSelectScreen(true)
+        setShowSoloPlayerSelectScreen(true)
         setShowSplashScreen(false)
     }
 
@@ -39,7 +39,7 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
     const handleSelectPlayerOneSubmit = (event) => {
         event.preventDefault()
         const selectedPlayer = players[playerIndexValue]
-        setSoloPlayer(selectedPlayer)
+        setPlayerOne(selectedPlayer)
         setShowPlayerOneSelectScreen(false)
         setShowPlayerTwoSelectScreen(true)
     }
@@ -47,7 +47,7 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
     const handleSelectPlayerTwoSubmit = (event) => {
         event.preventDefault()
         const selectedPlayer = players[playerIndexValue]
-        setSoloPlayer(selectedPlayer)
+        setPlayerTwo(selectedPlayer)
         setShowPlayerTwoSelectScreen(false)
         setShowNewGame(false)
     }

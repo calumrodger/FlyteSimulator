@@ -5,10 +5,10 @@ import StarterWord from './StarterWord';
 const StarterWordsList = ({ starterWordsList, starterWordClicked }) => {
 
 
-    const starterWordsButtons = starterWordsList.map((starterWord, index) => {
+    const starterWordsButtons = starterWordsList.map((soloStarterWord, index) => {
 		return(
-			<button type="submit" onClick={starterWordClicked} key={index} value={starterWord}>
-					<StarterWord starterWord={starterWord} index={index}/>
+			<button type="submit" onClick={starterWordClicked} key={index} value={soloStarterWord}>
+					<StarterWord soloStarterWord={soloStarterWord} index={index}/>
 			</button>
 		)
 	})

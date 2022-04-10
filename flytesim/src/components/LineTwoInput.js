@@ -1,16 +1,16 @@
 import React, {useState, useEffect, Fragment} from "react";
 
-const LineTwoInput = ({rhymeWord, lineTwo, setLineTwo, handleLineTwoSubmit}) => {
+const LineTwoInput = ({soloLineTwo, setSoloLineTwo, handleLineTwoSubmit}) => {
 
     const handleChange = (event) => {
-        setLineTwo(event.target.value)
+        setSoloLineTwo(event.target.value)
     }
 
     return(
         <>
         <h3>Complete your second line!</h3>
         <form onSubmit={handleLineTwoSubmit}>
-        <input type="text" placeholder="Your line" name="name" value={lineTwo} onChange={handleChange}/>
+        <input type="text" placeholder="Your line" name="name" value={soloLineTwo} onChange={handleChange}/>
         <button type="submit">Save</button>
         </form>
         </>
