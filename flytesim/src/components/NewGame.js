@@ -1,7 +1,7 @@
 import React, {useState, useEffect, Fragment} from "react";
 import PlayerForm from "./PlayerForm";
 
-const NewGame = ({players, setCurrentPlayer}) => {
+const NewGame = ({players, setCurrentPlayer, handleCreateNewPlayerSubmit, setShowNewGame, setShowStarterWords}) => {
 
     const [playerIndexValue, setPlayerIndexValue] = useState(null)
 
@@ -13,8 +13,11 @@ const NewGame = ({players, setCurrentPlayer}) => {
         event.preventDefault()
         const selectedPlayer = players[playerIndexValue]
         setCurrentPlayer(selectedPlayer)
-    
+        setShowNewGame(false)
+        setShowStarterWords(true) 
     }
+
+    
 
     const playerOptions = players.map((player, index) => {
         return <option key={index} value={index}>{player.stageName}</option>
@@ -32,6 +35,8 @@ const NewGame = ({players, setCurrentPlayer}) => {
         </select>
         <button onClick={handleSelectPlayerSubmit}> Go</button>
         </form>
+        <h3>Or.. Create new Player</h3>
+        <button onClick={handleCreateNewPlayerSubmit}>Go</button>
         </>
     )
 }

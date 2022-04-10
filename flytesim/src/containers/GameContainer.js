@@ -37,8 +37,10 @@ const GameContainer = () => {
     const [lineTwo, setLineTwo] = useState("")
     
     const [showNewGame, setShowNewGame] = useState(true)
-    const [showStarterWords, setShowStarterWords] = useState(true)
+    const [showNewPlayerForm, setShowNewPlayerForm] = useState(false)
+    const [showStarterWords, setShowStarterWords] = useState(false)
     const [showLineOneInput, setShowOneLineInput] = useState(false)
+    const [showLineTwoInput, setShowTwoLineInput] = useState(false)
     const [showRhymes, setShowRhymes] = useState(false)
     const [showResult, setShowResult] = useState(false)
 
@@ -77,8 +79,8 @@ const GameContainer = () => {
         newWord['word'] = selectedWord['word']
         newWord['wordClass'] = selectedWord['wordClass']
         setStarterWord(newWord)
-        setShowResult(false)
-        setShowRhymes(true)
+        setShowStarterWords(false)
+        setShowOneLineInput(true)
     }
 
   const rhymeWordClicked = (e) => {
@@ -93,7 +95,8 @@ const GameContainer = () => {
     console.log(starterWord);
     setRhymeWord(stateWord);
     setRhymeWordsList(reducedWordsList);
-    setShowResult(true);
+    setShowRhymes(false)
+    setShowTwoLineInput(true)
   };
 
 
@@ -108,7 +111,7 @@ const GameContainer = () => {
   };
 
   const textToSpeech = () => {
-      return "Mess with me then i think you better " + starterWord.word + " get out of here before I fetch my " + rhymeWord.word + ".";
+      return `${lineOne} ${lineTwo}`;
   }
 
   const handlePlayerPost = (player) => {
@@ -124,7 +127,8 @@ const handleLineOneSubmit = (e) => {
   setLineOne(e.target.value)
   let completeLine = (lineOne + " " + starterWord.word)
   setLineOne(completeLine)
-  console.log(lineOne)
+  setShowOneLineInput(false)
+  setShowRhymes(true)
 }
 
 const handleLineTwoSubmit = (e) => {
@@ -132,37 +136,92 @@ const handleLineTwoSubmit = (e) => {
   setLineTwo(e.target.value)
   let completeLine = (lineTwo + " " + rhymeWord.word)
   setLineTwo(completeLine)
+  setShowTwoLineInput(false)
+  setShowResult(true)
   console.log(lineTwo)
 }
 
-const handleSelectPlayerSubmit = (event) => {
+
+const handleCreateNewPlayerSubmit = (event) => {
   event.preventDefault()
-  const index = parseInt(event.target.value);
-  const selectedPlayer = players[index]
-  setCurrentPlayer(selectedPlayer)
-  console.log(currentPlayer)
+  setShowNewGame(false)
+  setShowNewPlayerForm(true)
+}
+
+const handleNewRoundSubmit = (event) => {
+  event.preventDefault()
+  setShowResult(false)
+  setShowNewGame(true)
 }
 
 
     return(
         <>
-        {showStarterWords ? <StarterWordsList starterWordsList={starterWordsList} starterWordClicked={starterWordClicked}/> : null}
-        {showRhymes ? <RhymeList rhymeWordsList={rhymeWordsList} rhymeWordClicked={rhymeWordClicked} showResult={showResult}/> : null}
-        {showResult ? <p>Your words are {starterWord.word} and {rhymeWord.word}! Your score is {rhymeWord.score}!</p> : null}
-        {showNewGame ? <NewGame players={players} currentPlayer={currentPlayer} setCurrentPlayer={setCurrentPlayer} handleSelectPlayerSubmit={handleSelectPlayerSubmit}/> : null}
-        <PlayerForm onCreate={handlePlayerPost} />
-        <LineOneInput lineOne={lineOne} setLineOne={setLineOne} handleLineOneSubmit={handleLineOneSubmit}/>{starterWord.word}
-        <LineTwoInput lineTwo={lineTwo} setLineTwo={setLineTwo} handleLineTwoSubmit={handleLineTwoSubmit}/>{rhymeWord.word}
+        {showNewGame ? 
+        <NewGame players={players} currentPlayer={currentPlayer} setCurrentPlayer={setCurrentPlayer} setShowNewGame={setShowNewGame} setShowStarterWords={setShowStarterWords} handleCreateNewPlayerSubmit={handleCreateNewPlayerSubmit}/> 
+        : null}
+        
+        {showNewPlayerForm ? 
+        <PlayerForm onCreate={handlePlayerPost} /> 
+        : null}
+        
+        {showStarterWords ? 
+        <>
+        <h3>{currentPlayer.stageName}, select your starter word!</h3>
+        <StarterWordsList starterWordsList={starterWordsList} starterWordClicked={starterWordClicked} currentPlayer={currentPlayer.stageName}/> 
+        </>
+        : null}
+        
+        {showLineOneInput ? 
+        <>
+        <h3>{currentPlayer.stageName}, your first rhyme word is {starterWord.word}!</h3>
+        <h3>Now complete line one!</h3>
+        <LineOneInput lineOne={lineOne} setLineOne={setLineOne} handleLineOneSubmit={handleLineOneSubmit}/>
+        <ul>{starterWord.word}</ul>
+        </>
+        : null}
+        
+        {showRhymes ? 
+        <>
+        <h3>{currentPlayer.stageName}, your first line is {lineOne}</h3>
+        <h3>Now select your rhyme word!</h3>
+        <RhymeList rhymeWordsList={rhymeWordsList} rhymeWordClicked={rhymeWordClicked} showResult={showResult}/> 
+        </>
+        : null}
+        
+        {showLineTwoInput? 
+        <>
+        <h3>{currentPlayer.stageName}, your first line is {lineOne}</h3>
+        <h3>Your second rhyme word is {rhymeWord.word}.</h3>
+        <h3>Now complete line two!</h3>
+        <LineTwoInput lineTwo={lineTwo} setLineTwo={setLineTwo} handleLineTwoSubmit={handleLineTwoSubmit}/>
+        <ul>{rhymeWord.word}</ul>
+        </>
+        : null}
+        
+        {showResult ? 
+        <>
+        <p>{currentPlayer.stageName}, your couplet is:</p>
+        <p>{lineOne}</p>
+        <p>{lineTwo}</p>
+        <br/>
+        <p>Your score is {rhymeWord.score}!</p> 
+        <button onClick={handleNewRoundSubmit}>Play another round?</button>
+        <button>Save round to database?</button>
         <Speech
 textAsButton={true}    
 displayText="Rap!" 
 text={textToSpeech()}/>
           <div className="stage2">
-          <div class="box bounce-7">{interpretScore()} </div>
-  
-
-          
+          <div class="box bounce-7">{interpretScore()} </div>         
             </div>
+        </>
+        : null}
+        
+        
+       
+        
+        
         </>
     )
 };

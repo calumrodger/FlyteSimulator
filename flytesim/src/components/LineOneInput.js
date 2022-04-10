@@ -8,7 +8,6 @@ const LineOneInput = ({starterWord, lineOne, setLineOne, handleLineOneSubmit}) =
 
     return(
         <>
-        <h3>Complete your first line!</h3>
         <form onSubmit={handleLineOneSubmit}>
         <input type="text" placeholder="Your line" name="name" value={lineOne} onChange={handleChange}/>
         <button type="submit">Save</button>
