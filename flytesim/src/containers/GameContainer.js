@@ -34,45 +34,55 @@ const GameContainer = () => {
     const [playerOneRhymeWordsList, setPlayerOneRhymeWordsList] = useState([])
     const [playerTwoRhymeWordsList, setPlayerTwoRhymeWordsList] = useState([])
 
-
-
     const [soloPlayer, setSoloPlayer] = useState({})
     const [playerOne, setPlayerOne] = useState({})
     const [playerTwo, setPlayerTwo] = useState({})
-
-    const [soloStarterWord, setSoloStarterWord] = useState({})
-    const [soloRhymeWord, setSoloRhymeWord] = useState({})
-    const [playerOneStarterWord, setPlayerOneStarterWord] = useState({})
-    const [playerTwoStarterWord, setPlayerTwoStarterWord] = useState({})
-    const [playerOneRhymeWord, setPlayerOneRhymeWord] = useState({})
-    const [playerTwoRhymeWord, setPlayerTwoRhymeWord] = useState({})
-
-    const [soloLineOne, setSoloLineOne] = useState("")
-    const [soloLineTwo, setSoloLineTwo] = useState("")
-  
+      
     const [showNewGame, setShowNewGame] = useState(true)
     const [showNewPlayerForm, setShowNewPlayerForm] = useState(false)
 
+    const [soloStarterWord, setSoloStarterWord] = useState({})
+    const [soloRhymeWord, setSoloRhymeWord] = useState({})
+    const [soloLineOne, setSoloLineOne] = useState("")
+    const [soloLineTwo, setSoloLineTwo] = useState("")
+    // const [soloFullLineAsString, setSoloFullLineAsString] = useState("")
+
+    const [playerOneStarterWord, setPlayerOneStarterWord] = useState({})
+    const [playerOneRhymeWord, setPlayerOneRhymeWord] = useState({})
+    const [playerOneLineOne, setPlayerOneLineOne] = useState({})
+    const [playerOneLineTwo, setPlayerOneLineTwo] = useState({})
+    // const [playerOneFullLineAsString, setPlayerOneFullLineAsString] = useState("")
+
+    const [playerTwoStarterWord, setPlayerTwoStarterWord] = useState({})
+    const [playerTwoRhymeWord, setPlayerTwoRhymeWord] = useState({})
+    const [playerTwoLineOne, setPlayerTwoLineOne] = useState({})
+    const [playerTwoLineTwo, setPlayerTwoLineTwo] = useState({})
+    // const [playerTwoFullLineAsString, setPlayerTwoFullLineAsString] = useState("")
+    
     const [showSoloStarterWords, setShowSoloStarterWords] = useState(false)
     const [showSoloLineOneInput, setShowSoloLineOneInput] = useState(false)
     const [showSoloLineTwoInput, setShowSoloLineTwoInput] = useState(false)
     const [showSoloRhymes, setShowSoloRhymes] = useState(false)
 
-    const [showResult, setShowResult] = useState(false)
+    const [showPlayerOneStarterWords, setShowPlayerOneStarterWords] = useState(false)
+    const [showPlayerOneLineOneInput, setShowPlayerOneLineOneInput] = useState(false)
+    const [showPlayerOneLineTwoInput, setShowPlayerOneLineTwoInput] = useState(false)
+    const [showPlayerOneRhymes, setShowPlayerOneRhymes] = useState(false)
 
+    const [showPlayerTwoStarterWords, setShowPlayerTwoStarterWords] = useState(false)
+    const [showPlayerTwoLineOneInput, setShowPlayerTwoLineOneInput] = useState(false)
+    const [showPlayerTwoLineTwoInput, setShowPlayerTwoLineTwoInput] = useState(false)
+    const [showPlayerTwoRhymes, setShowPlayerTwoRhymes] = useState(false)
+
+    const [showSoloResult, setShowSoloResult] = useState(false)
+
+    //global fetches and states
     useEffect(() => {
         fetchStarterWordsList()
         fetchPlayers()
       }, [])
 
-  useEffect(() => {
-    fetch("https://api.datamuse.com/words?rel_rhy=" + soloStarterWord.word)
-      .then((response) => response.json())
-      .then((data) => setSoloRhymeWordsList(data));
-  }, [soloStarterWord]);
-
-
-    const fetchPlayers = () => {
+      const fetchPlayers = () => {
         fetch("http://localhost:8080/api/players/")
         .then(response => response.json())
         .then(data => setPlayers(data))
@@ -86,45 +96,21 @@ const GameContainer = () => {
         .then(console.log(starterWordsList))
       }
 
-    const starterWordClicked = (e) => {
-        let index = e.target.value;
-        let selectedWord = starterWordsList[index];
-        let newWord = {...soloStarterWord}
-        newWord['word'] = selectedWord['word']
-        newWord['wordClass'] = selectedWord['wordClass']
-        setSoloStarterWord(newWord)
-        setShowSoloStarterWords(false)
-        setShowSoloLineOneInput(true)
-    }
+      //create new player
+      const handleCreateNewPlayerSubmit = (event) => {
+        event.preventDefault()
+        setShowNewGame(false)
+        setShowNewPlayerForm(true)
+      }
 
-  const rhymeWordClicked = (e) => {
-    // const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
-    const reducedWordsList = soloRhymeWordsList.slice(0, 10);
-    let index = e.target.value;
-    let selectedWord = soloRhymeWordsList[index];
-    let stateWord = { ...soloRhymeWord };
-    stateWord["score"] = selectedWord["score"];
-    stateWord["word"] = selectedWord["word"];
-    setSoloRhymeWord(stateWord);
-    setSoloRhymeWordsList(reducedWordsList);
-    setShowSoloRhymes(false)
-    setShowSoloLineTwoInput(true)
-  };
+      //solo mechanics
 
+  useEffect(() => {
+    fetch("https://api.datamuse.com/words?rel_rhy=" + soloStarterWord.word)
+      .then((response) => response.json())
+      .then((data) => setSoloRhymeWordsList(data));
+  }, [soloStarterWord]);
 
-  const interpretScore = () => {
-    if (soloRhymeWord.score > 0 && soloRhymeWord.score < 1000) {
-      return <img className="perfect" src={perfect} alt="perfect" />
-    } else if (soloRhymeWord.score >= 1000 && soloRhymeWord.score < 1500) {
-      return <img className="great" src={great} alt="great" />;
-    } else {
-      return <img className="okay" src={okay} alt="okay" />;
-    }
-  };
-
-  const textToSpeech = () => {
-      return `${soloLineOne} ${soloLineTwo}`;
-  }
 
   const handlePlayerPost = (player) => {
     const request = new Request();
@@ -134,7 +120,31 @@ const GameContainer = () => {
     console.log(players)
 }
 
-const handleLineOneSubmit = (e) => {
+const soloStarterWordClicked = (e) => {
+  let index = e.target.value;
+  let selectedWord = starterWordsList[index];
+  let newWord = {...soloStarterWord}
+  newWord['word'] = selectedWord['word']
+  newWord['wordClass'] = selectedWord['wordClass']
+  setSoloStarterWord(newWord)
+  setShowSoloStarterWords(false)
+  setShowSoloLineOneInput(true)
+}
+
+const soloRhymeWordClicked = (e) => {
+  const reducedWordsList = soloRhymeWordsList.slice(0, 10);
+  let index = e.target.value;
+  let selectedWord = soloRhymeWordsList[index];
+  let stateWord = { ...soloRhymeWord };
+  stateWord["score"] = selectedWord["score"];
+  stateWord["word"] = selectedWord["word"];
+  setSoloRhymeWord(stateWord);
+  setSoloRhymeWordsList(reducedWordsList);
+  setShowSoloRhymes(false)
+  setShowSoloLineTwoInput(true)
+};
+
+const handleSoloLineOneSubmit = (e) => {
   e.preventDefault()
   setSoloLineOne(e.target.value)
   let completeLine = (soloLineOne + " " + soloStarterWord.word)
@@ -143,27 +153,36 @@ const handleLineOneSubmit = (e) => {
   setShowSoloRhymes(true)
 }
 
-const handleLineTwoSubmit = (e) => {
+const handleSoloLineTwoSubmit = (e) => {
   e.preventDefault()
   setSoloLineTwo(e.target.value)
   let completeLine = (soloLineTwo + " " + soloRhymeWord.word)
   setSoloLineTwo(completeLine)
   setShowSoloLineTwoInput(false)
-  setShowResult(true)
+  setShowSoloResult(true)
   console.log(soloLineTwo)
 }
 
+const interpretSoloScore = () => {
+  if (soloRhymeWord.score > 0 && soloRhymeWord.score < 1000) {
+    return <img className="perfect" src={perfect} alt="perfect" />
+  } else if (soloRhymeWord.score >= 1000 && soloRhymeWord.score < 1500) {
+    return <img className="great" src={great} alt="great" />;
+  } else {
+    return <img className="okay" src={okay} alt="okay" />;
+  }
+};
 
-const handleCreateNewPlayerSubmit = (event) => {
-  event.preventDefault()
-  setShowNewGame(false)
-  setShowNewPlayerForm(true)
+const textToSpeech = () => {
+    return `${soloLineOne} ${soloLineTwo}`;
 }
 
-const handleNewRoundSubmit = (event) => {
+const handleNewSoloRoundSubmit = (event) => {
   event.preventDefault()
-  setShowResult(false)
+  setShowSoloResult(false)
   setShowNewGame(true)
+  setSoloLineOne("")
+  setSoloLineTwo("")
 }
 
 
@@ -180,7 +199,7 @@ const handleNewRoundSubmit = (event) => {
         {showSoloStarterWords ? 
         <>
         <h3>{soloPlayer.stageName}, select your starter word!</h3>
-        <StarterWordsList starterWordsList={starterWordsList} starterWordClicked={starterWordClicked} soloPlayer={soloPlayer.stageName}/> 
+        <StarterWordsList starterWordsList={starterWordsList} starterWordClicked={soloStarterWordClicked} soloPlayer={soloPlayer.stageName}/> 
         </>
         : null}
         
@@ -188,7 +207,7 @@ const handleNewRoundSubmit = (event) => {
         <>
         <h3>{soloPlayer.stageName}, your first rhyme word is {soloStarterWord.word}!</h3>
         <h3>Now complete line one!</h3>
-        <LineOneInput lineOne={soloLineOne} setLineOne={setSoloLineOne} handleLineOneSubmit={handleLineOneSubmit}/>
+        <LineOneInput lineOne={soloLineOne} setLineOne={setSoloLineOne} handleLineOneSubmit={handleSoloLineOneSubmit}/>
         <ul>{soloStarterWord.word}</ul>
         </>
         : null}
@@ -197,7 +216,7 @@ const handleNewRoundSubmit = (event) => {
         <>
         <h3>{soloPlayer.stageName}, your first line is {soloLineOne}</h3>
         <h3>Now select your rhyme word!</h3>
-        <RhymeList soloRhymeWordsList={soloRhymeWordsList} rhymeWordClicked={rhymeWordClicked} showResult={showResult}/> 
+        <RhymeList soloRhymeWordsList={soloRhymeWordsList} rhymeWordClicked={soloRhymeWordClicked}/> 
         </>
         : null}
         
@@ -206,26 +225,26 @@ const handleNewRoundSubmit = (event) => {
         <h3>{soloPlayer.stageName}, your first line is {soloLineOne}</h3>
         <h3>Your second rhyme word is {soloRhymeWord.word}.</h3>
         <h3>Now complete line two!</h3>
-        <LineTwoInput lineTwo={soloLineTwo} setLineTwo={setSoloLineTwo} handleLineTwoSubmit={handleLineTwoSubmit}/>
+        <LineTwoInput lineTwo={soloLineTwo} setLineTwo={setSoloLineTwo} handleLineTwoSubmit={handleSoloLineTwoSubmit}/>
         <ul>{soloRhymeWord.word}</ul>
         </>
         : null}
         
-        {showResult ? 
+        {showSoloResult ? 
         <>
         <p>{soloPlayer.stageName}, your couplet is:</p>
         <p>{soloLineOne}</p>
         <p>{soloLineTwo}</p>
         <br/>
         <p>Your score is {soloRhymeWord.score}!</p> 
-        <button onClick={handleNewRoundSubmit}>Play another round?</button>
+        <button onClick={handleNewSoloRoundSubmit}>Play another round?</button>
         <button>Save round to database?</button>
         <Speech
 textAsButton={true}    
 displayText="Rap!" 
 text={textToSpeech()}/>
           <div className="stage2">
-          <div class="box bounce-7">{interpretScore()} </div>         
+          <div class="box bounce-7">{interpretSoloScore()} </div>         
             </div>
         </>
         : null}
