@@ -1,11 +1,10 @@
 import React, {useState, useEffect, Fragment} from "react";
 import PlayerForm from "./PlayerForm";
 
-const NewGame = ({players, setCurrentPlayer, handleCreateNewPlayerSubmit, setShowNewGame, setShowStarterWords}) => {
+const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNewGame, setShowStarterWords, setSoloPlayerSelected, setTwoPlayerSelected}) => {
 
     const [playerIndexValue, setPlayerIndexValue] = useState(null)
-    const [soloPlayerSelected, setSoloPlayerSelected] = useState(false)
-    const [twoPlayerSelected, setTwoPlayerSelected] = useState(false)
+
     const [showSplashScreen, setShowSplashScreen] = useState(true)
     const [showSoloPlayerSelectScreen, setShowSoloPlayerSelectScreen] = useState(false)
     const [showPlayerOneSelectScreen, setShowPlayerOneSelectScreen] = useState(false)
@@ -17,9 +16,9 @@ const NewGame = ({players, setCurrentPlayer, handleCreateNewPlayerSubmit, setSho
 
     const playSoloRoundSubmit = (event) => {
         event.preventDefault()
-        setShowSplashScreen(false)
         setSoloPlayerSelected(true)
-        setShowSoloPlayerSelectScreen(true)
+        setShowPlayerOneSelectScreen(true)
+        setShowSplashScreen(false)
     }
 
     const playTwoPlayerRoundSubmit = (event) => {
@@ -32,7 +31,7 @@ const NewGame = ({players, setCurrentPlayer, handleCreateNewPlayerSubmit, setSho
     const handleSelectSoloPlayerSubmit = (event) => {
         event.preventDefault()
         const selectedPlayer = players[playerIndexValue]
-        setCurrentPlayer(selectedPlayer)
+        setSoloPlayer(selectedPlayer)
         setShowNewGame(false)
         setShowStarterWords(true) 
     }
@@ -40,7 +39,7 @@ const NewGame = ({players, setCurrentPlayer, handleCreateNewPlayerSubmit, setSho
     const handleSelectPlayerOneSubmit = (event) => {
         event.preventDefault()
         const selectedPlayer = players[playerIndexValue]
-        setCurrentPlayer(selectedPlayer)
+        setSoloPlayer(selectedPlayer)
         setShowPlayerOneSelectScreen(false)
         setShowPlayerTwoSelectScreen(true)
     }
@@ -48,7 +47,7 @@ const NewGame = ({players, setCurrentPlayer, handleCreateNewPlayerSubmit, setSho
     const handleSelectPlayerTwoSubmit = (event) => {
         event.preventDefault()
         const selectedPlayer = players[playerIndexValue]
-        setCurrentPlayer(selectedPlayer)
+        setSoloPlayer(selectedPlayer)
         setShowPlayerTwoSelectScreen(false)
         setShowNewGame(false)
     }
@@ -68,7 +67,7 @@ const NewGame = ({players, setCurrentPlayer, handleCreateNewPlayerSubmit, setSho
         <button onClick={playSoloRoundSubmit}>Play solo round</button>
         <button onClick={playTwoPlayerRoundSubmit}>Play two player</button>
         </>
-        : null}
+        : null }
     
         {showSoloPlayerSelectScreen ? 
         <>
@@ -100,7 +99,7 @@ const NewGame = ({players, setCurrentPlayer, handleCreateNewPlayerSubmit, setSho
         </>
         : null}
 
-{showPlayerTwoSelectScreen ? 
+    {showPlayerTwoSelectScreen ? 
         <>
         <h3>Player Two, Select Player</h3>
         <form>
