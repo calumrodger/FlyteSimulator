@@ -29,7 +29,10 @@ const GameContainer = () => {
     const [starterWordsList, setStarterWordsList] = useState([])
     const [rhymeWordsList, setRhymeWordsList] = useState([])
 
-    const [currentPlayer, setCurrentPlayer] = useState({})
+    const [soloPlayer, setSoloPlayer] = useState({})
+    const [playerOne, setPlayerOne] = useState({})
+    const [playerTwo, setPlayerTwo] = useState({})
+
     const [starterWord, setStarterWord] = useState({})
     const [rhymeWord, setRhymeWord] = useState({})
 
@@ -158,7 +161,7 @@ const handleNewRoundSubmit = (event) => {
     return(
         <>
         {showNewGame ? 
-        <NewGame players={players} currentPlayer={currentPlayer} setCurrentPlayer={setCurrentPlayer} setShowNewGame={setShowNewGame} setShowStarterWords={setShowStarterWords} handleCreateNewPlayerSubmit={handleCreateNewPlayerSubmit}/> 
+        <NewGame players={players} currentPlayer={soloPlayer} setCurrentPlayer={setSoloPlayer} setShowNewGame={setShowNewGame} setShowStarterWords={setShowStarterWords} handleCreateNewPlayerSubmit={handleCreateNewPlayerSubmit}/> 
         : null}
         
         {showNewPlayerForm ? 
@@ -167,14 +170,14 @@ const handleNewRoundSubmit = (event) => {
         
         {showStarterWords ? 
         <>
-        <h3>{currentPlayer.stageName}, select your starter word!</h3>
-        <StarterWordsList starterWordsList={starterWordsList} starterWordClicked={starterWordClicked} currentPlayer={currentPlayer.stageName}/> 
+        <h3>{soloPlayer.stageName}, select your starter word!</h3>
+        <StarterWordsList starterWordsList={starterWordsList} starterWordClicked={starterWordClicked} currentPlayer={soloPlayer.stageName}/> 
         </>
         : null}
         
         {showLineOneInput ? 
         <>
-        <h3>{currentPlayer.stageName}, your first rhyme word is {starterWord.word}!</h3>
+        <h3>{soloPlayer.stageName}, your first rhyme word is {starterWord.word}!</h3>
         <h3>Now complete line one!</h3>
         <LineOneInput lineOne={lineOne} setLineOne={setLineOne} handleLineOneSubmit={handleLineOneSubmit}/>
         <ul>{starterWord.word}</ul>
@@ -183,7 +186,7 @@ const handleNewRoundSubmit = (event) => {
         
         {showRhymes ? 
         <>
-        <h3>{currentPlayer.stageName}, your first line is {lineOne}</h3>
+        <h3>{soloPlayer.stageName}, your first line is {lineOne}</h3>
         <h3>Now select your rhyme word!</h3>
         <RhymeList rhymeWordsList={rhymeWordsList} rhymeWordClicked={rhymeWordClicked} showResult={showResult}/> 
         </>
@@ -191,7 +194,7 @@ const handleNewRoundSubmit = (event) => {
         
         {showLineTwoInput? 
         <>
-        <h3>{currentPlayer.stageName}, your first line is {lineOne}</h3>
+        <h3>{soloPlayer.stageName}, your first line is {lineOne}</h3>
         <h3>Your second rhyme word is {rhymeWord.word}.</h3>
         <h3>Now complete line two!</h3>
         <LineTwoInput lineTwo={lineTwo} setLineTwo={setLineTwo} handleLineTwoSubmit={handleLineTwoSubmit}/>
@@ -201,7 +204,7 @@ const handleNewRoundSubmit = (event) => {
         
         {showResult ? 
         <>
-        <p>{currentPlayer.stageName}, your couplet is:</p>
+        <p>{soloPlayer.stageName}, your couplet is:</p>
         <p>{lineOne}</p>
         <p>{lineTwo}</p>
         <br/>

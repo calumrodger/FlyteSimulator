@@ -4,17 +4,53 @@ import PlayerForm from "./PlayerForm";
 const NewGame = ({players, setCurrentPlayer, handleCreateNewPlayerSubmit, setShowNewGame, setShowStarterWords}) => {
 
     const [playerIndexValue, setPlayerIndexValue] = useState(null)
+    const [soloPlayerSelected, setSoloPlayerSelected] = useState(false)
+    const [twoPlayerSelected, setTwoPlayerSelected] = useState(false)
+    const [showSplashScreen, setShowSplashScreen] = useState(true)
+    const [showSoloPlayerSelectScreen, setShowSoloPlayerSelectScreen] = useState(false)
+    const [showPlayerOneSelectScreen, setShowPlayerOneSelectScreen] = useState(false)
+    const [showPlayerTwoSelectScreen, setShowPlayerTwoSelectScreen] = useState(false)
 
     const handleChange = (event) => {
         setPlayerIndexValue(event.target.value)
     }
 
-    const handleSelectPlayerSubmit = (event) => {
+    const playSoloRoundSubmit = (event) => {
+        event.preventDefault()
+        setShowSplashScreen(false)
+        setSoloPlayerSelected(true)
+        setShowSoloPlayerSelectScreen(true)
+    }
+
+    const playTwoPlayerRoundSubmit = (event) => {
+        event.preventDefault()
+        setShowSplashScreen(false)
+        setTwoPlayerSelected(true)
+        setShowPlayerOneSelectScreen(true)
+    }
+
+    const handleSelectSoloPlayerSubmit = (event) => {
         event.preventDefault()
         const selectedPlayer = players[playerIndexValue]
         setCurrentPlayer(selectedPlayer)
         setShowNewGame(false)
         setShowStarterWords(true) 
+    }
+
+    const handleSelectPlayerOneSubmit = (event) => {
+        event.preventDefault()
+        const selectedPlayer = players[playerIndexValue]
+        setCurrentPlayer(selectedPlayer)
+        setShowPlayerOneSelectScreen(false)
+        setShowPlayerTwoSelectScreen(true)
+    }
+
+    const handleSelectPlayerTwoSubmit = (event) => {
+        event.preventDefault()
+        const selectedPlayer = players[playerIndexValue]
+        setCurrentPlayer(selectedPlayer)
+        setShowPlayerTwoSelectScreen(false)
+        setShowNewGame(false)
     }
 
     
@@ -27,16 +63,58 @@ const NewGame = ({players, setCurrentPlayer, handleCreateNewPlayerSubmit, setSho
 
     return(
         <>
+        {showSplashScreen ?
+        <>
+        <button onClick={playSoloRoundSubmit}>Play solo round</button>
+        <button onClick={playTwoPlayerRoundSubmit}>Play two player</button>
+        </>
+        : null}
+    
+        {showSoloPlayerSelectScreen ? 
+        <>
         <h3>Select Player</h3>
         <form>
         <select value={players.stageName} onChange={handleChange}>
         <option disabled>Choose...</option>
         {playerOptions}
         </select>
-        <button onClick={handleSelectPlayerSubmit}> Go</button>
+        <button onClick={handleSelectSoloPlayerSubmit}> Go</button>
         </form>
         <h3>Or.. Create new Player</h3>
         <button onClick={handleCreateNewPlayerSubmit}>Go</button>
+        </>
+        : null}
+
+        {showPlayerOneSelectScreen ? 
+        <>
+        <h3>Player One, Select Player</h3>
+        <form>
+        <select value={players.stageName} onChange={handleChange}>
+        <option disabled>Choose...</option>
+        {playerOptions}
+        </select>
+        <button onClick={handleSelectPlayerOneSubmit}> Go</button>
+        </form>
+        <h3>Or.. Create new Player</h3>
+        <button onClick={handleCreateNewPlayerSubmit}>Go</button>
+        </>
+        : null}
+
+{showPlayerTwoSelectScreen ? 
+        <>
+        <h3>Player Two, Select Player</h3>
+        <form>
+        <select value={players.stageName} onChange={handleChange}>
+        <option disabled>Choose...</option>
+        {playerOptions}
+        </select>
+        <button onClick={handleSelectPlayerTwoSubmit}> Go</button>
+        </form>
+        <h3>Or.. Create new Player</h3>
+        <button onClick={handleCreateNewPlayerSubmit}>Go</button>
+        </>
+        : null}
+
         </>
     )
 }
