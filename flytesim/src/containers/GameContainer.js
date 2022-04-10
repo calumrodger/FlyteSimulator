@@ -38,7 +38,7 @@ const GameContainer = () => {
     
     const [showNewGame, setShowNewGame] = useState(true)
     const [showStarterWords, setShowStarterWords] = useState(true)
-    const [showLineInput, setShowLineInput] = useState(false)
+    const [showLineOneInput, setShowOneLineInput] = useState(false)
     const [showRhymes, setShowRhymes] = useState(false)
     const [showResult, setShowResult] = useState(false)
 
