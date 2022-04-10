@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Fragment} from "react";
 
-const LineTwoInput = ({soloLineTwo, setSoloLineTwo, handleLineTwoSubmit}) => {
+const SoloLineTwoInput = ({soloLineTwo, setSoloLineTwo, handleSoloLineTwoSubmit}) => {
 
     const handleChange = (event) => {
         setSoloLineTwo(event.target.value)
@@ -9,7 +9,7 @@ const LineTwoInput = ({soloLineTwo, setSoloLineTwo, handleLineTwoSubmit}) => {
     return(
         <>
         <h3>Complete your second line!</h3>
-        <form onSubmit={handleLineTwoSubmit}>
+        <form onSubmit={handleSoloLineTwoSubmit}>
         <input type="text" placeholder="Your line" name="name" value={soloLineTwo} onChange={handleChange}/>
         <button type="submit">Save</button>
         </form>
@@ -17,4 +17,4 @@ const LineTwoInput = ({soloLineTwo, setSoloLineTwo, handleLineTwoSubmit}) => {
     )
 }
 
-export default LineTwoInput;
+export default SoloLineTwoInput;

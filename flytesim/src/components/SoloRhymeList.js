@@ -1,8 +1,8 @@
 import React from "react";
-import RhymeWord from "./RhymeWord";
+import SoloRhymeWord from "./SoloRhymeWord";
 import styled from "styled-components";
 
-const RhymeList = ({ soloRhymeWordsList, rhymeWordClicked }) => {
+const SoloRhymeList = ({ soloRhymeWordsList, rhymeWordClicked }) => {
 
 // const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
 const reducedWordsList = soloRhymeWordsList.slice(0, 10);
@@ -11,7 +11,7 @@ const reducedWordsList = soloRhymeWordsList.slice(0, 10);
 		return(
 			<RhymeWordStyle>
 			<div key={index} className="component-item">
-					<RhymeWord soloRhymeWord={soloRhymeWord} index={index} rhymeWordClicked={rhymeWordClicked}/>
+					<SoloRhymeWord soloRhymeWord={soloRhymeWord} index={index} rhymeWordClicked={rhymeWordClicked}/>
 			</div>
 			</RhymeWordStyle>
 		)
@@ -25,7 +25,7 @@ const reducedWordsList = soloRhymeWordsList.slice(0, 10);
 
 	)
 }
- export default RhymeList;
+ export default SoloRhymeList;
 
  const RhymeWordStyle = styled.div`
 

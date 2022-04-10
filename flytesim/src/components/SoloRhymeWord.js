@@ -3,15 +3,8 @@ import styled from "styled-components";
 
 
 
-const RhymeWord = ({soloRhymeWord, rhymeWordClicked, index, showResult}) => {
+const SoloRhymeWord = ({soloRhymeWord, rhymeWordClicked, index}) => {
 
-
-
-// const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
-// const rhymeWordMap = rhymeWord.value.map((word) => {
-//   return <p>{rhymeWord.word}</p>
-// })
-// console.log(rhymeWordMap)
 
     return (
       <>
@@ -25,7 +18,7 @@ const RhymeWord = ({soloRhymeWord, rhymeWordClicked, index, showResult}) => {
     )
   }
   
-  export default RhymeWord;
+  export default SoloRhymeWord;
 
 
 const ButtonStyle = styled.div`

@@ -1,6 +1,6 @@
 import React, {useState, useEffect, Fragment} from "react";
 
-const SoloLineOneInput = ({soloLineOne, setSoloLineOne, handleLineOneSubmit}) => {
+const SoloLineOneInput = ({soloLineOne, setSoloLineOne, handleSoloLineOneSubmit}) => {
 
     const handleChange = (event) => {
         setSoloLineOne(event.target.value)
@@ -8,7 +8,7 @@ const SoloLineOneInput = ({soloLineOne, setSoloLineOne, handleLineOneSubmit}) =>
 
     return(
         <>
-        <form onSubmit={handleLineOneSubmit}>
+        <form onSubmit={handleSoloLineOneSubmit}>
         <input type="text" placeholder="Your line" name="name" value={soloLineOne} onChange={handleChange}/>
         <button type="submit">Save</button>
         </form>
