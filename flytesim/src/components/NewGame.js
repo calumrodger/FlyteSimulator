@@ -17,8 +17,8 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
     const playSoloRoundSubmit = (event) => {
         event.preventDefault()
         setSoloPlayerSelected(true)
-        setShowSoloPlayerSelectScreen(true)
         setShowSplashScreen(false)
+        setShowSoloPlayerSelectScreen(true)
     }
 
     const playTwoPlayerRoundSubmit = (event) => {
@@ -65,8 +65,10 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
         <>
         {showSplashScreen ?
         <>
+        <p>
         <button onClick={playSoloRoundSubmit}>Play solo round</button>
         <button onClick={playTwoPlayerRoundSubmit}>Play two player</button>
+        </p>
         </>
         : null }
     

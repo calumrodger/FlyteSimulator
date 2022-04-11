@@ -10,13 +10,14 @@ import SoloLineTwoInput from '../components/SoloLineTwoInput';
 import PlayerOneLineTwoInput from '../components/PlayerOneLineTwoInput';
 import PlayerTwoLineTwoInput from '../components/PlayerTwoLineTwoInput';
 import Request from '../helpers/request';
-import { dictionary } from 'cmu-pronouncing-dictionary'
+
 
 import React, { Fragment, useState, useEffect } from "react";
 import StarterWordsList from "../components/StarterWordsList";
 import SoloRhymeList from "../components/SoloRhymeList";
 import PlayerOneRhymeList from "../components/PlayerOneRhymeList";
 import PlayerTwoRhymeList from '../components/PlayerTwoRhymeList';
+import CalculateScore from '../components/CalculateScore';
 import perfect from "../img/Perfect.png";
 import great from "../img/Great.png";
 import okay from "../img/OK.png";
@@ -27,8 +28,6 @@ import '@splidejs/react-splide/css';
 
 
 const GameContainer = () => {
-    // const test = ["hello", "world"]
-    // const [testing, setTesting] = useState([])
 
     const [players, setPlayers] = useState([])
     const [starterWordsList, setStarterWordsList] = useState([])
@@ -51,7 +50,7 @@ const GameContainer = () => {
     const [soloRhymeWord, setSoloRhymeWord] = useState({})
     const [soloLineOne, setSoloLineOne] = useState("")
     const [soloLineTwo, setSoloLineTwo] = useState("")
-    // const [soloFullLineAsString, setSoloFullLineAsString] = useState("")
+    // const [soloFullLineString, setSoloFullLineString] = useState("")
 
     const [playerOneStarterWord, setPlayerOneStarterWord] = useState({})
     const [playerOneRhymeWord, setPlayerOneRhymeWord] = useState({})
@@ -166,6 +165,8 @@ const handleSoloLineTwoSubmit = (e) => {
   setSoloLineTwo(e.target.value)
   let completeLine = (soloLineTwo + " " + soloRhymeWord.word)
   setSoloLineTwo(completeLine)
+  // let fullRap = (soloLineOne + " " + soloLineTwo)
+  // setSoloFullLineAsString(fullRap)
   setShowSoloLineTwoInput(false)
   setShowSoloResult(true)
   console.log(soloLineTwo)
@@ -464,6 +465,7 @@ text={soloTextToSpeech()}/>
           <div className="stage2">
           <div class="box bounce-7">{interpretSoloScore()} </div>         
             </div>
+        <CalculateScore soloLineOne={soloLineOne} soloLineTwo={soloLineTwo}/>
         </>
         : null}
 
@@ -502,15 +504,9 @@ text={playerTwoTextToSpeech()}/>
         <button>Save round to database?</button>
         </>
         : null}
-        
-        
-       
-        
-        
         </>
     )
 };
-
 
 export default GameContainer;
 
