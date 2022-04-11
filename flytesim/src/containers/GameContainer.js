@@ -1,6 +1,3 @@
-
-
-
 import NewGame from '../components/NewGame';
 import PlayerForm from '../components/PlayerForm';
 import SoloLineOneInput from '../components/SoloLineOneInput';
@@ -11,6 +8,7 @@ import PlayerOneLineTwoInput from '../components/PlayerOneLineTwoInput';
 import PlayerTwoLineTwoInput from '../components/PlayerTwoLineTwoInput';
 import Request from '../helpers/request';
 import SoloPlayerUpdate from '../components/SoloPlayerUpdate';
+import TwoPlayerUpdate from '../components/TwoPlayerUpdate';
 
 
 import React, { Fragment, useState, useEffect } from "react";
@@ -109,7 +107,7 @@ const GameContainer = () => {
         const request = new Request();
         const url = "http://localhost:8080/api/players"
         request.post(url, player)
-        window.location.reload()
+        // window.location.reload()
     }
 
     const handleRapPost = (rap) => {
@@ -522,7 +520,7 @@ text={playerTwoTextToSpeech()}/>
         <p className="winner">The winner is... {playerTwo.stageName}! </p>}
         </StyleResults>
         <button onClick={handleNewTwoPlayerRoundSubmit}>Play another round?</button>
-        <button>Save round to database?</button>
+        <TwoPlayerUpdate handleRapPost={handleRapPost} scoreOne={playerOneRhymeWord.score} playerOne={playerOne} setPlayerOne={setPlayerOne} playerOneLineOne={playerOneLineOne} playerOneLineTwo={playerOneLineTwo} scoreTwo={playerTwoRhymeWord.score} playerTwo={playerTwo} setPlayerTwo={setPlayerTwo} playerTwoLineOne={playerTwoLineOne} playerTwoLineTwo={playerTwoLineTwo} onUpdate={handleDatabaseUpdate}/>
         </>
         : null}
         </>
