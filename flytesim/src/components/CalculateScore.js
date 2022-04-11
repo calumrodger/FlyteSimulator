@@ -3,8 +3,11 @@ import { dictionary } from 'cmu-pronouncing-dictionary'
 
 const CalculateScore = ({soloLineOne, soloLineTwo}) => {
 
-    let fullLine = `${soloLineOne} ${soloLineTwo}`
-    let fullLineArray = fullLine.split(" ")
+    let vowels = []
+    let consonants = []
+
+    let fullLineString = `${soloLineOne} ${soloLineTwo}`
+    let fullLineArray = fullLineString.split(" ")
     let newArray = []
     console.log(dictionary['hello'])
     console.log(fullLineArray)
@@ -16,12 +19,17 @@ const CalculateScore = ({soloLineOne, soloLineTwo}) => {
         return x !== undefined;
    });
    console.log(filteredArray)
+   let noDigitsArray = []
+   for (let i = 0; i < filteredArray.length; i++) {
+    noDigitsArray.push(filteredArray[i].replace(/[0-9]/g, ''))
+  }
+   console.log(noDigitsArray)
    
 
 
     return(
         <>
-        {fullLine}
+        {fullLineString}
         </>
     )
 
