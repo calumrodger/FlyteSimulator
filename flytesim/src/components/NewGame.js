@@ -1,5 +1,6 @@
 import React, {useState, useEffect, Fragment} from "react";
 import PlayerForm from "./PlayerForm";
+import styled from "styled-components";
 
 const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNewGame, setShowStarterWords, setSoloPlayerSelected, setTwoPlayerSelected, setPlayerOne, setPlayerTwo, setShowPlayerOneStarterWords}) => {
 
@@ -65,10 +66,12 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
         <>
         {showSplashScreen ?
         <>
+        <StartButtons>
         <p>
         <button onClick={playSoloRoundSubmit}>Play solo round</button>
         <button onClick={playTwoPlayerRoundSubmit}>Play two player</button>
         </p>
+        </StartButtons>
         </>
         : null }
     
@@ -122,3 +125,17 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
 }
 
 export default NewGame;
+
+const StartButtons = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding: 10px;
+    margin-left: 10%;
+    p {
+        margin: 0;
+        padding: 0;
+    }`
