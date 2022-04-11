@@ -7,7 +7,7 @@ const PlayerForm = ({player, onCreate}) => {
     name: "",
     stageName: "",
     points: 0,
-    previousRaps: null
+    previousRaps: []
     })
 
     useEffect(() => {

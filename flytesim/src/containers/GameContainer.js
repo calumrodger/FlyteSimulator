@@ -10,6 +10,7 @@ import SoloLineTwoInput from '../components/SoloLineTwoInput';
 import PlayerOneLineTwoInput from '../components/PlayerOneLineTwoInput';
 import PlayerTwoLineTwoInput from '../components/PlayerTwoLineTwoInput';
 import Request from '../helpers/request';
+import SoloPlayerUpdate from '../components/SoloPlayerUpdate';
 
 
 import React, { Fragment, useState, useEffect } from "react";
@@ -92,14 +93,12 @@ const GameContainer = () => {
         fetch("http://localhost:8080/api/players/")
         .then(response => response.json())
         .then(data => setPlayers(data))
-        .then(console.log(players))
       }
 
     const fetchStarterWordsList = () => {
         fetch("http://localhost:8080/api/starter_words/")
         .then(response => response.json())
         .then(data => setStarterWordsList(data))
-        .then(console.log(starterWordsList))
       }
 
       //create new player
@@ -109,6 +108,26 @@ const GameContainer = () => {
         setShowNewPlayerForm(true)
       }
 
+      const handlePlayerPost = (player) => {
+        const request = new Request();
+        const url = "http://localhost:8080/api/players"
+        request.post(url, player)
+        window.location.reload()
+    }
+
+    const handleRapPost = (rap) => {
+      const request = new Request();
+      const url = "http://localhost:8080/api/previous_raps"
+      request.post(url, rap)
+    }
+
+    const handleDatabaseUpdate = (player) => {
+      const request = new Request();
+      const url = "http://localhost:8080/api/players/"
+      request.patch(url + player.id, player)
+      .then(() => window.location.reload())
+    }
+
       //solo mechanics
 
   useEffect(() => {
@@ -116,15 +135,6 @@ const GameContainer = () => {
       .then((response) => response.json())
       .then((data) => setSoloRhymeWordsList(data));
   }, [soloStarterWord]);
-
-
-  const handlePlayerPost = (player) => {
-    const request = new Request();
-    const url = "http://localhost:8080/api/players"
-    request.post(url, player)
-    window.location.reload()
-    console.log(players)
-}
 
 
 const soloStarterWordClicked = (e) => {
@@ -458,6 +468,7 @@ const playerTwoTextToSpeech = () => {
         <p>Your score is {soloRhymeWord.score}!</p> 
         <button onClick={handleNewSoloRoundSubmit}>Play another round?</button>
         <button>Save round to database?</button>
+        <SoloPlayerUpdate handleRapPost={handleRapPost} score={soloRhymeWord.score} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} soloLineOne={soloLineOne} soloLineTwo={soloLineTwo} onUpdate={handleDatabaseUpdate}/>
         <Speech
 textAsButton={true}    
 displayText="Rap!" 
