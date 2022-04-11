@@ -30,20 +30,23 @@ class FlyteSimApplicationTests {
 	@Test
 	public void canGetPlayerName(){
 		Player player = new Player("Ryan", "CatBoy", 50);
-//		playerRepository.save(player);
+		playerRepository.save(player);
 		assertEquals("Ryan", player.getName());
 	}
 
 	@Test
 	public void canGetPreviousRaps(){
 		Player player = new Player("Ryan", "CatBoy", 50);
-		PreviousRap previousRap = new PreviousRap("first line", "second line", 1000, player);
+		PreviousRap previousRap = new PreviousRap("first line", 1000, player);
 		player.addRap(previousRap);
 		assertEquals(1, player.getPreviousRaps().size());
 	}
 
 	@Test
 	public void canFindRapByPlayerName(){
+		Player player = new Player("Ryan", "CatBoy", 50);
+		PreviousRap previousRap = new PreviousRap("first line", 1000, player);
+		player.addRap(previousRap);
 		assertEquals(1, previousRapRepository.findByPlayerName("Ryan").size());
 	}
 
@@ -52,6 +55,7 @@ class FlyteSimApplicationTests {
 	public void canGetAllStarterWords(){
 		assertEquals(7, starterWordRepository.findAll().size());
 	}
+
 
 
 }

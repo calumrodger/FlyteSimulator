@@ -1,5 +1,8 @@
 package com.codeclan.example.FlyteSim.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,27 +14,32 @@ public class PreviousRap {
     @Column(name="id")
     private Long id;
 
-    @Column(name="firstLine")
-    private String firstLine;
-
-    @Column(name="secondLine")
-    private String secondLine;
+    @Column(name="rap")
+    private String rap;
 
     @Column(name="score")
     private int score;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name="rap_id", nullable = false)
     private Player player;
 
-    public PreviousRap(String firstLine, String secondLine, int score, Player player) {
-        this.firstLine = firstLine;
-        this.secondLine = secondLine;
+    public PreviousRap(String rap, int score, Player player) {
+        this.rap = rap;
         this.score = score;
         this.player = player;
     }
 
     public PreviousRap() {
+    }
+
+    public String getRap() {
+        return rap;
+    }
+
+    public void setRap(String rap) {
+        this.rap = rap;
     }
 
     public Long getId() {
@@ -40,22 +48,6 @@ public class PreviousRap {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getFirstLine() {
-        return firstLine;
-    }
-
-    public void setFirstLine(String firstLine) {
-        this.firstLine = firstLine;
-    }
-
-    public String getSecondLine() {
-        return secondLine;
-    }
-
-    public void setSecondLine(String secondLine) {
-        this.secondLine = secondLine;
     }
 
     public int getScore() {

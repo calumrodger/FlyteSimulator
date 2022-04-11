@@ -22,10 +22,10 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     PreviousRapRepository previousRapRepository;
 
+
     public DataLoader() {
 
     }
-
 
     @Override
     public void run(ApplicationArguments args) {
@@ -35,6 +35,10 @@ public class DataLoader implements ApplicationRunner {
 
         Player calum = new Player("Calum", "Wee Cal Robot", 50);
         playerRepository.save(calum);
+
+        PreviousRap rap1 = new PreviousRap("first line", 1000, calum);
+        previousRapRepository.save(rap1);
+        calum.addRap(rap1);
 
         StarterWord word1 = new StarterWord("bottle", "noun");
         starterWordRepository.save(word1);
@@ -57,8 +61,7 @@ public class DataLoader implements ApplicationRunner {
         StarterWord word7 = new StarterWord("happy", "adjective");
         starterWordRepository.save(word7);
 
-        PreviousRap rap1 = new PreviousRap("first line", "second line", 1000, ryan);
-        previousRapRepository.save(rap1);
+
 
 
 

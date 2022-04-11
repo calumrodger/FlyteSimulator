@@ -1,5 +1,6 @@
 package com.codeclan.example.FlyteSim.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class Player {
 
 
     @OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
-    @JsonBackReference
+//    @JsonIgnoreProperties({"previousRaps"})
     private List<PreviousRap> previousRaps;
 
 
@@ -37,6 +38,16 @@ public class Player {
     }
 
     public Player(){}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
 
     public String getName() {
         return name;
@@ -62,13 +73,14 @@ public class Player {
         this.points = points;
     }
 
-    public ArrayList<PreviousRap> getPreviousRaps() {
-        return (ArrayList<PreviousRap>) previousRaps;
-    }
-
-    public void setPreviousRaps(ArrayList<PreviousRap> previousRaps) {
+    public void setPreviousRaps(List<PreviousRap> previousRaps) {
         this.previousRaps = previousRaps;
     }
+
+    public List<PreviousRap> getPreviousRaps() {
+        return previousRaps;
+    }
+
 
     public void addRap(PreviousRap previousRap){
         this.previousRaps.add(previousRap);

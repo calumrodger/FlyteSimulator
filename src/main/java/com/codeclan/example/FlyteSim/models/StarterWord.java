@@ -25,6 +25,14 @@ public class StarterWord {
     public StarterWord() {
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getWord() {
         return word;
     }
