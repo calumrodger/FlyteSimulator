@@ -573,8 +573,11 @@ const WordDisplay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: bold;
   font-size: 30px;
   text-align: center;
   border-radius: 10px;
-  font-style: italic;`
+  font-style: italic;
+  background-color: #FF8080;
+  width: 50px;
+  height: 50px;
+  margin: auto;`
