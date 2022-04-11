@@ -1,17 +1,17 @@
 import React from "react";
-import RhymeWord from "./RhymeWord";
+import SoloRhymeWord from "./SoloRhymeWord";
 import styled from "styled-components";
 
-const RhymeList = ({ rhymeWordsList, rhymeWordClicked }) => {
+const SoloRhymeList = ({ soloRhymeWordsList, rhymeWordClicked }) => {
 
 // const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
-const reducedWordsList = rhymeWordsList.slice(0, 10);
+const reducedWordsList = soloRhymeWordsList.slice(0, 10);
 
-	const rhymeList = reducedWordsList.map((rhymeWord, index) => {
+	const rhymeList = reducedWordsList.map((soloRhymeWord, index) => {
 		return(
 			<RhymeWordStyle>
 			<div key={index} className="component-item">
-					<RhymeWord rhymeWord={rhymeWord} index={index} rhymeWordClicked={rhymeWordClicked}/>
+					<SoloRhymeWord soloRhymeWord={soloRhymeWord} index={index} rhymeWordClicked={rhymeWordClicked}/>
 			</div>
 			</RhymeWordStyle>
 		)
@@ -25,7 +25,7 @@ const reducedWordsList = rhymeWordsList.slice(0, 10);
 
 	)
 }
- export default RhymeList;
+ export default SoloRhymeList;
 
  const RhymeWordStyle = styled.div`
 

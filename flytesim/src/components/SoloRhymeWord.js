@@ -3,21 +3,14 @@ import styled from "styled-components";
 
 
 
-const RhymeWord = ({rhymeWord, rhymeWordClicked, index, showResult}) => {
+const SoloRhymeWord = ({soloRhymeWord, rhymeWordClicked, index}) => {
 
-
-
-// const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
-// const rhymeWordMap = rhymeWord.value.map((word) => {
-//   return <p>{rhymeWord.word}</p>
-// })
-// console.log(rhymeWordMap)
 
     return (
       <>
       <ButtonStyle>
       <button type="submit" onClick={rhymeWordClicked} value={index}>
-      {rhymeWord.word}
+      {soloRhymeWord.word}
       </button>
       </ButtonStyle>
       
@@ -25,7 +18,7 @@ const RhymeWord = ({rhymeWord, rhymeWordClicked, index, showResult}) => {
     )
   }
   
-  export default RhymeWord;
+  export default SoloRhymeWord;
 
 
 const ButtonStyle = styled.div`

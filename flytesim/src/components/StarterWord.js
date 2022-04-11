@@ -4,14 +4,14 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 
 
-const StarterWord = ({starterWord, starterWordClicked, index}) => {
+const StarterWord = ({soloStarterWord, starterWordClicked, index}) => {
 
 
     return (
       <>
       <ButtonStyle>
       <button type="submit" onClick={starterWordClicked} value={index}>
-      {starterWord.word}
+      {soloStarterWord.word}
       </button>
       </ButtonStyle>
       
