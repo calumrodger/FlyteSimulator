@@ -7,10 +7,11 @@ const NavBar = (props) => {
   return (
     <Nav>
         <img className="poetrybattle" src={PoetryBattle} alt="Poetry Battle" />
-      <p>one</p>
-      <p>two</p>
-      <p>three</p>
-
+      <ULStyle>
+      <ul>one</ul>
+      <ul>two</ul>
+      <ul>three</ul>
+      </ULStyle>
       </Nav>
   )
 }
@@ -19,15 +20,26 @@ export default NavBar;
 
 const Nav = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   background-color: #019DE0;
-  padding: 10px;
-  border-bottom: 1px solid #ccc;
+
   
   .poetrybattle {
     width: 125px;
     height: 100px;
     margin: 10px 500px 10px 10px;
   }`;
+
+  const ULStyle = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-shadow: 2px 2px pink;
+  color: white;
+  font-size: 25px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  margin-top: 2%;
+  margin-left: 25%;  `
