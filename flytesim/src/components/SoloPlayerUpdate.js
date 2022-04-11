@@ -53,8 +53,7 @@ const SoloPlayerUpdate = ({handleRapPost, score, soloPlayer, setSoloPlayer, solo
     return(
         
         <>
-        <h3>SAVE TO DATABASE</h3>
-        <button type="submit" onClick={handleDatabaseSubmit}>SAVE</button>
+        <button type="submit" onClick={handleDatabaseSubmit}>Save to Database</button>
         </>
     )
 

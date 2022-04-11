@@ -51,19 +51,16 @@ const GameContainer = () => {
     const [soloRhymeWord, setSoloRhymeWord] = useState({})
     const [soloLineOne, setSoloLineOne] = useState("")
     const [soloLineTwo, setSoloLineTwo] = useState("")
-    // const [soloFullLineString, setSoloFullLineString] = useState("")
 
     const [playerOneStarterWord, setPlayerOneStarterWord] = useState({})
     const [playerOneRhymeWord, setPlayerOneRhymeWord] = useState({})
     const [playerOneLineOne, setPlayerOneLineOne] = useState({})
     const [playerOneLineTwo, setPlayerOneLineTwo] = useState({})
-    // const [playerOneFullLineAsString, setPlayerOneFullLineAsString] = useState("")
 
     const [playerTwoStarterWord, setPlayerTwoStarterWord] = useState({})
     const [playerTwoRhymeWord, setPlayerTwoRhymeWord] = useState({})
     const [playerTwoLineOne, setPlayerTwoLineOne] = useState({})
     const [playerTwoLineTwo, setPlayerTwoLineTwo] = useState({})
-    // const [playerTwoFullLineAsString, setPlayerTwoFullLineAsString] = useState("")
     
     const [showSoloStarterWords, setShowSoloStarterWords] = useState(false)
     const [showSoloLineOneInput, setShowSoloLineOneInput] = useState(false)
@@ -472,7 +469,6 @@ const playerTwoTextToSpeech = () => {
         <br/>
         <p>Your score is {soloRhymeWord.score}!</p> 
         <button onClick={handleNewSoloRoundSubmit}>Play another round?</button>
-        <button>Save round to database?</button>
         <SoloPlayerUpdate handleRapPost={handleRapPost} score={soloRhymeWord.score} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} soloLineOne={soloLineOne} soloLineTwo={soloLineTwo} onUpdate={handleDatabaseUpdate}/>
         <Speech
 textAsButton={true}    
