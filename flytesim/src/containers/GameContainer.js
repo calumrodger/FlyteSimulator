@@ -371,9 +371,12 @@ const playerTwoTextToSpeech = () => {
         {showSoloLineOneInput ? 
         <>
         <h3>{soloPlayer.stageName}, your first rhyme word is {soloStarterWord.word}!</h3>
+        
         <h3>Now complete line one!</h3>
         <SoloLineOneInput soloLineOne={soloLineOne} setSoloLineOne={setSoloLineOne} handleSoloLineOneSubmit={handleSoloLineOneSubmit}/>
+        <WordDisplay>
         <ul>{soloStarterWord.word}</ul>
+        </WordDisplay>
         </>
         : null}
 
@@ -382,7 +385,9 @@ const playerTwoTextToSpeech = () => {
         <h3>{playerOne.stageName}, your first rhyme word is {playerOneStarterWord.word}!</h3>
         <h3>Now complete line one!</h3>
         <PlayerOneLineOneInput playerOneLineOne={playerOneLineOne} setPlayerOneLineOne={setPlayerOneLineOne} handlePlayerOneLineOneSubmit={handlePlayerOneLineOneSubmit}/>
+        <WordDisplay>
         <ul>{playerOneStarterWord.word}</ul>
+        </WordDisplay>
         </>
         : null}
 
@@ -468,38 +473,47 @@ text={soloTextToSpeech()}/>
         <CalculateScore soloLineOne={soloLineOne} soloLineTwo={soloLineTwo}/>
         </>
         : null}
-
+        
         {showTwoPlayerResult ? 
         <>
+        <StylePoints>
+          <div className="p1style">
         <p>{playerOne.stageName}, your couplet is:</p>
         <p>{playerOneLineOne}</p>
         <p>{playerOneLineTwo}</p>
+        <p>Your score is {playerOneRhymeWord.score}!</p> 
         <Speech
 textAsButton={true}    
 displayText="Rap!" 
 text={playerOneTextToSpeech()}/>
           <div className="stage2">
-          <div class="box bounce-7">{interpretPlayerOneScore()} </div>         
+          <div class="box bounce-7">{interpretPlayerOneScore()} </div>    
+          </div>     
             </div>
-        <br/>
-        <p>Your score is {playerOneRhymeWord.score}!</p> 
-        <br></br>
+
+        <div className="p2style">
         <p>{playerTwo.stageName}, your couplet is:</p>
         <p>{playerTwoLineOne}</p>
         <p>{playerTwoLineTwo}</p>
+        <p>Your score is {playerTwoRhymeWord.score}!</p> 
         <Speech
 textAsButton={true}    
 displayText="Rap!" 
 text={playerTwoTextToSpeech()}/>
           <div className="stage2">
           <div class="box bounce-7">{interpretPlayerTwoScore()} </div>         
-            </div>
+            
         <br/>
-        <p>Your score is {playerTwoRhymeWord.score}!</p> 
+        </div>
+        </div>
+        </StylePoints>
         <br></br>
+        <StyleResults>
         {playerOneRhymeWord.score > playerTwoRhymeWord.score ?
-        <p>The winner is {playerOne.stageName}! </p> :
-        <p>The winner is {playerTwo.stageName}! </p>}
+        
+        <p className="winner">The winner is... {playerOne.stageName}! </p> :
+        <p className="winner">The winner is... {playerTwo.stageName}! </p>}
+        </StyleResults>
         <button onClick={handleNewTwoPlayerRoundSubmit}>Play another round?</button>
         <button>Save round to database?</button>
         </>
@@ -510,3 +524,57 @@ text={playerTwoTextToSpeech()}/>
 
 export default GameContainer;
 
+const StylePoints = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  .p1style {
+    font-weight: bold;
+    flex: 1;
+    flex-direction: row;
+    width: 250px;
+    height: 200px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    left: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .p2style {
+    font-weight: bold;
+    flex: 1;
+    flex-direction: row;
+    width: 250px;
+    height: 200px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    right: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }`
+
+const StyleResults = styled.div`
+margin: auto; 
+width: 50%;
+padding: 10px;
+color: white;
+text-shadow: 2px 2px hotpink;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px 5px #FF8080, -9px 5px 15px 5px #FFE488, -7px -5px 15px 5px #8CFF85, 12px -5px 15px 5px #80C7FF, 12px 10px 15px 7px #E488FF, -10px 10px 15px 7px #FF616B, -10px -7px 27px 1px #8E5CFF, inset 0px 13px 0px 0px rgba(0,124,255,0);`
+
+const WordDisplay = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 30px;
+  text-align: center;
+  border-radius: 10px;
+  font-style: italic;`

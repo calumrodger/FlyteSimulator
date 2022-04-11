@@ -1,5 +1,6 @@
 import React, {useState, useEffect, Fragment} from "react";
 import { dictionary } from 'cmu-pronouncing-dictionary'
+import styled from "styled-components"
 
 const CalculateScore = ({soloLineOne, soloLineTwo}) => {
 
@@ -28,11 +29,25 @@ const CalculateScore = ({soloLineOne, soloLineTwo}) => {
 
 
     return(
-        <>
+        <PlayerRap>
         {fullLineString}
-        </>
+        </PlayerRap>
     )
 
 }
 
 export default CalculateScore;
+
+const PlayerRap = styled.div`
+    font-size: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: black;
+    text-align: left;
+    left: 10px;
+    margin-top: 4%;
+    margin-left: 25%;
+    padding: 10px;
+    width: 50%;
+    background-color: white;
+    border-radius: 20px 20px 20px 0px;`
