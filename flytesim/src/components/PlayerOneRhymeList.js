@@ -2,16 +2,34 @@ import React from "react";
 import PlayerOneRhymeWord from "./PlayerOneRhymeWord";
 import styled from "styled-components";
 
-const PlayerOneRhymeList = ({ playerOneRhymeWordsList, playerOneRhymeWordClicked }) => {
+const PlayerOneRhymeList = ({ playerOneRhymeWordsList, setPlayerOneRhymeWordValue, setPlayerOneRhymeWordsList, setPlayerOneRhymeWord, setShowPlayerOneRhymes, playerOneRhymeWord, setShowPlayerOneLineTwoInput }) => {
 
-// const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
-const reducedWordsList = playerOneRhymeWordsList.slice(0, 10);
+    const filteredWordsList = playerOneRhymeWordsList.filter((word) => word.word.indexOf(" ") === -1)
+    const cleanFilter1 = filteredWordsList.splice((word) => (word.word !== "rape"))
+    const sortedList = cleanFilter1.splice((word) => (word.word !== "fuck"))
+    const shuffledRhymeList = sortedList.sort(() => 0.5 - Math.random());
+    const tenRandomRhymeWords = shuffledRhymeList.slice(0, 10);
+    
+    const playerOneRhymeWordClicked = (e) => {
+        let index = e.target.value;
+        let selectedWord = tenRandomRhymeWords[index];
+        let stateWord = { ...playerOneRhymeWord };
+        stateWord["score"] = selectedWord["score"];
+        stateWord["word"] = selectedWord["word"];
+        setPlayerOneRhymeWord(stateWord);
+        setPlayerOneRhymeWordsList(tenRandomRhymeWords);
+        if (selectedWord.score > 1000){
+          setPlayerOneRhymeWordValue(5)
+        }
+        setShowPlayerOneRhymes(false)
+        setShowPlayerOneLineTwoInput(true)
+      };
+        const rhymeList = tenRandomRhymeWords.map((playerOneRhymeWord, index) => {
 
-	const rhymeList = reducedWordsList.map((playerOneRhymeWord, index) => {
 		return(
 			<RhymeWordStyle>
 			<div key={index} className="component-item">
-					<PlayerOneRhymeWord playerOneRhymeWord={playerOneRhymeWord} index={index} playerOneRhymeWordClicked={playerOneRhymeWordClicked}/>
+					<PlayerOneRhymeWord playerOneRhymeWordClicked={playerOneRhymeWordClicked} playerOneRhymeWord={playerOneRhymeWord} index={index} />
 			</div>
 			</RhymeWordStyle>
 		)

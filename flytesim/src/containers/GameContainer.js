@@ -45,16 +45,19 @@ const GameContainer = () => {
 
     const [soloStarterWord, setSoloStarterWord] = useState({})
     const [soloRhymeWord, setSoloRhymeWord] = useState({})
+    const [soloRhymeWordValue, setSoloRhymeWordValue] = useState(0)
     const [soloLineOne, setSoloLineOne] = useState("")
     const [soloLineTwo, setSoloLineTwo] = useState("")
 
     const [playerOneStarterWord, setPlayerOneStarterWord] = useState({})
     const [playerOneRhymeWord, setPlayerOneRhymeWord] = useState({})
+    const [playerOneRhymeWordValue, setPlayerOneRhymeWordValue] = useState(0)
     const [playerOneLineOne, setPlayerOneLineOne] = useState({})
     const [playerOneLineTwo, setPlayerOneLineTwo] = useState({})
 
     const [playerTwoStarterWord, setPlayerTwoStarterWord] = useState({})
     const [playerTwoRhymeWord, setPlayerTwoRhymeWord] = useState({})
+    const [playerTwoRhymeWordValue, setPlayerTwoRhymeWordValue] = useState(0)
     const [playerTwoLineOne, setPlayerTwoLineOne] = useState({})
     const [playerTwoLineTwo, setPlayerTwoLineTwo] = useState({})
     
@@ -152,18 +155,7 @@ const soloStarterWordClicked = (e) => {
   setShowSoloLineOneInput(true)
 }
 
-const soloRhymeWordClicked = (e) => {
-  const reducedWordsList = soloRhymeWordsList.slice(0, 10);
-  let index = e.target.value;
-  let selectedWord = soloRhymeWordsList[index];
-  let stateWord = { ...soloRhymeWord };
-  stateWord["score"] = selectedWord["score"];
-  stateWord["word"] = selectedWord["word"];
-  setSoloRhymeWord(stateWord);
-  setSoloRhymeWordsList(reducedWordsList);
-  setShowSoloRhymes(false)
-  setShowSoloLineTwoInput(true)
-};
+
 
 const handleSoloLineOneSubmit = (e) => {
   e.preventDefault()
@@ -418,7 +410,7 @@ const playerTwoTextToSpeech = () => {
         <>
         <h3>{soloPlayer.stageName}, your first line is {soloLineOne}</h3>
         <h3>Now select your rhyme word!</h3>
-        <SoloRhymeList soloRhymeWordsList={soloRhymeWordsList} rhymeWordClicked={soloRhymeWordClicked}/> 
+        <SoloRhymeList soloRhymeWordsList={soloRhymeWordsList} setSoloRhymeWord={setSoloRhymeWord} setSoloRhymeWordsList={setSoloRhymeWordsList} setShowSoloRhymes={setShowSoloRhymes} setSoloRhymeWordValue={setSoloRhymeWordValue} setShowSoloLineTwoInput={setShowSoloLineTwoInput}/> 
         </>
         : null}
 
@@ -426,7 +418,7 @@ const playerTwoTextToSpeech = () => {
         <>
         <h3>{playerOne.stageName}, your first line is {playerOneLineOne}</h3>
         <h3>Now select your rhyme word!</h3>
-        <PlayerOneRhymeList playerOneRhymeWordsList={playerOneRhymeWordsList} playerOneRhymeWordClicked={playerOneRhymeWordClicked}/> 
+        <PlayerOneRhymeList playerOneRhymeWordsList={playerOneRhymeWordsList} playerOneRhymeWord={setPlayerOneRhymeWord} setPlayerOneRhymeWord={setPlayerOneRhymeWord} setPlayerOneRhymeWordsList={setPlayerOneRhymeWordsList} setShowPlayerOneRhymes={setShowPlayerOneRhymes} setPlayerOneRhymeWordValue={setPlayerOneRhymeWordValue} setShowPlayerOneLineTwoInput={setShowPlayerOneLineTwoInput}/> 
         </>
         : null}
 
@@ -434,7 +426,7 @@ const playerTwoTextToSpeech = () => {
         <>
         <h3>{playerTwo.stageName}, your first line is {playerTwoLineOne}</h3>
         <h3>Now select your rhyme word!</h3>
-        <PlayerTwoRhymeList playerTwoRhymeWordsList={playerTwoRhymeWordsList} playerTwoRhymeWordClicked={playerTwoRhymeWordClicked}/> 
+        <PlayerTwoRhymeList playerTwoRhymeWordsList={playerTwoRhymeWordsList} playerTwoRhymeWord={setPlayerTwoRhymeWord} setPlayerTwoRhymeWord={setPlayerTwoRhymeWord} setPlayerTwoRhymeWordsList={setPlayerTwoRhymeWordsList} setShowPlayerTwoRhymes={setShowPlayerTwoRhymes} setPlayerTwoRhymeWordValue={setPlayerTwoRhymeWordValue} setShowPlayerTwoLineTwoInput={setShowPlayerTwoLineTwoInput}/> 
         </>
         : null} 
         
