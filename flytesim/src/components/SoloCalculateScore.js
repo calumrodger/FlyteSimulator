@@ -2,7 +2,7 @@ import React, {useState, useEffect, Fragment} from "react";
 import { dictionary } from 'cmu-pronouncing-dictionary'
 import styled from "styled-components"
 
-const CalculateScore = ({soloLineOne, soloLineTwo}) => {
+const SoloCalculateScore = ({soloLineOne, soloLineTwo}) => {
 
     let fullLineString = `${soloLineOne} ${soloLineTwo}`
     let fullLineArray = fullLineString.split(" ")
@@ -77,7 +77,7 @@ const CalculateScore = ({soloLineOne, soloLineTwo}) => {
 
 }
 
-export default CalculateScore;
+export default SoloCalculateScore;
 
 const PlayerRap = styled.div`
     font-size: 20px;

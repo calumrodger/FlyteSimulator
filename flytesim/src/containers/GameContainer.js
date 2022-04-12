@@ -16,7 +16,9 @@ import StarterWordsList from "../components/StarterWordsList";
 import SoloRhymeList from "../components/SoloRhymeList";
 import PlayerOneRhymeList from "../components/PlayerOneRhymeList";
 import PlayerTwoRhymeList from '../components/PlayerTwoRhymeList';
-import CalculateScore from '../components/CalculateScore';
+import SoloCalculateScore from '../components/SoloCalculateScore';
+import PlayerOneCalculateScore from '../components/PlayerOneCalculateScore';
+import PlayerTwoCalculateScore from '../components/PlayerTwoCalculateScore';
 import perfect from "../img/Perfect.png";
 import great from "../img/Great.png";
 import okay from "../img/OK.png";
@@ -30,7 +32,6 @@ const GameContainer = () => {
 
     const [players, setPlayers] = useState([])
     const [starterWordsList, setStarterWordsList] = useState([])
-
 
     const [soloRhymeWordsList, setSoloRhymeWordsList] = useState([])
     const [playerOneRhymeWordsList, setPlayerOneRhymeWordsList] = useState([])
@@ -48,18 +49,24 @@ const GameContainer = () => {
     const [soloRhymeWordValue, setSoloRhymeWordValue] = useState(0)
     const [soloLineOne, setSoloLineOne] = useState("")
     const [soloLineTwo, setSoloLineTwo] = useState("")
+    const [soloAlliterationBonus, setSoloAlliterationBonus] = useState(0)
+    const [soloAssonanceBonus, setSoloAssonanceBonus] = useState(0)
 
     const [playerOneStarterWord, setPlayerOneStarterWord] = useState({})
     const [playerOneRhymeWord, setPlayerOneRhymeWord] = useState({})
     const [playerOneRhymeWordValue, setPlayerOneRhymeWordValue] = useState(0)
     const [playerOneLineOne, setPlayerOneLineOne] = useState({})
     const [playerOneLineTwo, setPlayerOneLineTwo] = useState({})
+    const [playerOneAlliterationBonus, setPlayerOneAlliterationBonus] = useState(0)
+    const [playerOneAssonanceBonus, setPlayerOneAssonanceBonus] = useState(0)
 
     const [playerTwoStarterWord, setPlayerTwoStarterWord] = useState({})
     const [playerTwoRhymeWord, setPlayerTwoRhymeWord] = useState({})
     const [playerTwoRhymeWordValue, setPlayerTwoRhymeWordValue] = useState(0)
     const [playerTwoLineOne, setPlayerTwoLineOne] = useState({})
     const [playerTwoLineTwo, setPlayerTwoLineTwo] = useState({})
+    const [playerTwoAlliterationBonus, setPlayerTwoAlliterationBonus] = useState(0)
+    const [playerTwoAssonanceBonus, setPlayerTwoAssonanceBonus] = useState(0)
     
     const [showSoloStarterWords, setShowSoloStarterWords] = useState(false)
     const [showSoloLineOneInput, setShowSoloLineOneInput] = useState(false)
@@ -435,7 +442,7 @@ text={soloTextToSpeech()}/>
           <div className="stage2">
           <div class="box bounce-7">{interpretSoloScore()} </div>         
             </div>
-        <CalculateScore soloLineOne={soloLineOne} soloLineTwo={soloLineTwo}/>
+        <SoloCalculateScore soloLineOne={soloLineOne} soloLineTwo={soloLineTwo}/>
         </>
         : null}
         
@@ -453,7 +460,8 @@ displayText="Rap!"
 text={playerOneTextToSpeech()}/>
           <div className="stage2">
           <div class="box bounce-7">{interpretPlayerOneScore()} </div>    
-          </div>     
+          </div>    
+          <PlayerOneCalculateScore playerOneLineOne={playerOneLineOne} playerOneLineTwo={playerOneLineTwo}/> 
             </div>
 
         <div className="p2style">
@@ -470,6 +478,7 @@ text={playerTwoTextToSpeech()}/>
             
         <br/>
         </div>
+        <PlayerTwoCalculateScore playerTwoLineOne={playerTwoLineOne} playerTwoLineTwo={playerTwoLineTwo}/>
         </div>
         </StylePoints>
         <br></br>
