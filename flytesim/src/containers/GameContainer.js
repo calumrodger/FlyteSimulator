@@ -97,17 +97,6 @@ const GameContainer = () => {
         .then(data => setStarterWordsList(data))
       }
 
-      // const filterStarterWordsList = () => {
-      //   let array = []
-      //   let starterWordsListStrings = reducedWordsList.map((word, index) => {
-      //   for (let i = 0; i < 5; i++) {
-      //   let randomElement = starterWordsList[Math.floor(Math.random() * starterWordsList.length)];
-      //   array.push(randomElement)
-      //   }
-      //   console.log(array)
-      //   setStarterWordsList(array)
-      // }
-
       //create new player
       const handleCreateNewPlayerSubmit = (event) => {
         event.preventDefault()
@@ -149,13 +138,11 @@ const soloStarterWordClicked = (e) => {
   let selectedWord = starterWordsList[index];
   let newWord = {...soloStarterWord}
   newWord['word'] = selectedWord['word']
-  newWord['wordClass'] = selectedWord['wordClass']
+  newWord['value'] = selectedWord['value']
   setSoloStarterWord(newWord)
   setShowSoloStarterWords(false)
   setShowSoloLineOneInput(true)
 }
-
-
 
 const handleSoloLineOneSubmit = (e) => {
   e.preventDefault()
@@ -171,8 +158,6 @@ const handleSoloLineTwoSubmit = (e) => {
   setSoloLineTwo(e.target.value)
   let completeLine = (soloLineTwo + " " + soloRhymeWord.word)
   setSoloLineTwo(completeLine)
-  // let fullRap = (soloLineOne + " " + soloLineTwo)
-  // setSoloFullLineAsString(fullRap)
   setShowSoloLineTwoInput(false)
   setShowSoloResult(true)
   console.log(soloLineTwo)
@@ -224,24 +209,11 @@ let index = e.target.value;
 let selectedWord = starterWordsList[index];
 let newWord = {...playerOneStarterWord}
 newWord['word'] = selectedWord['word']
-newWord['wordClass'] = selectedWord['wordClass']
+newWord['value'] = selectedWord['value']
 setPlayerOneStarterWord(newWord)
 setShowPlayerOneStarterWords(false)
 setShowPlayerOneLineOneInput(true)
 }
-
-const playerOneRhymeWordClicked = (e) => {
-const reducedWordsList = playerOneRhymeWordsList.slice(0, 10);
-let index = e.target.value;
-let selectedWord = playerOneRhymeWordsList[index];
-let stateWord = { ...playerOneRhymeWord };
-stateWord["score"] = selectedWord["score"];
-stateWord["word"] = selectedWord["word"];
-setPlayerOneRhymeWord(stateWord);
-setPlayerOneRhymeWordsList(reducedWordsList);
-setShowPlayerOneRhymes(false)
-setShowPlayerOneLineTwoInput(true)
-};
 
 const handlePlayerOneLineOneSubmit = (e) => {
 e.preventDefault()
@@ -294,19 +266,6 @@ setPlayerTwoStarterWord(newWord)
 setShowPlayerTwoStarterWords(false)
 setShowPlayerTwoLineOneInput(true)
 }
-
-const playerTwoRhymeWordClicked = (e) => {
-const reducedWordsList = playerTwoRhymeWordsList.slice(0, 10);
-let index = e.target.value;
-let selectedWord = playerTwoRhymeWordsList[index];
-let stateWord = { ...playerTwoRhymeWord };
-stateWord["score"] = selectedWord["score"];
-stateWord["word"] = selectedWord["word"];
-setPlayerTwoRhymeWord(stateWord);
-setPlayerTwoRhymeWordsList(reducedWordsList);
-setShowPlayerTwoRhymes(false)
-setShowPlayerTwoLineTwoInput(true)
-};
 
 const handlePlayerTwoLineOneSubmit = (e) => {
 e.preventDefault()
@@ -466,9 +425,9 @@ const playerTwoTextToSpeech = () => {
         <p>{soloLineOne}</p>
         <p>{soloLineTwo}</p>
         <br/>
-        <p>Your score is {soloRhymeWord.score}!</p> 
+        <p>Your score is {soloStarterWord.value + soloRhymeWordValue}!</p> 
         <button onClick={handleNewSoloRoundSubmit}>Play another round?</button>
-        <SoloPlayerUpdate handleRapPost={handleRapPost} score={soloRhymeWord.score} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} soloLineOne={soloLineOne} soloLineTwo={soloLineTwo} onUpdate={handleDatabaseUpdate}/>
+        <SoloPlayerUpdate handleRapPost={handleRapPost} score={soloStarterWord.value + soloRhymeWordValue} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} soloLineOne={soloLineOne} soloLineTwo={soloLineTwo} onUpdate={handleDatabaseUpdate}/>
         <Speech
 textAsButton={true}    
 displayText="Rap!" 
@@ -487,7 +446,7 @@ text={soloTextToSpeech()}/>
         <p>{playerOne.stageName}, your couplet is:</p>
         <p>{playerOneLineOne}</p>
         <p>{playerOneLineTwo}</p>
-        <p>Your score is {playerOneRhymeWord.score}!</p> 
+        <p>Your score is {playerOneStarterWord.value + playerOneRhymeWordValue}!</p> 
         <Speech
 textAsButton={true}    
 displayText="Rap!" 
@@ -501,7 +460,7 @@ text={playerOneTextToSpeech()}/>
         <p>{playerTwo.stageName}, your couplet is:</p>
         <p>{playerTwoLineOne}</p>
         <p>{playerTwoLineTwo}</p>
-        <p>Your score is {playerTwoRhymeWord.score}!</p> 
+        <p>Your score is {playerTwoStarterWord.value + playerTwoRhymeWordValue}!</p> 
         <Speech
 textAsButton={true}    
 displayText="Rap!" 
@@ -515,13 +474,13 @@ text={playerTwoTextToSpeech()}/>
         </StylePoints>
         <br></br>
         <StyleResults>
-        {playerOneRhymeWord.score > playerTwoRhymeWord.score ?
+        {(playerOneStarterWord.value + playerOneRhymeWordValue) > (playerTwoStarterWord.value + playerTwoRhymeWordValue) ?
         
         <p className="winner">The winner is... {playerOne.stageName}! </p> :
         <p className="winner">The winner is... {playerTwo.stageName}! </p>}
         </StyleResults>
         <button onClick={handleNewTwoPlayerRoundSubmit}>Play another round?</button>
-        <TwoPlayerUpdate handleRapPost={handleRapPost} scoreOne={playerOneRhymeWord.score} playerOne={playerOne} setPlayerOne={setPlayerOne} playerOneLineOne={playerOneLineOne} playerOneLineTwo={playerOneLineTwo} scoreTwo={playerTwoRhymeWord.score} playerTwo={playerTwo} setPlayerTwo={setPlayerTwo} playerTwoLineOne={playerTwoLineOne} playerTwoLineTwo={playerTwoLineTwo} onUpdate={handleDatabaseUpdate}/>
+        <TwoPlayerUpdate handleRapPost={handleRapPost} scoreOne={playerOneStarterWord.value + playerOneRhymeWordValue} playerOne={playerOne} setPlayerOne={setPlayerOne} playerOneLineOne={playerOneLineOne} playerOneLineTwo={playerOneLineTwo} scoreTwo={playerTwoStarterWord.value + playerTwoRhymeWordValue} playerTwo={playerTwo} setPlayerTwo={setPlayerTwo} playerTwoLineOne={playerTwoLineOne} playerTwoLineTwo={playerTwoLineTwo} onUpdate={handleDatabaseUpdate}/>
         </>
         : null}
         </>

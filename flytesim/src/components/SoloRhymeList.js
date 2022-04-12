@@ -14,12 +14,24 @@ const soloRhymeWordClicked = (e) => {
 	let index = e.target.value;
 	let selectedWord = tenRandomRhymeWords[index];
 	let stateWord = { ...soloRhymeWord };
-	stateWord["score"] = selectedWord["score"];
 	stateWord["word"] = selectedWord["word"];
+	stateWord["score"] = selectedWord["score"];
 	setSoloRhymeWord(stateWord);
 	setSoloRhymeWordsList(tenRandomRhymeWords);
-	if (selectedWord.score > 1000){
-	  setSoloRhymeWordValue(5)
+	if (selectedWord.score > 4000){
+	  setSoloRhymeWordValue(1)
+	}
+	if ((selectedWord.score <= 4000) && (selectedWord.score > 3000)){
+		setSoloRhymeWordValue(2)
+	}
+	if ((selectedWord.score <= 3000) && (selectedWord.score > 2000)){
+		setSoloRhymeWordValue(3)
+	}
+	if ((selectedWord.score <= 2000) && (selectedWord.score > 1000)){
+		setSoloRhymeWordValue(4)
+	}
+	if (selectedWord.score < 1000){
+		setSoloRhymeWordValue(5)
 	}
 	setShowSoloRhymes(false)
 	setShowSoloLineTwoInput(true)

@@ -18,9 +18,21 @@ const PlayerTwoRhymeList = ({ playerTwoRhymeWordsList, setPlayerTwoRhymeWordValu
         stateWord["word"] = selectedWord["word"];
         setPlayerTwoRhymeWord(stateWord);
         setPlayerTwoRhymeWordsList(tenRandomRhymeWords);
-        if (selectedWord.score > 1000){
-          setPlayerTwoRhymeWordValue(5)
-        }
+        if (selectedWord.score > 4000){
+            setPlayerTwoRhymeWordValue(1)
+          }
+          if ((selectedWord.score <= 4000) && (selectedWord.score > 3000)){
+              setPlayerTwoRhymeWordValue(2)
+          }
+          if ((selectedWord.score <= 3000) && (selectedWord.score > 2000)){
+              setPlayerTwoRhymeWordValue(3)
+          }
+          if ((selectedWord.score <= 2000) && (selectedWord.score > 1000)){
+              setPlayerTwoRhymeWordValue(4)
+          }
+          if (selectedWord.score < 1000){
+              setPlayerTwoRhymeWordValue(5)
+          }
         setShowPlayerTwoRhymes(false)
         setShowPlayerTwoLineTwoInput(true)
       };
