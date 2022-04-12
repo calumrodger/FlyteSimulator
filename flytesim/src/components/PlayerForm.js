@@ -22,6 +22,7 @@ const PlayerForm = ({player, onCreate}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         onCreate(statePlayer);
+        window.location.reload()
     }
 
     const handleChange = (event) => {

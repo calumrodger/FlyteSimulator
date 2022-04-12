@@ -32,15 +32,13 @@ const GameContainer = () => {
 
     const [players, setPlayers] = useState([])
     const [starterWordsList, setStarterWordsList] = useState([])
-
     const [soloRhymeWordsList, setSoloRhymeWordsList] = useState([])
     const [playerOneRhymeWordsList, setPlayerOneRhymeWordsList] = useState([])
     const [playerTwoRhymeWordsList, setPlayerTwoRhymeWordsList] = useState([])
 
     const [soloPlayer, setSoloPlayer] = useState({})
     const [playerOne, setPlayerOne] = useState({})
-    const [playerTwo, setPlayerTwo] = useState({})
-      
+    const [playerTwo, setPlayerTwo] = useState({}) 
     const [showNewGame, setShowNewGame] = useState(true)
     const [showNewPlayerForm, setShowNewPlayerForm] = useState(false)
 
@@ -51,22 +49,25 @@ const GameContainer = () => {
     const [soloLineTwo, setSoloLineTwo] = useState("")
     const [soloAlliterationBonus, setSoloAlliterationBonus] = useState(0)
     const [soloAssonanceBonus, setSoloAssonanceBonus] = useState(0)
+    const [soloFinalScore, setSoloFinalScore] = useState(0)
 
     const [playerOneStarterWord, setPlayerOneStarterWord] = useState({})
     const [playerOneRhymeWord, setPlayerOneRhymeWord] = useState({})
     const [playerOneRhymeWordValue, setPlayerOneRhymeWordValue] = useState(0)
-    const [playerOneLineOne, setPlayerOneLineOne] = useState({})
-    const [playerOneLineTwo, setPlayerOneLineTwo] = useState({})
+    const [playerOneLineOne, setPlayerOneLineOne] = useState("")
+    const [playerOneLineTwo, setPlayerOneLineTwo] = useState("")
     const [playerOneAlliterationBonus, setPlayerOneAlliterationBonus] = useState(0)
     const [playerOneAssonanceBonus, setPlayerOneAssonanceBonus] = useState(0)
+    const [playerOneFinalScore, setPlayerOneFinalScore] = useState(0)
 
     const [playerTwoStarterWord, setPlayerTwoStarterWord] = useState({})
     const [playerTwoRhymeWord, setPlayerTwoRhymeWord] = useState({})
     const [playerTwoRhymeWordValue, setPlayerTwoRhymeWordValue] = useState(0)
-    const [playerTwoLineOne, setPlayerTwoLineOne] = useState({})
-    const [playerTwoLineTwo, setPlayerTwoLineTwo] = useState({})
+    const [playerTwoLineOne, setPlayerTwoLineOne] = useState("")
+    const [playerTwoLineTwo, setPlayerTwoLineTwo] = useState("")
     const [playerTwoAlliterationBonus, setPlayerTwoAlliterationBonus] = useState(0)
     const [playerTwoAssonanceBonus, setPlayerTwoAssonanceBonus] = useState(0)
+    const [playerTwoFinalScore, setPlayerTwoFinalScore] = useState(0)
     
     const [showSoloStarterWords, setShowSoloStarterWords] = useState(false)
     const [showSoloLineOneInput, setShowSoloLineOneInput] = useState(false)
@@ -167,7 +168,8 @@ const handleSoloLineTwoSubmit = (e) => {
   setSoloLineTwo(completeLine)
   setShowSoloLineTwoInput(false)
   setShowSoloResult(true)
-  console.log(soloLineTwo)
+  let finalScore = (soloAlliterationBonus + soloAssonanceBonus)
+  setSoloFinalScore(finalScore)
 }
 
 const interpretSoloScore = () => {
@@ -432,17 +434,25 @@ const playerTwoTextToSpeech = () => {
         <p>{soloLineOne}</p>
         <p>{soloLineTwo}</p>
         <br/>
-        <p>Your score is {soloStarterWord.value + soloRhymeWordValue}!</p> 
+        <p>STARTER WORD SCORE: {soloStarterWord.value}</p>
+        <p>RHYME WORD SCORE: {soloRhymeWordValue}</p>
+        {soloAlliterationBonus !== 0 ?
+        <p>ALLITERATION BONUS: {soloAlliterationBonus}</p>
+        : null}
+        {soloAssonanceBonus !== 0 ?
+        <p>ASSONANCE BONUS: {soloAssonanceBonus}</p>
+        : null}
+        <p>FINAL SCORE: {soloFinalScore}!</p> 
         <button onClick={handleNewSoloRoundSubmit}>Play another round?</button>
-        <SoloPlayerUpdate handleRapPost={handleRapPost} score={soloStarterWord.value + soloRhymeWordValue} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} soloLineOne={soloLineOne} soloLineTwo={soloLineTwo} onUpdate={handleDatabaseUpdate}/>
+        <SoloPlayerUpdate handleRapPost={handleRapPost} score={soloFinalScore} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} soloLineOne={soloLineOne} soloLineTwo={soloLineTwo} onUpdate={handleDatabaseUpdate}/>
         <Speech
 textAsButton={true}    
 displayText="Rap!" 
 text={soloTextToSpeech()}/>
           <div className="stage2">
           <div class="box bounce-7">{interpretSoloScore()} </div>         
-            </div>
-        <SoloCalculateScore soloLineOne={soloLineOne} soloLineTwo={soloLineTwo}/>
+            </div>   
+            <SoloCalculateScore soloLineOne={soloLineOne} soloLineTwo={soloLineTwo} setSoloAlliterationBonus={setSoloAlliterationBonus} setSoloAssonanceBonus={setSoloAssonanceBonus} setSoloFinalScore={setSoloFinalScore} soloStarterWord={soloStarterWord} soloRhymeWordValue={soloRhymeWordValue}/>
         </>
         : null}
         
@@ -453,7 +463,16 @@ text={soloTextToSpeech()}/>
         <p>{playerOne.stageName}, your couplet is:</p>
         <p>{playerOneLineOne}</p>
         <p>{playerOneLineTwo}</p>
-        <p>Your score is {playerOneStarterWord.value + playerOneRhymeWordValue}!</p> 
+        <br/>
+        <p>STARTER WORD SCORE: {playerOneStarterWord.value}</p>
+        <p>RHYME WORD SCORE: {playerOneRhymeWordValue}</p>
+        {playerOneAlliterationBonus !== 0 ?
+        <p>ALLITERATION BONUS: {playerOneAlliterationBonus}</p>
+        : null}
+        {playerOneAssonanceBonus !== 0 ?
+        <p>ASSONANCE BONUS: {playerOneAssonanceBonus}</p>
+        : null}
+        <p>FINAL SCORE: {playerOneFinalScore}!</p>  
         <Speech
 textAsButton={true}    
 displayText="Rap!" 
@@ -461,14 +480,23 @@ text={playerOneTextToSpeech()}/>
           <div className="stage2">
           <div class="box bounce-7">{interpretPlayerOneScore()} </div>    
           </div>    
-          <PlayerOneCalculateScore playerOneLineOne={playerOneLineOne} playerOneLineTwo={playerOneLineTwo}/> 
+          <PlayerOneCalculateScore playerOneLineOne={playerOneLineOne} playerOneLineTwo={playerOneLineTwo} playerOneRhymeWordValue={playerOneRhymeWordValue} playerOneStarterWord={playerOneStarterWord} setPlayerOneAlliterationBonus={setPlayerOneAlliterationBonus} setPlayerOneAssonanceBonus={setPlayerOneAssonanceBonus} setPlayerOneFinalScore={setPlayerOneFinalScore}/> 
             </div>
 
         <div className="p2style">
         <p>{playerTwo.stageName}, your couplet is:</p>
         <p>{playerTwoLineOne}</p>
         <p>{playerTwoLineTwo}</p>
-        <p>Your score is {playerTwoStarterWord.value + playerTwoRhymeWordValue}!</p> 
+        <br/>
+        <p>STARTER WORD SCORE: {playerTwoStarterWord.value}</p>
+        <p>RHYME WORD SCORE: {playerTwoRhymeWordValue}</p>
+        {playerTwoAlliterationBonus !== 0 ?
+        <p>ALLITERATION BONUS: {playerTwoAlliterationBonus}</p>
+        : null}
+        {playerTwoAssonanceBonus !== 0 ?
+        <p>ASSONANCE BONUS: {playerTwoAssonanceBonus}</p>
+        : null}
+        <p>FINAL SCORE: {playerTwoFinalScore}!</p>  
         <Speech
 textAsButton={true}    
 displayText="Rap!" 
@@ -478,12 +506,12 @@ text={playerTwoTextToSpeech()}/>
             
         <br/>
         </div>
-        <PlayerTwoCalculateScore playerTwoLineOne={playerTwoLineOne} playerTwoLineTwo={playerTwoLineTwo}/>
+        <PlayerTwoCalculateScore playerTwoLineOne={playerTwoLineOne} playerTwoLineTwo={playerTwoLineTwo} playerTwoRhymeWordValue={playerTwoRhymeWordValue} playerTwoStarterWord={playerTwoStarterWord} setPlayerTwoAlliterationBonus={setPlayerTwoAlliterationBonus} setPlayerTwoAssonanceBonus={setPlayerTwoAssonanceBonus} setPlayerTwoFinalScore={setPlayerTwoFinalScore}/>
         </div>
         </StylePoints>
         <br></br>
         <StyleResults>
-        {(playerOneStarterWord.value + playerOneRhymeWordValue) > (playerTwoStarterWord.value + playerTwoRhymeWordValue) ?
+        {(playerOneFinalScore) > (playerTwoFinalScore) ?
         
         <p className="winner">The winner is... {playerOne.stageName}! </p> :
         <p className="winner">The winner is... {playerTwo.stageName}! </p>}
