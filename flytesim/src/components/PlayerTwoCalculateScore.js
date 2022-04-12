@@ -2,7 +2,7 @@ import React, {useState, useEffect, Fragment} from "react";
 import { dictionary } from 'cmu-pronouncing-dictionary'
 import styled from "styled-components"
 
-const PlayerTwoCalculateScore = ({playerTwoLineOne, playerTwoLineTwo}) => {
+const PlayerTwoCalculateScore = ({playerTwoLineOne, playerTwoLineTwo, setPlayerTwoAlliterationBonus, setPlayerTwoAssonanceBonus}) => {
 
     let fullLineString = `${playerTwoLineOne} ${playerTwoLineTwo}`
     let fullLineArray = fullLineString.split(" ")
@@ -68,6 +68,8 @@ const PlayerTwoCalculateScore = ({playerTwoLineOne, playerTwoLineTwo}) => {
 
     let assonanceScore = assonanceArray.length
     console.log(assonanceScore)
+    setPlayerTwoAlliterationBonus(alliterationScore)
+    setPlayerTwoAssonanceBonus(assonanceScore)
 
     return(
         <PlayerRap>

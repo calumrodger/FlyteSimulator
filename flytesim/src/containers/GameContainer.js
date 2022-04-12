@@ -32,15 +32,13 @@ const GameContainer = () => {
 
     const [players, setPlayers] = useState([])
     const [starterWordsList, setStarterWordsList] = useState([])
-
     const [soloRhymeWordsList, setSoloRhymeWordsList] = useState([])
     const [playerOneRhymeWordsList, setPlayerOneRhymeWordsList] = useState([])
     const [playerTwoRhymeWordsList, setPlayerTwoRhymeWordsList] = useState([])
 
     const [soloPlayer, setSoloPlayer] = useState({})
     const [playerOne, setPlayerOne] = useState({})
-    const [playerTwo, setPlayerTwo] = useState({})
-      
+    const [playerTwo, setPlayerTwo] = useState({}) 
     const [showNewGame, setShowNewGame] = useState(true)
     const [showNewPlayerForm, setShowNewPlayerForm] = useState(false)
 
@@ -51,6 +49,7 @@ const GameContainer = () => {
     const [soloLineTwo, setSoloLineTwo] = useState("")
     const [soloAlliterationBonus, setSoloAlliterationBonus] = useState(0)
     const [soloAssonanceBonus, setSoloAssonanceBonus] = useState(0)
+    const [soloFinalScore, setSoloFinalScore] = useState(0)
 
     const [playerOneStarterWord, setPlayerOneStarterWord] = useState({})
     const [playerOneRhymeWord, setPlayerOneRhymeWord] = useState({})
@@ -59,6 +58,7 @@ const GameContainer = () => {
     const [playerOneLineTwo, setPlayerOneLineTwo] = useState({})
     const [playerOneAlliterationBonus, setPlayerOneAlliterationBonus] = useState(0)
     const [playerOneAssonanceBonus, setPlayerOneAssonanceBonus] = useState(0)
+    const [playerOneFinalScore, setPlayerOneFinalScore] = useState(0)
 
     const [playerTwoStarterWord, setPlayerTwoStarterWord] = useState({})
     const [playerTwoRhymeWord, setPlayerTwoRhymeWord] = useState({})
@@ -67,6 +67,7 @@ const GameContainer = () => {
     const [playerTwoLineTwo, setPlayerTwoLineTwo] = useState({})
     const [playerTwoAlliterationBonus, setPlayerTwoAlliterationBonus] = useState(0)
     const [playerTwoAssonanceBonus, setPlayerTwoAssonanceBonus] = useState(0)
+    const [playerTwoFinalScore, setPlayerTwoFinalScore] = useState(0)
     
     const [showSoloStarterWords, setShowSoloStarterWords] = useState(false)
     const [showSoloLineOneInput, setShowSoloLineOneInput] = useState(false)
@@ -442,7 +443,7 @@ text={soloTextToSpeech()}/>
           <div className="stage2">
           <div class="box bounce-7">{interpretSoloScore()} </div>         
             </div>
-        <SoloCalculateScore soloLineOne={soloLineOne} soloLineTwo={soloLineTwo}/>
+        <SoloCalculateScore soloLineOne={soloLineOne} soloLineTwo={soloLineTwo} setSoloAlliterationBonus={setSoloAlliterationBonus} setSoloAssonanceBonus={setSoloAssonanceBonus}/>
         </>
         : null}
         
@@ -461,7 +462,7 @@ text={playerOneTextToSpeech()}/>
           <div className="stage2">
           <div class="box bounce-7">{interpretPlayerOneScore()} </div>    
           </div>    
-          <PlayerOneCalculateScore playerOneLineOne={playerOneLineOne} playerOneLineTwo={playerOneLineTwo}/> 
+          <PlayerOneCalculateScore playerOneLineOne={playerOneLineOne} playerOneLineTwo={playerOneLineTwo} setPlayerOneAlliterationBonus={setPlayerOneAlliterationBonus} setPlayerOneAssonanceBonus={setPlayerOneAssonanceBonus}/> 
             </div>
 
         <div className="p2style">
@@ -478,7 +479,7 @@ text={playerTwoTextToSpeech()}/>
             
         <br/>
         </div>
-        <PlayerTwoCalculateScore playerTwoLineOne={playerTwoLineOne} playerTwoLineTwo={playerTwoLineTwo}/>
+        <PlayerTwoCalculateScore playerTwoLineOne={playerTwoLineOne} playerTwoLineTwo={playerTwoLineTwo} setPlayerTwoAlliterationBonus={setPlayerTwoAlliterationBonus} setPlayerTwoAssonanceBonus={setPlayerTwoAssonanceBonus}/>
         </div>
         </StylePoints>
         <br></br>
