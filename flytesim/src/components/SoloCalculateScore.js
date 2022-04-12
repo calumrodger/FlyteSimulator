@@ -2,7 +2,7 @@ import React, {useState, useEffect, Fragment} from "react";
 import { dictionary } from 'cmu-pronouncing-dictionary'
 import styled from "styled-components"
 
-const SoloCalculateScore = ({soloLineOne, soloLineTwo, setSoloAlliterationBonus, setSoloAssonanceBonus}) => {
+const SoloCalculateScore = ({soloLineOne, soloLineTwo, setSoloAlliterationBonus, setSoloAssonanceBonus, setSoloFinalScore, soloStarterWord, soloRhymeWordValue}) => {
 
     let fullLineString = `${soloLineOne} ${soloLineTwo}`
     let fullLineArray = fullLineString.split(" ")
@@ -70,6 +70,8 @@ const SoloCalculateScore = ({soloLineOne, soloLineTwo, setSoloAlliterationBonus,
     console.log(assonanceScore)
     setSoloAlliterationBonus(alliterationScore)
     setSoloAssonanceBonus(assonanceScore)
+    let finalScore = (soloStarterWord.value + soloRhymeWordValue + alliterationScore + assonanceScore)
+    setSoloFinalScore(finalScore)
 
     return(
         <PlayerRap>

@@ -57,7 +57,7 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
     
 
     const playerOptions = players.map((player, index) => {
-        return <option key={index} value={index}>{player.stageName}</option>
+        return <option key={index} value={index}>{`${player.stageName} (${player.name})`}</option>
     })
 
 
@@ -87,7 +87,7 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
         <h3>Select Player</h3>
         <form>
         <select value={players.stageName} onChange={handleChange}>
-        <option disabled>Choose...</option>
+        <option disabled selected>Choose...</option>
         {playerOptions}
         </select>
         <button onClick={handleSelectSoloPlayerSubmit}> Go</button>

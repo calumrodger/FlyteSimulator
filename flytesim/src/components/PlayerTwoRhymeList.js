@@ -4,8 +4,9 @@ import styled from "styled-components";
 
 const PlayerTwoRhymeList = ({ playerTwoRhymeWordsList, setPlayerTwoRhymeWordValue, setPlayerTwoRhymeWordsList, setPlayerTwoRhymeWord, setShowPlayerTwoRhymes, playerTwoRhymeWord, setShowPlayerTwoLineTwoInput }) => {
 
-    const filteredWordsList = playerTwoRhymeWordsList.filter((word) => word.word.indexOf(" ") === -1)
-    const cleanFilter1 = filteredWordsList.splice((word) => (word.word !== "rape"))
+    const filterOutSpaces = playerTwoRhymeWordsList.filter((word) => word.word.indexOf(" ") === -1)
+    const filterOutRareWords = filterOutSpaces.filter((word) => word.score > 100)
+    const cleanFilter1 = filterOutRareWords.splice((word) => (word.word !== "rape"))
     const sortedList = cleanFilter1.splice((word) => (word.word !== "fuck"))
     const shuffledRhymeList = sortedList.sort(() => 0.5 - Math.random());
     const tenRandomRhymeWords = shuffledRhymeList.slice(0, 10);
