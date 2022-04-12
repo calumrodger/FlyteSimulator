@@ -4,8 +4,12 @@ import StarterWord from './StarterWord';
 
 const StarterWordsList = ({ starterWordsList, starterWordClicked }) => {
 
+const shuffledStarterWordsList = starterWordsList.sort(() => 0.5 - Math.random());
 
-    const starterWordsButtons = starterWordsList.map((soloStarterWord, index) => {
+let sixRandomStarterWords = shuffledStarterWordsList.slice(0, 6);
+
+
+    const starterWordsButtons = sixRandomStarterWords.map((soloStarterWord, index) => {
 		return(
 			<button type="submit" onClick={starterWordClicked} key={index} value={soloStarterWord}>
 					<StarterWord soloStarterWord={soloStarterWord} index={index}/>

@@ -3,13 +3,13 @@ import styled from "styled-components";
 
 
 
-const SoloRhymeWord = ({soloRhymeWord, rhymeWordClicked, index}) => {
+const SoloRhymeWord = ({soloRhymeWord, soloRhymeWordClicked, index}) => {
 
 
     return (
       <>
       <ButtonStyle>
-      <button type="submit" onClick={rhymeWordClicked} value={index}>
+      <button type="submit" onClick={soloRhymeWordClicked} value={index}>
       {soloRhymeWord.word}
       </button>
       </ButtonStyle>
