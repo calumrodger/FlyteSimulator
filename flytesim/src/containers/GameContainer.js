@@ -190,7 +190,7 @@ const interpretSoloScore = () => {
 };
 
 const soloTextToSpeech = () => {
-    return `${soloLineOne} ${soloLineTwo}`;
+    return `${soloLineOne}, ${soloLineTwo}`;
 }
 
 const handleNewSoloRoundSubmit = (event) => {
@@ -273,7 +273,7 @@ if (playerOneRhymeWord.score > 0 && playerOneRhymeWord.score < 1000) {
 };
 
 const playerOneTextToSpeech = () => {
-  return `${playerOneLineOne} ${playerOneLineTwo}`;
+  return `${playerOneLineOne}, ${playerOneLineTwo}`;
 }
 
 // p2 mechanics
@@ -338,7 +338,7 @@ if (playerTwoRhymeWord.score > 0 && playerTwoRhymeWord.score < 1000) {
 };
 
 const playerTwoTextToSpeech = () => {
-  return `${playerTwoLineOne} ${playerTwoLineTwo}`;
+  return `${playerTwoLineOne}, ${playerTwoLineTwo}`;
 }
 
 
@@ -400,7 +400,7 @@ const playerTwoTextToSpeech = () => {
 
         {showPlayerTwoLineOneInput ?
         <>
-        <h3>{playerTwo.stageName}, your first rhyme word is {playerTwoStarterWord.word}!</h3>
+        <h3>{playerTwo.stageName}, your first rhyme word is "{playerTwoStarterWord.word}"!</h3>
         <h3>Now complete line one!</h3>
         <PlayerTwoLineOneInput playerTwoLineOne={playerTwoLineOne} setPlayerTwoLineOne={setPlayerTwoLineOne} handlePlayerTwoLineOneSubmit={handlePlayerTwoLineOneSubmit}/>
         <ul>{playerTwoStarterWord.word}</ul>
@@ -409,7 +409,7 @@ const playerTwoTextToSpeech = () => {
         
         {showSoloRhymes ? 
         <>
-        <h3>{soloPlayer.stageName}, your first line is {soloLineOne}</h3>
+        <h3>{soloPlayer.stageName}, your first line is "{soloLineOne}"</h3>
         <h3>Now select your rhyme word!</h3>
         <SoloRhymeList soloRhymeWordsList={soloRhymeWordsList} rhymeWordClicked={soloRhymeWordClicked}/> 
         </>
@@ -417,7 +417,7 @@ const playerTwoTextToSpeech = () => {
 
         {showPlayerOneRhymes ? 
         <>
-        <h3>{playerOne.stageName}, your first line is {playerOneLineOne}</h3>
+        <h3>{playerOne.stageName}, your first line is "{playerOneLineOne}"</h3>
         <h3>Now select your rhyme word!</h3>
         <PlayerOneRhymeList playerOneRhymeWordsList={playerOneRhymeWordsList} playerOneRhymeWordClicked={playerOneRhymeWordClicked}/> 
         </>
@@ -425,7 +425,7 @@ const playerTwoTextToSpeech = () => {
 
         {showPlayerTwoRhymes ? 
         <>
-        <h3>{playerTwo.stageName}, your first line is {playerTwoLineOne}</h3>
+        <h3>{playerTwo.stageName}, your first line is "{playerTwoLineOne}"</h3>
         <h3>Now select your rhyme word!</h3>
         <PlayerTwoRhymeList playerTwoRhymeWordsList={playerTwoRhymeWordsList} playerTwoRhymeWordClicked={playerTwoRhymeWordClicked}/> 
         </>
@@ -433,7 +433,7 @@ const playerTwoTextToSpeech = () => {
         
         {showSoloLineTwoInput ? 
         <>
-        <h3>{soloPlayer.stageName}, your first line is {soloLineOne}</h3>
+        <h3>{soloPlayer.stageName}, your first line is "{soloLineOne}"</h3>
         <h3>Your second rhyme word is {soloRhymeWord.word}.</h3>
         <h3>Now complete line two!</h3>
         <SoloLineTwoInput soloLineTwo={soloLineTwo} setSoloLineTwo={setSoloLineTwo} handleSoloLineTwoSubmit={handleSoloLineTwoSubmit}/>
@@ -443,7 +443,7 @@ const playerTwoTextToSpeech = () => {
 
         {showPlayerOneLineTwoInput ? 
         <>
-        <h3>{playerOne.stageName}, your first line is {playerOneLineOne}</h3>
+        <h3>{playerOne.stageName}, your first line is "{playerOneLineOne}"</h3>
         <h3>Your second rhyme word is {playerOneRhymeWord.word}.</h3>
         <h3>Now complete line two!</h3>
         <PlayerOneLineTwoInput playerOneLineTwo={playerOneLineTwo} setPlayerOneLineTwo={setPlayerOneLineTwo} handlePlayerOneLineTwoSubmit={handlePlayerOneLineTwoSubmit}/>
@@ -453,7 +453,7 @@ const playerTwoTextToSpeech = () => {
 
         {showPlayerTwoLineTwoInput ? 
         <>
-        <h3>{playerTwo.stageName}, your first line is {playerTwoLineOne}</h3>
+        <h3>{playerTwo.stageName}, your first line is "{playerTwoLineOne}"</h3>
         <h3>Your second rhyme word is {playerTwoRhymeWord.word}.</h3>
         <h3>Now complete line two!</h3>
         <PlayerTwoLineTwoInput playerTwoLineTwo={playerTwoLineTwo} setPlayerTwoLineTwo={setPlayerTwoLineTwo} handlePlayerTwoLineTwoSubmit={handlePlayerTwoLineTwoSubmit}/>
@@ -540,7 +540,7 @@ const StylePoints = styled.div`
     flex: 1;
     flex-direction: row;
     width: 250px;
-    height: 200px;
+    height: 240px;
     margin: auto;
     padding: 20px;
     border-radius: 10px;
@@ -553,7 +553,7 @@ const StylePoints = styled.div`
     flex: 1;
     flex-direction: row;
     width: 250px;
-    height: 200px;
+    height: 240px;
     margin: auto;
     padding: 20px;
     border-radius: 10px;
@@ -584,7 +584,6 @@ const WordDisplay = styled.div`
   text-align: center;
   border-radius: 10px;
   font-style: italic;
-  background-color: #FF8080;
   width: 50px;
   height: 50px;
   margin: auto;`

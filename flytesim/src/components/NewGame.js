@@ -69,9 +69,16 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
         <StartButtons>
         <p>
         <button onClick={playSoloRoundSubmit}>Play solo round</button>
+        </p>
+        <p>
         <button onClick={playTwoPlayerRoundSubmit}>Play two player</button>
         </p>
         </StartButtons>
+        <InfoText>
+        <p>
+        Flyting (Scots: “quarreling,” or “contention”)<br/> Poetic competition of the Scottish makaris (poets) of the 15th and 16th centuries,<br/> in which two highly skilled rivals engaged in a contest of verbal abuse. <br/>Remarkable for its fierceness and extravagance.
+        </p>
+        </InfoText>
         </>
         : null }
     
@@ -129,13 +136,34 @@ export default NewGame;
 const StartButtons = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+
     margin-top: 10%;
     margin-bottom: 10%;
-    padding: 10px;
-    margin-left: 10%;
+
+
     p {
-        margin: 0;
+        margin: 15px;
         padding: 0;
     }`
+
+const InfoText = styled.div`
+font-size: 1.2rem;
+font-family: "Roboto", sans-serif;
+color: #fff;
+background-color: black;
+opacity: 0.8;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  margin-left: auto;
+  margin-right: auto;
+
+    width: 45%;
+    text-align: center;
+    top: -50px;
+    `
