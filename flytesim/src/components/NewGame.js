@@ -1,7 +1,6 @@
-import React, {useState, useEffect, Fragment} from "react";
-import PlayerForm from "./PlayerForm";
+import React, {useState} from "react";
 
-const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNewGame, setShowStarterWords, setSoloPlayerSelected, setTwoPlayerSelected, setPlayerOne, setPlayerTwo, setShowPlayerOneStarterWords}) => {
+const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNewGame, setShowStarterWords, setPlayerOne, setPlayerTwo, setShowPlayerOneStarterWords}) => {
 
     const [playerIndexValue, setPlayerIndexValue] = useState(null)
 
@@ -16,7 +15,6 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
 
     const playSoloRoundSubmit = (event) => {
         event.preventDefault()
-        setSoloPlayerSelected(true)
         setShowSplashScreen(false)
         setShowSoloPlayerSelectScreen(true)
     }
@@ -24,7 +22,6 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
     const playTwoPlayerRoundSubmit = (event) => {
         event.preventDefault()
         setShowSplashScreen(false)
-        setTwoPlayerSelected(true)
         setShowPlayerOneSelectScreen(true)
     }
 
