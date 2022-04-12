@@ -38,18 +38,20 @@
 }
 
 
+
 button {
-  background-color: #fbeee0;
-  border: 2px solid #422800;
+  background-color: #019DE0;
+  border-color: gold;
+  border: 2px solid black;
   border-radius: 30px;
-  box-shadow: #422800 4px 4px 0 0;
-  color: #422800;
+  box-shadow: black 4px 4px 0 0;
+  color: black;
   cursor: pointer;
   display: inline-block;
   font-weight: 600;
   font-size: 18px;
-  padding: 0 18px;
-  line-height: 50px;
+  padding: 10px 20px;
+  line-height: 10px;
   text-align: center;
   text-decoration: none;
   user-select: none;

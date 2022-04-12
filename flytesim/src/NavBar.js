@@ -8,9 +8,9 @@ const NavBar = (props) => {
     <Nav>
         <img className="poetrybattle" src={PoetryBattle} alt="Poetry Battle" />
       <ULStyle>
-      <ul>one</ul>
-      <ul>two</ul>
-      <ul>three</ul>
+      <ul>Flyting</ul>
+      <ul>Battle Rap</ul>
+      <ul>Hall of Fame</ul>
       </ULStyle>
       </Nav>
   )
@@ -36,7 +36,7 @@ const Nav = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-  text-shadow: 2px 2px pink;
+  text-shadow: 1px 1px black;
   color: white;
   font-size: 25px;
   font-family: 'Roboto', sans-serif;
