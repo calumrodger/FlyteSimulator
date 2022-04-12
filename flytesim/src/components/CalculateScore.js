@@ -10,25 +10,31 @@ const CalculateScore = ({soloLineOne, soloLineTwo}) => {
     let fullLineString = `${soloLineOne} ${soloLineTwo}`
     let fullLineArray = fullLineString.split(" ")
     let newArray = []
-    console.log(dictionary['hello'])
-    console.log(fullLineArray)
     for (let i = 0; i < fullLineArray.length; i++) {
         newArray.push(dictionary[fullLineArray[i]])
       }
-    console.log(newArray)
     var filteredArray = newArray.filter(function(x) {
         return x !== undefined;
-   });
-   console.log(filteredArray)
-   let noDigitsArray = []
-   for (let i = 0; i < filteredArray.length; i++) {
+    });
+    let noDigitsArray = []
+    for (let i = 0; i < filteredArray.length; i++) {
     noDigitsArray.push(filteredArray[i].replace(/[0-9]/g, ''))
-  }
-   console.log(noDigitsArray)
+    }
+    let uniqueArray = noDigitsArray.filter((element, index) => {
+    return noDigitsArray.indexOf(element) === index;
+    })
+    console.log(uniqueArray)
+    let dupChars = noDigitsArray.filter((element, index) => {
+    return noDigitsArray.indexOf(element) !== index;
+    });
+    console.log(dupChars)
+    let uniqueChars = dupChars.filter((element, index) => {
+    return dupChars.indexOf(element) === index;
+    });
+    console.log(uniqueChars);
+    let finalArray = uniqueArray.concat(uniqueChars)
+    console.log(finalArray)
 
-//    let noMultiplesArray = []
-//    for (let i = 0; i < noDigitsArray.length; i++) {
-//     noMultiplesOverArray.push(noDigitsArray[i].replace(/[0-9]/g, ''))
 
    
 
