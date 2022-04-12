@@ -31,8 +31,6 @@ const GameContainer = () => {
     const [players, setPlayers] = useState([])
     const [starterWordsList, setStarterWordsList] = useState([])
 
-    const [soloPlayerSelected, setSoloPlayerSelected] = useState(false)
-    const [twoPlayerSelected, setTwoPlayerSelected] = useState(false)
 
     const [soloRhymeWordsList, setSoloRhymeWordsList] = useState([])
     const [playerOneRhymeWordsList, setPlayerOneRhymeWordsList] = useState([])
@@ -95,6 +93,17 @@ const GameContainer = () => {
         .then(response => response.json())
         .then(data => setStarterWordsList(data))
       }
+
+      // const filterStarterWordsList = () => {
+      //   let array = []
+      //   let starterWordsListStrings = reducedWordsList.map((word, index) => {
+      //   for (let i = 0; i < 5; i++) {
+      //   let randomElement = starterWordsList[Math.floor(Math.random() * starterWordsList.length)];
+      //   array.push(randomElement)
+      //   }
+      //   console.log(array)
+      //   setStarterWordsList(array)
+      // }
 
       //create new player
       const handleCreateNewPlayerSubmit = (event) => {
@@ -288,7 +297,7 @@ let index = e.target.value;
 let selectedWord = starterWordsList[index];
 let newWord = {...playerTwoStarterWord}
 newWord['word'] = selectedWord['word']
-newWord['wordClass'] = selectedWord['wordClass']
+newWord['value'] = selectedWord['value']
 setPlayerTwoStarterWord(newWord)
 setShowPlayerTwoStarterWords(false)
 setShowPlayerTwoLineOneInput(true)
@@ -345,7 +354,7 @@ const playerTwoTextToSpeech = () => {
     return(
         <>
         {showNewGame ? 
-        <NewGame players={players} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} setShowNewGame={setShowNewGame} setShowStarterWords={setShowSoloStarterWords} handleCreateNewPlayerSubmit={handleCreateNewPlayerSubmit} setSoloPlayerSelected={setSoloPlayerSelected} setTwoPlayerSelected={setTwoPlayerSelected} setPlayerOne={setPlayerOne} setPlayerTwo={setPlayerTwo} setShowPlayerOneStarterWords={setShowPlayerOneStarterWords}/> 
+        <NewGame players={players} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} setShowNewGame={setShowNewGame} setShowStarterWords={setShowSoloStarterWords} handleCreateNewPlayerSubmit={handleCreateNewPlayerSubmit} setPlayerOne={setPlayerOne} setPlayerTwo={setPlayerTwo} setShowPlayerOneStarterWords={setShowPlayerOneStarterWords}/> 
         : null}
         
         {showNewPlayerForm ? 

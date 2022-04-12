@@ -4,10 +4,13 @@ import styled from "styled-components";
 
 const PlayerTwoRhymeList = ({ playerTwoRhymeWordsList, playerTwoRhymeWordClicked }) => {
 
-// const filteredWordsList = rhymeWordsList.filter(word => word.numSyllables === 1);
-const reducedWordsList = playerTwoRhymeWordsList.slice(0, 10);
-
-	const rhymeList = reducedWordsList.map((playerTwoRhymeWord, index) => {
+    const filteredWordsList = playerTwoRhymeWordsList.filter((word) => word.word.indexOf(" ") === -1)
+    const cleanFilter1 = filteredWordsList.splice((word) => (word.word !== "rape"))
+    const sortedList = cleanFilter1.splice((word) => (word.word !== "fuck"))
+    const shuffledRhymeList = sortedList.sort(() => 0.5 - Math.random());
+    const tenRandomRhymeWords = shuffledRhymeList.slice(0, 10);
+    
+        const rhymeList = tenRandomRhymeWords.map((playerTwoRhymeWord, index) => {
 		return(
 			<RhymeWordStyle>
 			<div key={index} className="component-item">

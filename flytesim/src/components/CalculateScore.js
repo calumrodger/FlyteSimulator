@@ -25,6 +25,11 @@ const CalculateScore = ({soloLineOne, soloLineTwo}) => {
     noDigitsArray.push(filteredArray[i].replace(/[0-9]/g, ''))
   }
    console.log(noDigitsArray)
+
+//    let noMultiplesArray = []
+//    for (let i = 0; i < noDigitsArray.length; i++) {
+//     noMultiplesOverArray.push(noDigitsArray[i].replace(/[0-9]/g, ''))
+
    
 
 
