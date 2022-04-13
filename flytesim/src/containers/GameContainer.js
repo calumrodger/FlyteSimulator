@@ -333,8 +333,7 @@ const playerTwoTextToSpeech = () => {
         <>
         {showNewGame ? 
         <>
-        <button onClick={handleHallOfFameClick}>Hall of Fame</button>
-        <NewGame players={players} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} setShowNewGame={setShowNewGame} setShowStarterWords={setShowSoloStarterWords} handleCreateNewPlayerSubmit={handleCreateNewPlayerSubmit} setPlayerOne={setPlayerOne} setPlayerTwo={setPlayerTwo} setShowPlayerOneStarterWords={setShowPlayerOneStarterWords}/> 
+        <NewGame players={players} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} setShowNewGame={setShowNewGame} setShowStarterWords={setShowSoloStarterWords} handleCreateNewPlayerSubmit={handleCreateNewPlayerSubmit} setPlayerOne={setPlayerOne} setPlayerTwo={setPlayerTwo} setShowPlayerOneStarterWords={setShowPlayerOneStarterWords} handleHallOfFameClick={handleHallOfFameClick}/> 
         </>
         : null}
         
@@ -544,7 +543,7 @@ text={playerTwoTextToSpeech()}/>
 
         { showHallOfFame ?
         <>
-        <HallOfFame players={players} handleHallOfFameClick={handleHallOfFameClick} previousRaps={previousRaps}/>
+        <HallOfFame players={players} handleHallOfFameClick={handleHallOfFameClick}/>
         </>
         : null}
         </>

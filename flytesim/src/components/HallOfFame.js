@@ -3,7 +3,7 @@ import PreviousRap from "./PreviousRap";
 
 const HallOfFame = ({players, index}) => {
 
-    const [player, setPlayer] = useState({})
+    const [player, setPlayer] = useState(null)
     const [playerIndexValue, setPlayerIndexValue] = useState(null)
 
     const handleSelectPlayer = (e) => {
@@ -17,7 +17,7 @@ const HallOfFame = ({players, index}) => {
         }
 
     const playerOptions = players.map((player, index) => {
-            return <option key={index} value={index}>{`${player.stageName} (${player.name})`}</option>
+            return <option key={index} value={index} raps={player.previousRaps}>{`${player.stageName} (${player.name})`}</option>
         })
     
 
@@ -33,11 +33,13 @@ const HallOfFame = ({players, index}) => {
         <button onClick={handleSelectPlayer}> Go</button>
         </form>
 			<div key={index} className="component-item">
-					<PreviousRap raps={player.previousRaps} name={player.name} index={index}/>
+					{player && <PreviousRap raps={player.previousRaps} name={player.name} index={index}/>}
 			</div>
             </>
 		)
 	}
+
+
 
 
 
