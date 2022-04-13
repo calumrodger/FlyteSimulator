@@ -8,9 +8,7 @@ const NavBar = ({handleHallOfFameClick}) => {
     <Nav>
         <img className="poetrybattle" src={PoetryBattle} alt="Poetry Battle" />
       <ULStyle>
-      <ul>Flyting</ul>
-      <ul>Battle Rap</ul>
-      <ul>Hall of Fame</ul>
+      <ul>A browser-based battle-rap game for one or two players!</ul>
       </ULStyle>
       </Nav>
   )
