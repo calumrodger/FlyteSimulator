@@ -461,6 +461,7 @@ const playerTwoTextToSpeech = () => {
         
         {showSoloResult ? 
         <>
+        <SoloStyling>
         <p>{soloPlayer.stageName}, your couplet is:</p>
         <p>{soloLineOne}</p>
         <p>{soloLineTwo}</p>
@@ -474,6 +475,7 @@ const playerTwoTextToSpeech = () => {
         <p>ASSONANCE BONUS: {soloAssonanceBonus}</p>
         : null}
         <p>FINAL SCORE: {soloFinalScore}!</p> 
+        </SoloStyling>
         <button onClick={handleNewSoloRoundSubmit}>Play another round?</button>
         <SoloPlayerUpdate handleRapPost={handleRapPost} score={soloFinalScore} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} soloLineOne={soloLineOne} soloLineTwo={soloLineTwo} onUpdate={handleDatabaseUpdate}/>
         <Speech
@@ -567,6 +569,18 @@ voice="Google UK English Female"/>
 };
 
 export default GameContainer;
+
+  const SoloStyling = styled.div`
+  font-weight: bold;
+  flex: 1;
+  flex-direction: row;
+  width: 250px;
+  height: 275px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  left: 0;
+  box-shadow: 5px 5px 15px 5px #FF8080, -9px 5px 15px 5px #FFE488, -7px -5px 15px 5px #8CFF85, 12px -5px 15px 5px #80C7FF, 12px 10px 15px 7px #E488FF, -10px 10px 15px 7px #FF616B, -10px -7px 27px 1px #8E5CFF, inset 0px 13px 0px 0px rgba(0,124,255,0);`
 
 const StylePoints = styled.div`
   display: grid;
