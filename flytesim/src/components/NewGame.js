@@ -2,6 +2,7 @@
 import React, {useState, useEffect, Fragment} from "react";
 import PlayerForm from "./PlayerForm";
 import styled from "styled-components";
+import uisound from '../sounds/uisounds.mp3'
 
 
 const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNewGame, setShowStarterWords, setPlayerOne, setPlayerTwo, setShowPlayerOneStarterWords}) => {
@@ -13,6 +14,12 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
     const [showPlayerOneSelectScreen, setShowPlayerOneSelectScreen] = useState(false)
     const [showPlayerTwoSelectScreen, setShowPlayerTwoSelectScreen] = useState(false)
 
+    const audio = new Audio(
+        uisound
+    );
+
+
+
     const handleChange = (event) => {
         setPlayerIndexValue(event.target.value)
     }
@@ -21,12 +28,14 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
         event.preventDefault()
         setShowSplashScreen(false)
         setShowSoloPlayerSelectScreen(true)
+        audio.play();
     }
 
     const playTwoPlayerRoundSubmit = (event) => {
         event.preventDefault()
         setShowSplashScreen(false)
         setShowPlayerOneSelectScreen(true)
+        audio.play();
     }
 
     const handleSelectSoloPlayerSubmit = (event) => {
@@ -43,6 +52,7 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
         setPlayerOne(selectedPlayer)
         setShowPlayerOneSelectScreen(false)
         setShowPlayerTwoSelectScreen(true)
+
     }
 
     const handleSelectPlayerTwoSubmit = (event) => {
@@ -52,6 +62,7 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
         setShowPlayerTwoSelectScreen(false)
         setShowNewGame(false)
         setShowPlayerOneStarterWords(true)
+
     }
 
     
@@ -59,6 +70,10 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
     const playerOptions = players.map((player, index) => {
         return <option key={index} value={index}>{`${player.stageName} (${player.name})`}</option>
     })
+
+
+
+
 
 
 

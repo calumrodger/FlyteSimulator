@@ -313,9 +313,12 @@ const playerTwoTextToSpeech = () => {
 
     return(
         <>
+                
         {showNewGame ? 
-        <NewGame players={players} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} setShowNewGame={setShowNewGame} setShowStarterWords={setShowSoloStarterWords} handleCreateNewPlayerSubmit={handleCreateNewPlayerSubmit} setPlayerOne={setPlayerOne} setPlayerTwo={setPlayerTwo} setShowPlayerOneStarterWords={setShowPlayerOneStarterWords}/> 
+        <NewGame players={players} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} setShowNewGame={setShowNewGame} setShowStarterWords={setShowSoloStarterWords} handleCreateNewPlayerSubmit={handleCreateNewPlayerSubmit} setPlayerOne={setPlayerOne} setPlayerTwo={setPlayerTwo} setShowPlayerOneStarterWords={setShowPlayerOneStarterWords} /> 
         : null}
+        
+
         
         {showNewPlayerForm ? 
         <PlayerForm onCreate={handlePlayerPost} /> 
@@ -500,7 +503,8 @@ text={playerOneTextToSpeech()}/>
         <Speech
 textAsButton={true}    
 displayText="Rap!" 
-text={playerTwoTextToSpeech()}/>
+text={playerTwoTextToSpeech()}
+voice="Google UK English Female"/>
           <div className="stage2">
           <div class="box bounce-7">{interpretPlayerTwoScore()} </div>         
             
