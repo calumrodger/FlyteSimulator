@@ -3,7 +3,7 @@ import PoetryBattle from "./img/PoetryBattle.jpg";
 import React from 'react';
 
 
-const NavBar = (props) => {
+const NavBar = ({handleHallOfFameClick}) => {
   return (
     <Nav>
         <img className="poetrybattle" src={PoetryBattle} alt="Poetry Battle" />
