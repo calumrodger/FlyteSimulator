@@ -52,7 +52,6 @@ const SoloCalculateScore = ({soloLineOne, soloLineTwo, setSoloAlliterationBonus,
     console.log(arrayOfWordArrays)
 
     //ALLITERATION
-
     let firstLetters = [];
 
     for (let i = 0; i < arrayOfWordArrays.length; i++) {
@@ -67,7 +66,6 @@ const SoloCalculateScore = ({soloLineOne, soloLineTwo, setSoloAlliterationBonus,
 
     let alliterationScore = (firstLetters.length - uniqueFirstLetters.length)
     console.log(alliterationScore)
-
 
     //ASSONANCE
     let vowels = ["AA", "AE", "AH", "AO", "AW", "AX", "AXR", "AY", "EH", "ER", "EY", "IH", "IX", "IY", "OW", "OY", "UH", "UW", "UX"]

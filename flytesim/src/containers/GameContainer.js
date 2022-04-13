@@ -551,7 +551,7 @@ voice="Google UK English Female"/>
         <p className="winner">The winner is... {playerTwo.stageName}! </p>}
         </StyleResults>
         <button onClick={handleNewTwoPlayerRoundSubmit}>Play another round?</button>
-        <TwoPlayerUpdate handleRapPost={handleRapPost} scoreOne={playerOneStarterWord.value + playerOneRhymeWordValue} playerOne={playerOne} setPlayerOne={setPlayerOne} playerOneLineOne={playerOneLineOne} playerOneLineTwo={playerOneLineTwo} scoreTwo={playerTwoStarterWord.value + playerTwoRhymeWordValue} playerTwo={playerTwo} setPlayerTwo={setPlayerTwo} playerTwoLineOne={playerTwoLineOne} playerTwoLineTwo={playerTwoLineTwo} onUpdate={handleDatabaseUpdate}/>
+        <TwoPlayerUpdate handleRapPost={handleRapPost} scoreOne={playerOneFinalScore} playerOne={playerOne} setPlayerOne={setPlayerOne} playerOneLineOne={playerOneLineOne} playerOneLineTwo={playerOneLineTwo} scoreTwo={playerTwoFinalScore} playerTwo={playerTwo} setPlayerTwo={setPlayerTwo} playerTwoLineOne={playerTwoLineOne} playerTwoLineTwo={playerTwoLineTwo} onUpdate={handleDatabaseUpdate}/>
         </>
         : null}
 
