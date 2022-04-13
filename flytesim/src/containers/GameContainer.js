@@ -29,6 +29,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import NavBar from '../NavBar';
 import Footer from '../Footer';
+import ringsound from '../sounds/ringpickup.mp3'
 
 
 const GameContainer = () => {
@@ -131,6 +132,10 @@ const GameContainer = () => {
         // window.location.reload()
     }
 
+      const ringpickupsound = new Audio(
+        ringsound
+      )
+
     const handleRapPost = (rap) => {
       const request = new Request();
       const url = "http://localhost:8080/api/previous_raps"
@@ -148,7 +153,7 @@ const GameContainer = () => {
     e.preventDefault()
     setShowHallOfFame(true)
     setShowNewGame(false)
-
+    ringpickupsound.play()
     }
 
       //solo mechanics
@@ -572,7 +577,7 @@ const StylePoints = styled.div`
     flex: 1;
     flex-direction: row;
     width: 250px;
-    height: 240px;
+    height: 425px;
     margin: auto;
     padding: 20px;
     border-radius: 10px;
@@ -585,7 +590,7 @@ const StylePoints = styled.div`
     flex: 1;
     flex-direction: row;
     width: 250px;
-    height: 240px;
+    height: 425px;
     margin: auto;
     padding: 20px;
     border-radius: 10px;
@@ -595,7 +600,7 @@ const StylePoints = styled.div`
 
 const StyleResults = styled.div`
 margin: auto; 
-width: 50%;
+width: 25%;
 padding: 10px;
 color: white;
 text-shadow: 2px 2px hotpink;

@@ -82,14 +82,17 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
         {showSplashScreen ?
         <>
         <StartButtons>
+            <HowToPlay>
         <h3>HOW TO PLAY</h3>
         <p>The aim is to write a killer rhyming couplet that will slay your opponent!</p>
         <p>Choose your rhyming words and complete the lines with your poetic skills.</p>
         <p></p>
         <p></p>
+        </HowToPlay>
         <p>
         <button onClick={playSoloRoundSubmit}>Play solo round</button>
         </p>
+        
         <p>
         <button onClick={playTwoPlayerRoundSubmit}>Play two player</button>
         </p>
@@ -97,11 +100,13 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
         <button onClick={handleHallOfFameClick}>Hall of Fame</button>
         </p>
         </StartButtons>
-        <InfoText>
-        <p>
-        Flyting (Scots: “quarreling,” or “contention”)<br/> Poetic competition of the Scottish makaris (poets) of the 15th and 16th centuries,<br/> in which two highly skilled rivals engaged in a contest of verbal abuse. <br/>Remarkable for its fierceness and extravagance.
-        </p>
-        </InfoText>
+                <InfoText>
+   
+   Flyting (Scots: “quarreling,” or “contention”)<br/> Poetic competition of the Scottish makaris (poets) of the 15th and 16th centuries,<br/> in which two highly skilled rivals engaged in a contest of verbal abuse. <br/>Remarkable for its fierceness and extravagance.
+
+   </InfoText>
+
+
         </>
         : null }
     
@@ -162,7 +167,7 @@ const StartButtons = styled.div`
 
 
     margin-top: 10%;
-    margin-bottom: 10%;
+    margin-bottom: 0;
 
 
     p {
@@ -171,22 +176,35 @@ const StartButtons = styled.div`
     }`
 
 const InfoText = styled.div`
+display: flex;
 font-size: 1.2rem;
 font-family: "Roboto", sans-serif;
 color: #fff;
 background-color: black;
 opacity: 0.8;
-display: flex;
-flex-direction: column;
-align-items: center;
+padding: 10px;
 justify-content: center;
-
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   margin-left: auto;
   margin-right: auto;
-
     width: 45%;
-    text-align: center;
-    top: -50px;
+
     `
+
+    const HowToPlay = styled.div`
+    align-items: center;
+    color: white;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    font-size: 1.2rem;
+    margin-top: 0%;
+    margin-bottom: 0;
+    background-color: #019DE0;
+    opacity: 0.8;
+    padding: 10px;
+    justify-content: center;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;`
