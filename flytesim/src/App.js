@@ -54,7 +54,7 @@ function App() {
           alt="Rubber Character"
         />
       </Sprites>
-<Footer />
+
 
 
     </div>
@@ -75,6 +75,7 @@ const Sprites = styled.div`
     height: 400px;
     padding: 0px 10px 0px 10px;
     z-index: -1;
+
   }
   `
 

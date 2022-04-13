@@ -1,11 +1,24 @@
 import React from "react";
 import styled from "styled-components";
+import GameContainer from "./containers/GameContainer";
 
-function Footer() {
+function Footer({players}) {
+  console.log(players)
+
+  const drillDownPlayers = players.map((player) => (player.stageName))
+    console.log(drillDownPlayers)
+
+  const drillDownScores = players.map((player) => (player.points))
+  console.log(drillDownScores)
+
+  const playersAndScores = players.map((player, index) => {
+    return <>{` ${player.stageName}: ${player.points} ...`}</>
+})
+
   return (
     <Foot>
       <marquee width="100%" direction="left" height="75px">
-        <p>Past scores go here...</p>
+        <p>ALL-TIME HIGH SCORES: {playersAndScores}</p>
       </marquee>
     </Foot>
   );

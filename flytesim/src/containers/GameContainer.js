@@ -28,6 +28,7 @@ import styled from "styled-components"
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import NavBar from '../NavBar';
+import Footer from '../Footer';
 
 
 const GameContainer = () => {
@@ -552,6 +553,8 @@ voice="Google UK English Female"/>
         <HallOfFame players={players} handleHallOfFameClick={handleHallOfFameClick}/>
         </>
         : null}
+
+        <Footer players={players}/>
         </>
 
         
