@@ -14,12 +14,12 @@ public class StarterWord {
     @Column(name = "word")
     private String word;
 
-    @Column(name = "wordClass")
-    private String wordClass;
+    @Column(name = "value")
+    private int value;
 
-    public StarterWord(String word, String wordClass) {
+    public StarterWord(String word, int value) {
         this.word = word;
-        this.wordClass = wordClass;
+        this.value = value;
     }
 
     public StarterWord() {
@@ -41,12 +41,12 @@ public class StarterWord {
         this.word = word;
     }
 
-    public String getWordClass() {
-        return wordClass;
+    public int getValue() {
+        return value;
     }
 
-    public void setWordClass(String wordClass) {
-        this.wordClass = wordClass;
+    public void setValue(int value) {
+        this.value = value;
     }
 }
 
