@@ -6,28 +6,33 @@ const SoloCalculateScore = ({soloLineOne, soloLineTwo, setSoloAlliterationBonus,
 
     let fullLineString = `${soloLineOne} ${soloLineTwo}`
     let fullLineArray = fullLineString.split(" ")
-    let newArray = []
+
+    let phoneticArray = []
     for (let i = 0; i < fullLineArray.length; i++) {
-        newArray.push(dictionary[fullLineArray[i]])
+        phoneticArray.push(dictionary[fullLineArray[i]])
       }
-    var filteredArray = newArray.filter(function(x) {
+
+    var filteredForUndefinedsArray = phoneticArray.filter(function(x) {
         return x !== undefined;
     });
+
     let noDigitsArray = []
-    for (let i = 0; i < filteredArray.length; i++) {
-    noDigitsArray.push(filteredArray[i].replace(/[0-9]/g, ''))
+    for (let i = 0; i < filteredForUndefinedsArray.length; i++) {
+    noDigitsArray.push(filteredForUndefinedsArray[i].replace(/[0-9]/g, ''))
     }
+
     let uniqueArray = noDigitsArray.filter((element, index) => {
     return noDigitsArray.indexOf(element) === index;
     })
-    console.log(uniqueArray)
-    let dupChars = noDigitsArray.filter((element, index) => {
+
+    let duplicateSounds = noDigitsArray.filter((element, index) => {
     return noDigitsArray.indexOf(element) !== index;
     });
-    console.log(dupChars)
-    let uniqueChars = dupChars.filter((element, index) => {
-    return dupChars.indexOf(element) === index;
+
+    let uniqueChars = duplicateSounds.filter((element, index) => {
+    return duplicateSounds.indexOf(element) === index;
     });
+    
     console.log(uniqueChars);
     let finalArray = uniqueArray.concat(uniqueChars)
     console.log(finalArray)

@@ -129,7 +129,7 @@ const GameContainer = () => {
         const request = new Request();
         const url = "http://localhost:8080/api/players"
         request.post(url, player)
-        // window.location.reload()
+        window.location.reload()
     }
 
       const ringpickupsound = new Audio(
@@ -378,7 +378,7 @@ const playerTwoTextToSpeech = () => {
         <h3>{soloPlayer.stageName}, your first rhyme word is {soloStarterWord.word}!</h3>
         
         <h3>Now complete line one!</h3>
-        <SoloLineOneInput soloLineOne={soloLineOne} setSoloLineOne={setSoloLineOne} handleSoloLineOneSubmit={handleSoloLineOneSubmit}/>
+        <SoloLineOneInput soloStarterWord={soloStarterWord} soloLineOne={soloLineOne} setSoloLineOne={setSoloLineOne} handleSoloLineOneSubmit={handleSoloLineOneSubmit}/>
         <WordDisplay>
         <ul>{soloStarterWord.word}</ul>
         </WordDisplay>
@@ -389,7 +389,7 @@ const playerTwoTextToSpeech = () => {
         <>
         <h3>{playerOne.stageName}, your first rhyme word is {playerOneStarterWord.word}!</h3>
         <h3>Now complete line one!</h3>
-        <PlayerOneLineOneInput playerOneLineOne={playerOneLineOne} setPlayerOneLineOne={setPlayerOneLineOne} handlePlayerOneLineOneSubmit={handlePlayerOneLineOneSubmit}/>
+        <PlayerOneLineOneInput playerOneStarterWord={playerOneStarterWord} playerOneLineOne={playerOneLineOne} setPlayerOneLineOne={setPlayerOneLineOne} handlePlayerOneLineOneSubmit={handlePlayerOneLineOneSubmit}/>
         <WordDisplay>
         <ul>{playerOneStarterWord.word}</ul>
         </WordDisplay>
@@ -400,7 +400,7 @@ const playerTwoTextToSpeech = () => {
         <>
         <h3>{playerTwo.stageName}, your first rhyme word is "{playerTwoStarterWord.word}"!</h3>
         <h3>Now complete line one!</h3>
-        <PlayerTwoLineOneInput playerTwoLineOne={playerTwoLineOne} setPlayerTwoLineOne={setPlayerTwoLineOne} handlePlayerTwoLineOneSubmit={handlePlayerTwoLineOneSubmit}/>
+        <PlayerTwoLineOneInput playerTwoStarterWord={playerTwoStarterWord} playerTwoLineOne={playerTwoLineOne} setPlayerTwoLineOne={setPlayerTwoLineOne} handlePlayerTwoLineOneSubmit={handlePlayerTwoLineOneSubmit}/>
         <ul>{playerTwoStarterWord.word}</ul>
         </>
         : null}
@@ -434,7 +434,7 @@ const playerTwoTextToSpeech = () => {
         <h3>{soloPlayer.stageName}, your first line is "{soloLineOne}"</h3>
         <h3>Your second rhyme word is {soloRhymeWord.word}.</h3>
         <h3>Now complete line two!</h3>
-        <SoloLineTwoInput soloLineTwo={soloLineTwo} setSoloLineTwo={setSoloLineTwo} handleSoloLineTwoSubmit={handleSoloLineTwoSubmit}/>
+        <SoloLineTwoInput soloRhymeWord={soloRhymeWord} soloLineTwo={soloLineTwo} setSoloLineTwo={setSoloLineTwo} handleSoloLineTwoSubmit={handleSoloLineTwoSubmit}/>
         <ul>{soloRhymeWord.word}</ul>
         </>
         : null}
@@ -444,7 +444,7 @@ const playerTwoTextToSpeech = () => {
         <h3>{playerOne.stageName}, your first line is "{playerOneLineOne}"</h3>
         <h3>Your second rhyme word is {playerOneRhymeWord.word}.</h3>
         <h3>Now complete line two!</h3>
-        <PlayerOneLineTwoInput playerOneLineTwo={playerOneLineTwo} setPlayerOneLineTwo={setPlayerOneLineTwo} handlePlayerOneLineTwoSubmit={handlePlayerOneLineTwoSubmit}/>
+        <PlayerOneLineTwoInput playerOneRhymeWord={playerOneRhymeWord} playerOneLineTwo={playerOneLineTwo} setPlayerOneLineTwo={setPlayerOneLineTwo} handlePlayerOneLineTwoSubmit={handlePlayerOneLineTwoSubmit}/>
         <ul>{playerOneRhymeWord.word}</ul>
         </>
         : null} 
@@ -454,7 +454,7 @@ const playerTwoTextToSpeech = () => {
         <h3>{playerTwo.stageName}, your first line is "{playerTwoLineOne}"</h3>
         <h3>Your second rhyme word is {playerTwoRhymeWord.word}.</h3>
         <h3>Now complete line two!</h3>
-        <PlayerTwoLineTwoInput playerTwoLineTwo={playerTwoLineTwo} setPlayerTwoLineTwo={setPlayerTwoLineTwo} handlePlayerTwoLineTwoSubmit={handlePlayerTwoLineTwoSubmit}/>
+        <PlayerTwoLineTwoInput playerTwoRhymeWord={playerTwoRhymeWord} playerTwoLineTwo={playerTwoLineTwo} setPlayerTwoLineTwo={setPlayerTwoLineTwo} handlePlayerTwoLineTwoSubmit={handlePlayerTwoLineTwoSubmit}/>
         <ul>{playerTwoRhymeWord.word}</ul>
         </>
         : null} 

@@ -1,6 +1,8 @@
 import React, {useState, useEffect, Fragment} from "react";
 
-const SoloLineOneInput = ({soloLineOne, setSoloLineOne, handleSoloLineOneSubmit}) => {
+const SoloLineOneInput = ({soloStarterWord, soloLineOne, setSoloLineOne, handleSoloLineOneSubmit}) => {
+
+    
 
     const handleChange = (event) => {
         setSoloLineOne(event.target.value)
@@ -10,6 +12,7 @@ const SoloLineOneInput = ({soloLineOne, setSoloLineOne, handleSoloLineOneSubmit}
         <>
         <form onSubmit={handleSoloLineOneSubmit}>
         <input type="text" placeholder="Your line" name="name" value={soloLineOne} onChange={handleChange}/>
+        <input type="text" value={soloStarterWord.word} id="unselectable"></input>
         <button type="submit">Save</button>
         </form>
         </>

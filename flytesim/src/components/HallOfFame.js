@@ -33,7 +33,7 @@ const HallOfFame = ({players, index}) => {
         <button onClick={handleSelectPlayer}> Go</button>
         </form>
 			<div key={index} className="component-item">
-					{player && <PreviousRap raps={player.previousRaps} name={player.name} index={index}/>}
+					{player && <PreviousRap raps={player.previousRaps} name={player.stageName} index={index}/>}
 			</div>
             </>
 		)
