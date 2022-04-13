@@ -9,6 +9,7 @@ import PlayerTwoLineTwoInput from '../components/PlayerTwoLineTwoInput';
 import Request from '../helpers/request';
 import SoloPlayerUpdate from '../components/SoloPlayerUpdate';
 import TwoPlayerUpdate from '../components/TwoPlayerUpdate';
+import HallOfFame from '../components/HallOfFame';
 
 
 import React, { Fragment, useState, useEffect } from "react";
@@ -26,12 +27,14 @@ import Speech from 'react-speech';
 import styled from "styled-components"
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
+import NavBar from '../NavBar';
 
 
 const GameContainer = () => {
 
     const [players, setPlayers] = useState([])
     const [starterWordsList, setStarterWordsList] = useState([])
+    const [previousRaps, setPreviousRaps] = useState([])
     const [soloRhymeWordsList, setSoloRhymeWordsList] = useState([])
     const [playerOneRhymeWordsList, setPlayerOneRhymeWordsList] = useState([])
     const [playerTwoRhymeWordsList, setPlayerTwoRhymeWordsList] = useState([])
@@ -41,6 +44,7 @@ const GameContainer = () => {
     const [playerTwo, setPlayerTwo] = useState({}) 
     const [showNewGame, setShowNewGame] = useState(true)
     const [showNewPlayerForm, setShowNewPlayerForm] = useState(false)
+    const [showHallOfFame, setShowHallOfFame] = useState(false)
 
     const [soloStarterWord, setSoloStarterWord] = useState({})
     const [soloRhymeWord, setSoloRhymeWord] = useState({})
@@ -91,6 +95,7 @@ const GameContainer = () => {
     useEffect(() => {
         fetchStarterWordsList()
         fetchPlayers()
+        fetchPreviousRaps()
       }, [])
 
       const fetchPlayers = () => {
@@ -99,10 +104,16 @@ const GameContainer = () => {
         .then(data => setPlayers(data))
       }
 
-    const fetchStarterWordsList = () => {
+      const fetchStarterWordsList = () => {
         fetch("http://localhost:8080/api/starter_words/")
         .then(response => response.json())
         .then(data => setStarterWordsList(data))
+      }
+    
+      const fetchPreviousRaps = () => {
+        fetch("http://localhost:8080/api/previous_raps/")
+        .then(response => response.json())
+        .then(data => setPreviousRaps(data))
       }
 
       //create new player
@@ -130,6 +141,13 @@ const GameContainer = () => {
       const url = "http://localhost:8080/api/players/"
       request.patch(url + player.id, player)
       .then(() => window.location.reload())
+    }
+
+    const handleHallOfFameClick = (e) => {
+    e.preventDefault()
+    setShowHallOfFame(true)
+    setShowNewGame(false)
+
     }
 
       //solo mechanics
@@ -314,7 +332,10 @@ const playerTwoTextToSpeech = () => {
     return(
         <>
         {showNewGame ? 
+        <>
+        <button onClick={handleHallOfFameClick}>Hall of Fame</button>
         <NewGame players={players} soloPlayer={soloPlayer} setSoloPlayer={setSoloPlayer} setShowNewGame={setShowNewGame} setShowStarterWords={setShowSoloStarterWords} handleCreateNewPlayerSubmit={handleCreateNewPlayerSubmit} setPlayerOne={setPlayerOne} setPlayerTwo={setPlayerTwo} setShowPlayerOneStarterWords={setShowPlayerOneStarterWords}/> 
+        </>
         : null}
         
         {showNewPlayerForm ? 
@@ -520,7 +541,15 @@ text={playerTwoTextToSpeech()}/>
         <TwoPlayerUpdate handleRapPost={handleRapPost} scoreOne={playerOneStarterWord.value + playerOneRhymeWordValue} playerOne={playerOne} setPlayerOne={setPlayerOne} playerOneLineOne={playerOneLineOne} playerOneLineTwo={playerOneLineTwo} scoreTwo={playerTwoStarterWord.value + playerTwoRhymeWordValue} playerTwo={playerTwo} setPlayerTwo={setPlayerTwo} playerTwoLineOne={playerTwoLineOne} playerTwoLineTwo={playerTwoLineTwo} onUpdate={handleDatabaseUpdate}/>
         </>
         : null}
+
+        { showHallOfFame ?
+        <>
+        <HallOfFame players={players} handleHallOfFameClick={handleHallOfFameClick} previousRaps={previousRaps}/>
         </>
+        : null}
+        </>
+
+        
     )
 };
 
