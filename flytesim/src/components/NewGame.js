@@ -5,7 +5,7 @@ import styled from "styled-components";
 import uisound from '../sounds/uisounds.mp3'
 
 
-const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNewGame, setShowStarterWords, setPlayerOne, setPlayerTwo, setShowPlayerOneStarterWords}) => {
+const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNewGame, setShowStarterWords, setPlayerOne, setPlayerTwo, setShowPlayerOneStarterWords, handleHallOfFameClick}) => {
 
     const [playerIndexValue, setPlayerIndexValue] = useState(null)
 
@@ -87,6 +87,9 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
         </p>
         <p>
         <button onClick={playTwoPlayerRoundSubmit}>Play two player</button>
+        </p>
+        <p>
+        <button onClick={handleHallOfFameClick}>Hall of Fame</button>
         </p>
         </StartButtons>
         <InfoText>
