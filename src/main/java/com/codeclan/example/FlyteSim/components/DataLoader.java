@@ -57,7 +57,7 @@ public class DataLoader implements ApplicationRunner {
         StarterWord word7 = new StarterWord("snake", 3);
         starterWordRepository.save(word7);
 
-        StarterWord word8 = new StarterWord("vapor", 3);
+        StarterWord word8 = new StarterWord("vaporize", 3);
         starterWordRepository.save(word8);
 
         StarterWord word9 = new StarterWord("ball", 3);
