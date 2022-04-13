@@ -5,73 +5,84 @@ import styled from "styled-components"
 const SoloCalculateScore = ({soloLineOne, soloLineTwo, setSoloAlliterationBonus, setSoloAssonanceBonus, setSoloFinalScore, soloStarterWord, soloRhymeWordValue}) => {
 
     let fullLineString = `${soloLineOne} ${soloLineTwo}`
+    console.log(fullLineString)
     let fullLineArray = fullLineString.split(" ")
+    console.log(fullLineArray);
 
     let phoneticArray = []
     for (let i = 0; i < fullLineArray.length; i++) {
         phoneticArray.push(dictionary[fullLineArray[i]])
       }
+    console.log(phoneticArray);
 
-    var filteredForUndefinedsArray = phoneticArray.filter(function(x) {
+    let undefinedsRemoved = phoneticArray.filter(function(x) {
         return x !== undefined;
     });
+    console.log(undefinedsRemoved);
 
-    let noDigitsArray = []
-    for (let i = 0; i < filteredForUndefinedsArray.length; i++) {
-    noDigitsArray.push(filteredForUndefinedsArray[i].replace(/[0-9]/g, ''))
+    let digitsRemoved = []
+    for (let i = 0; i < undefinedsRemoved.length; i++) {
+    digitsRemoved.push(undefinedsRemoved[i].replace(/[0-9]/g, ''))
     }
+    console.log(digitsRemoved)
 
-    let uniqueArray = noDigitsArray.filter((element, index) => {
-    return noDigitsArray.indexOf(element) === index;
+    let uniqueWords = digitsRemoved.filter((element, index) => {
+    return digitsRemoved.indexOf(element) === index;
     })
+    console.log(uniqueWords)
 
-    let duplicateSounds = noDigitsArray.filter((element, index) => {
-    return noDigitsArray.indexOf(element) !== index;
+    let duplicateWords = digitsRemoved.filter((element, index) => {
+    return digitsRemoved.indexOf(element) !== index;
     });
+    console.log(duplicateWords)
 
-    let uniqueChars = duplicateSounds.filter((element, index) => {
-    return duplicateSounds.indexOf(element) === index;
+    let uniqueDuplicateWords = duplicateWords.filter((element, index) => {
+    return duplicateWords.indexOf(element) === index;
     });
-    
-    console.log(uniqueChars);
-    let finalArray = uniqueArray.concat(uniqueChars)
-    console.log(finalArray)
+    console.log(uniqueDuplicateWords);
 
-    let arrayOfArrays = []
-    for (let i = 0; i < finalArray.length; i++) {
-        let miniArray = (finalArray[i].split(" "))
-        arrayOfArrays.push(miniArray)
+    let allWordsNoTripleDuplicates = uniqueDuplicateWords.concat(uniqueWords)
+    console.log(allWordsNoTripleDuplicates)
+
+    let arrayOfWordArrays = []
+    for (let i = 0; i < allWordsNoTripleDuplicates.length; i++) {
+        let wordArray = (allWordsNoTripleDuplicates[i].split(" "))
+        arrayOfWordArrays.push(wordArray)
       }
-    console.log(arrayOfArrays)
+    console.log(arrayOfWordArrays)
 
-    let alliterationArray = [];
+    //ALLITERATION
 
-    for (let i = 0; i < arrayOfArrays.length; i++) {
-        alliterationArray.push(arrayOfArrays[i][0])
+    let firstLetters = [];
+
+    for (let i = 0; i < arrayOfWordArrays.length; i++) {
+        firstLetters.push(arrayOfWordArrays[i][0])
     }
-    console.log(alliterationArray);
+    console.log(firstLetters);
 
-    let checkUniqueAlliterations = alliterationArray.filter((element, index) => {
-        return alliterationArray.indexOf(element) === index;
+    let uniqueFirstLetters = firstLetters.filter((element, index) => {
+        return firstLetters.indexOf(element) === index;
         })
-        console.log(checkUniqueAlliterations)
+    console.log(uniqueFirstLetters)
 
-    let alliterationScore = (alliterationArray.length - checkUniqueAlliterations.length)
+    let alliterationScore = (firstLetters.length - uniqueFirstLetters.length)
     console.log(alliterationScore)
 
+
+    //ASSONANCE
     let vowels = ["AA", "AE", "AH", "AO", "AW", "AX", "AXR", "AY", "EH", "ER", "EY", "IH", "IX", "IY", "OW", "OY", "UH", "UW", "UX"]
 
-    var merged = [].concat.apply([], arrayOfArrays);
-    console.log(merged)
-    const vowelArray = merged.filter(element => vowels.includes(element));
-    console.log(vowelArray)
+    let allSounds = [].concat.apply([], arrayOfWordArrays);
+    console.log(allSounds)
+    let allVowels = allSounds.filter(element => vowels.includes(element));
+    console.log(allVowels)
 
-    let assonanceArray = vowelArray.filter((element, index) => {
-        return vowelArray.indexOf(element) !== index;
+    let allDuplicateVowels = allVowels.filter((element, index) => {
+        return allVowels.indexOf(element) !== index;
         });
-    console.log(assonanceArray)
+    console.log(allDuplicateVowels)
 
-    let assonanceScore = assonanceArray.length
+    let assonanceScore = allDuplicateVowels.length
     console.log(assonanceScore)
     setSoloAlliterationBonus(alliterationScore)
     setSoloAssonanceBonus(assonanceScore)
