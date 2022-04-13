@@ -125,7 +125,7 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
         <h3>Player One, Select Player</h3>
         <form>
         <select value={players.stageName} onChange={handleChange}>
-        <option disabled>Choose...</option>
+        <option disabled selected>Choose...</option>
         {playerOptions}
         </select>
         <button onClick={handleSelectPlayerOneSubmit}> Go</button>
@@ -140,7 +140,7 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
         <h3>Player Two, Select Player</h3>
         <form>
         <select value={players.stageName} onChange={handleChange}>
-        <option disabled>Choose...</option>
+        <option disabled selected>Choose...</option>
         {playerOptions}
         </select>
         <button onClick={handleSelectPlayerTwoSubmit}> Go</button>
@@ -161,7 +161,7 @@ const StartButtons = styled.div`
     flex-direction: column;
 
 
-    margin-top: 5%;
+    margin-top: 10%;
     margin-bottom: 10%;
 
 
