@@ -82,6 +82,11 @@ const NewGame = ({players, setSoloPlayer, handleCreateNewPlayerSubmit, setShowNe
         {showSplashScreen ?
         <>
         <StartButtons>
+        <h3>HOW TO PLAY</h3>
+        <p>The aim is to write a killer rhyming couplet that will slay your opponent!</p>
+        <p>Choose your rhyming words and complete the lines with your poetic skills.</p>
+        <p></p>
+        <p></p>
         <p>
         <button onClick={playSoloRoundSubmit}>Play solo round</button>
         </p>
@@ -156,7 +161,7 @@ const StartButtons = styled.div`
     flex-direction: column;
 
 
-    margin-top: 10%;
+    margin-top: 5%;
     margin-bottom: 10%;
 
 
