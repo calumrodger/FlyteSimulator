@@ -90,7 +90,7 @@ const PlayerRap = styled.div`
     color: black;
     text-align: left;
     left: 10px;
-    margin-top: 4%;
+    margin-top: 10%;
     margin-left: 25%;
     padding: 10px;
     width: 50%;
