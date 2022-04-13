@@ -17,7 +17,6 @@ const SoloLineTwoInput = ({soloRhymeWord, soloLineTwo, setSoloLineTwo, handleSol
 
     return(
         <>
-        <h3>Complete your second line!</h3>
         <form onSubmit={handleSoloLineTwoSubmit}>
         <input type="text" placeholder="Your line" name="name" value={soloLineTwo} onChange={handleChange}/>
         <input type="text" value={soloRhymeWord.word} id="unselectable"></input>

@@ -8,7 +8,6 @@ const PlayerOneLineTwoInput = ({playerOneRhymeWord, playerOneLineTwo, setPlayerO
 
     return(
         <>
-        <h3>Complete your second line!</h3>
         <form onSubmit={handlePlayerOneLineTwoSubmit}>
         <input type="text" placeholder="Your line" name="name" value={playerOneLineTwo} onChange={handleChange}/>
         <input type="text" value={playerOneRhymeWord.word} id="unselectable"></input>

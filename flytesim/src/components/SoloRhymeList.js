@@ -7,6 +7,7 @@ const SoloRhymeList = ({ soloRhymeWordsList, setSoloRhymeWordValue, setSoloRhyme
 const filterOutSpaces = soloRhymeWordsList.filter((word) => word.word.indexOf(" ") === -1)
 const filterOutRareWords = filterOutSpaces.filter((word) => word.score > 100)
 const cleanFilter1 = filterOutRareWords.splice((word) => (word.word !== "rape"))
+console.log(cleanFilter1)
 const sortedList = cleanFilter1.splice((word) => (word.word !== "fuck"))
 const shuffledRhymeList = sortedList.sort(() => 0.5 - Math.random());
 const tenRandomRhymeWords = shuffledRhymeList.slice(0, 10);

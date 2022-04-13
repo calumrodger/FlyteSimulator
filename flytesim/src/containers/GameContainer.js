@@ -197,9 +197,9 @@ const handleSoloLineTwoSubmit = (e) => {
 }
 
 const interpretSoloScore = () => {
-  if (soloRhymeWord.score > 0 && soloRhymeWord.score < 1000) {
+  if (soloFinalScore >= 15) {
     return <img className="perfect" src={perfect} alt="perfect" />
-  } else if (soloRhymeWord.score >= 1000 && soloRhymeWord.score < 1500) {
+  } else if (soloFinalScore >= 5 && soloFinalScore < 15) {
     return <img className="great" src={great} alt="great" />;
   } else {
     return <img className="okay" src={okay} alt="okay" />;
@@ -267,9 +267,9 @@ setShowPlayerTwoStarterWords(true)
 }
 
 const interpretPlayerOneScore = () => {
-if (playerOneRhymeWord.score > 0 && playerOneRhymeWord.score < 1000) {
+if (playerOneFinalScore >= 15) {
   return <img className="perfect" src={perfect} alt="perfect" />
-} else if (playerOneRhymeWord.score >= 1000 && playerOneRhymeWord.score < 1500) {
+} else if (playerOneFinalScore >= 5 && playerOneFinalScore < 15) {
   return <img className="great" src={great} alt="great" />;
 } else {
   return <img className="okay" src={okay} alt="okay" />;
@@ -319,9 +319,9 @@ setShowTwoPlayerResult(true)
 }
 
 const interpretPlayerTwoScore = () => {
-if (playerTwoRhymeWord.score > 0 && playerTwoRhymeWord.score < 1000) {
+if (playerTwoFinalScore >= 15 ) {
   return <img className="perfect" src={perfect} alt="perfect" />
-} else if (playerTwoRhymeWord.score >= 1000 && playerTwoRhymeWord.score < 1500) {
+} else if (playerTwoFinalScore >= 5 && playerTwoFinalScore < 15) {
   return <img className="great" src={great} alt="great" />;
 } else {
   return <img className="okay" src={okay} alt="okay" />;
